@@ -88,7 +88,7 @@ Boolean type
 
 Here is the complete list of fundamental types in C++:
 
-<table>
+<table border="1">
 <tr>
 <th>Group</th>
 <th>Type names*</th>
@@ -135,7 +135,7 @@ Here is the complete list of fundamental types in C++:
 <tr>
 <td rowspan="5">Integer types (unsigned)</td>
 <td>unsigned char</td>
-<td>(same size as their signed counterparts)</td>
+<td rowspan="5">(same size as their signed counterparts)</td>
 </tr>
 <tr>
 <td>unsigned short int</td>
@@ -163,7 +163,9 @@ Here is the complete list of fundamental types in C++:
 <td>Precision not less than double</td>
 </tr>
 <tr>
-<td>Boolean type	bool	
+<td>Boolean type</td>
+<td>bool</td>
+<td></td>
 </tr>
 <tr>
 <td>Void type</td>
@@ -173,6 +175,7 @@ Here is the complete list of fundamental types in C++:
 <tr>
 <td>Null pointer</td>
 <td>decltype(nullptr)</td>
+<td></td>
 </tr>
 </table>
 
