@@ -192,7 +192,7 @@ Note how spaces within the quotes are part of the literal, while those outside t
 Some programmers also use a trick to include long string literals in multiple lines: In C++, a backslash at the end of line is considered a
 line-continuation character that merges both that line and the next into a single line. The following shows two equivalent forms of code:
 
-~~
+~~~
 x = "this is a very very long \
 string"
 x = "this is a very very long string"
@@ -244,7 +244,7 @@ int* p = nullptr;
 ~~~
 {: .code}
 
-#### Typed constant expressions
+### Typed constant expressions
 
 Sometimes, it is just convenient to give a name to a constant value:
 
