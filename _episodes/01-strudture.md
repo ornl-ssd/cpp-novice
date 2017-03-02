@@ -1,13 +1,11 @@
 ---
-title: "Basics of C++"
+title: "Structure of a Program"
 teaching: 15
 exercises: 15
 questions:
 objectives:
 keypoints:
 ---
-
-### Structure of a Program
 
 We saw how to write a simple "Hello World" program in the C/C++ Development Tools lesson. Lets look at this program in more detail:
 
