@@ -52,11 +52,12 @@ All of these represent the same number, 75.
 Literal constants have a type, just like variables. By default, integer literals are of type `int`. However, certain *suffixes* may be 
 appended to an integer literal to specify a different integer type:
 
-|Suffix|Type modifier|
-|---|---|
-|u or U|unsigned|
-|l or L|long|
-|ll or LL|long long|
+<table border="1">
+<tr><th>Suffix</th><th>Type modifier</th></tr>
+<tr><td>u or U</td><td>unsigned</td></tr>
+<tr><td>l or L</td><td>long</td></tr>
+<tr><td>ll or LL</td><td>long long</td></tr>
+</table>
 
 The unsigned suffix may be combined with any of the other two in any order to form unsigned long or unsigned long long. For example:
 
@@ -92,10 +93,11 @@ a floating-point numeric literal.
 The default type for floating-point literals is `double`. Floating-point literals of type `float` or `long doubl`e can be specified by adding 
 one of the following suffixes:
 
-|Suffix|Type|
-|---|---|
-|f or F|float|
-|l or L|long double|
+<table border="1">
+<tr><th>Suffix</th><th>Type</th></tr>
+<tr><td>f or F</td><td>float</td></tr>
+<tr><td>l or L</td><td>long double</td></tr>
+</table>
 
 For example:
 
@@ -140,20 +142,20 @@ Character and string literals can also represent special characters that are dif
 code of a program, like newline or tab characters. These special characters are preceded by a backslash character `\`.
 
 Here you have a list of the single character escape codes: 
-
-|Escape code|Description|
-|---|---|
-|\n|newline|
-|\r|carriage return|
-|\t|tab|
-|\v|vertical tab|
-|\b|backspace|
-|\f|form feed (page feed)|
-|\a|alert (beep)|
-|\'|single quote|
-|\"|double quote|
-|\?|question mark|
-|\\|backslash|
+<table border="1">
+<tr><th>Escape code</th><th>Description</th></tr>
+<tr><td>\n</td><td>newline</td></tr>
+<tr><td>\r</td><td>carriage return</td></tr>
+<tr><td>\t</td><td>tab</td></tr>
+<tr><td>\v</td><td>vertical tab</td></tr>
+<tr><td>\b</td><td>backspace</td></tr>
+<tr><td>\f</td><td>form feed (page feed)</td></tr>
+<tr><td>\a</td><td>alert (beep)</td></tr>
+<tr><td>\'</td><td>single quote</td></tr>
+<tr><td>\"</td><td>double quote</td></tr>
+<tr><td>\?</td><td>question mark</td></tr>
+<tr><td>\\</td><td>backslash</td></tr>
+</table>
 
 For example:
 
@@ -202,21 +204,23 @@ x = "this is a very very long string"
 All the character literals and string literals described above are made of characters of type `char`. A different character type can be 
 specified by using one of the following prefixes:
 
-|Prefix|Character type|
-|---|---|
-|u|char16_t|
-|U|char32_t|
-|L|wchar_t|
+<table border="1">
+<tr><th>Prefix</th><th>Character Type</th></tr>
+<tr><td>u</td><td>char16_t</td></tr>
+<tr><td>U</td><td>char32_t</td></tr>
+<tr><td>L</td><td>wchar_t</td></tr>
+</table>
 
 Note that, unlike type suffixes for integer literals, these prefixes are *case sensitive*. Lowercase is userfd for char16_t and 
 uppercase for char32_t and wchar_t.
 
 For string literals, apart from the above `u`, `U`, and `L`, two additional prefixes exist:
 
-|Prefix|Description|
-|---|---|
-|u8|The string literal is encoded in the executable using UTF-8|
-|R|The string literal is a raw string|
+<table border="1">
+<tr><th>Prefix</th><th>Description</th></tr>
+<tr><td>u8</td><td>The string literal is encoded in the executable using UTF-8</td></tr>
+<tr><td>R</td><td>The string literal is a raw string</td></tr>
+</table>
 
 In raw strings, backslashes and single and double quotes are all valid characters. The content of the literal is delimited by an initial 
 `R"*sequence*(` and a final `)*sequence*"`, where *sequence* is any sequence of characters (including an empty sequence). The content of 
