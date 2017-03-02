@@ -52,13 +52,14 @@ Lines 5 and 7: { and }
 Everything between these braces is the function's body that defines what happens when main is called. All functions use braces to indicate 
 the beginning and end of their definitions.
 
-Line 6: std::cout &lt;&lt; "Hello World!" &lt;&lt; endl;
+Line 6: std::cout &lt;&lt; "Hello World!" &lt;&lt; std::endl;
 : This line is a C++ statement. A statement is an expression that can actually produce some effect. It is the meat of a program, specifying its 
 actual behavior. Statements are executed in the same order that they appear within a function's body.
-This statement has three parts: First, `std"::cout`, which identifies the standard character output device (usually, this is the computer screen). 
-Second, the insertion operator `&lt;&lt;`, which indicates 
-that what follows is inserted into `std::cout`. Finally, a sentence within quotes `"Hello world!"`, is the content inserted into the standard output.
-Notice that the statement ends with a semicolon `;`. This character marks the end of the statement, just as the period ends a sentence in 
+This statement has the following parts: First, `std"::cout`, which identifies the standard character output device (usually, this is the computer screen). 
+Second, the insertion operator `<<`, which indicates 
+that what follows is inserted into `std::cout`. Next, a sentence within quotes `"Hello world!"`, is the content inserted into the standard output,
+and this is followed by another insertion operation. Finally, `std::endl` specifies the "end of line" so that any additional output will be on
+subsequent lines. Notice that the statement ends with a semicolon `;`. This character marks the end of the statement, just as the period ends a sentence in 
 English. All C++ statements must end with a semicolon character. One of the most common syntax errors in C++ is forgetting to end a 
 statement with a semicolon.
 
@@ -98,11 +99,86 @@ at all for this purpose. Many statements can be written in a single line, or eac
 code in different lines serves only to make it more legible and schematic for the humans that may read it, but has no effect on the 
 actual behavior of the program.
 
-Preprocessor directives (those that begin by `#`) are out of this general rule since they are not statements. They are lines read and 
+Preprocessor directives (those that begin by `#`) are not covered by this general rule since they are not statements. They are lines read and 
 processed by the preprocessor before proper compilation begins. Preprocessor directives must be specified in their own line and, 
 because they are not statements, do not have to end with a semicolon.
 
 ### Comments
 
+As noted above, comments do not affect the operation of the program; however, they provide an important tool to document directly within the 
+source code what the program does and how it operates.
+
+C++ supports two ways of commenting code:
+
+~~~
+// line comment
+/* block 
+comment */ 
+~~~
+{: .code}
+
+The first type is known as line comment, and it discards everything from the pair of slash signs`//` to the end of the same line. The second type
+is known as block comment, and it discards everything between the `/*` characters and the first appearance of the `*/` characters, with the 
+possibility of including multiple lines.
+
+Let's use this to improve our second program: 
+
+~~~
+/* My second program in C++
+   with more comments */
+
+#include <iostream>
+
+int main ()
+{
+  std::cout << "Hello World! ";     // prints "Hello World!" with no "new line"
+  std::cout << "I'm a C++ program" << std::endl ; // prints "I'm a C++ program" on the same line
+}
+~~~
+{: .code}
+
+While adding the comments, we also took the opportunity to show you how `std::endl` can be used to control
+where the output is printed.
+
+### Using Namespaces
+
+If you have seen C++ code before, you may have seen `cout` being used instead of `std::cout`. Both name the same object: the first one uses 
+the name `cout`, while the second *qualifies* it directly within the namespace `std` (as `std::cout`).
+
+The name `cout` is part of the standard library, and all the elements in the standard C++ library are declared within what is called a namespace,
+which in this case is called `std`. 
+
+In order to refer to the elements in the `std` namespace a program shall either qualify each and every use of elements of the library 
+(as we have done by prefixing `cout` with `std::`), or introduce visibility of its components. The most typical way to introduce 
+visibility of these components is by means of using declarations:
+
+~~~
+using namespace std;
+~~~
+{: .code}
+
+The above declaration allows all elements in the `std` namespace to be accessed in an *unqualified* manner (without the `std::` prefix).
+
+With this in mind, the last example can be rewritten as follows:
+
+~~~
+/* My second program in C++
+   with more comments */
+
+#include <iostream>
+use namespace std;
+
+int main ()
+{
+  cout << "Hello World! ";     // prints "Hello World!" with no "new line"
+  cout << "I'm a C++ program" << endl ; // prints "I'm a C++ program" on the same line
+}
+~~~
+{: .code}
 
 
+Both ways of accessing the elements of the `std` namespace are valid in C++ and produce the exact same behavior. For simplicity, and 
+to improve readability, the examples in these tutorials will more often use this latter approach with using declarations, although 
+note that explicit qualification is the only way to guarantee that name collisions never happen.
+
+Namespaces are explained in more detail in a later chapter.
