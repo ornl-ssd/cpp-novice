@@ -100,15 +100,15 @@ Here is the complete list of fundamental types in C++:
 <td>Exactly one byte in size. At least 8 bits.</td>
 </tr>
 <tr>
-<td>char16\_t</td>
+<td>char16_t</td>
 <td>Not smaller than char. At least 16 bits.</td>
 </tr>
 <tr>
-<td>char32\_t</td>
+<td>char32_t</td>
 <td>Not smaller than char16_t. At least 32 bits.</td>
 </tr>
 <tr>
-<td>wchar\_t</td>
+<td>wchar_t</td>
 <td>Can represent the largest supported character set.</td>
 </tr>
 <tr>
@@ -117,19 +117,19 @@ Here is the complete list of fundamental types in C++:
 <td>Same size as char. At least 8 bits.</td>
 </tr>
 <tr>
-<td>signed short int</td>
+<td><em>signed</em> short <em>int</em></td>
 <td>Not smaller than char. At least 16 bits.</td>
 </tr>
 <tr>
-<td>signed int</td>
+<td><em>signed</em> int</td>
 <td>Not smaller than short. At least 16 bits.</td>
 </tr>
 <tr>
-<td>signed long int</td>
+<td><em>signed</em> long <em>int</em></td>
 <td>Not smaller than int. At least 32 bits.</td>
 </tr>
 <tr>
-<td>signed long long int</td>
+<td><em>signed</em> long long <em>int</em></td>
 <td>Not smaller than long. At least 64 bits.</td>
 </tr>
 <tr>
@@ -138,16 +138,16 @@ Here is the complete list of fundamental types in C++:
 <td rowspan="5">(same size as their signed counterparts)</td>
 </tr>
 <tr>
-<td>unsigned short int</td>
+<td>unsigned short <em>int</em></td>
 </tr>
 <tr>
-<td>unsigned int</td>
+<td>unsigned <em>int</em></td>
 </tr>
 <tr>
-<td>unsigned long int</td>
+<td>unsigned long <em>int</em></td>
 </tr>
 <tr>
-<td>unsigned long long int</td>
+<td>unsigned long long <em>int</em></td>
 </tr>
 <tr>
 <td rowspan="3">Floating-point</td>
@@ -179,83 +179,90 @@ Here is the complete list of fundamental types in C++:
 </tr>
 </table>
 
-* The names of certain integer types can be abbreviated without their signed and int components - only the part not in italics is required to identify the type, the part in italics is optional. I.e., signed short int can be abbreviated as signed short, short int, or simply short; they all identify the same fundamental type.
+\* The names of certain integer types can be abbreviated without their signed and int components - only the part not in italics is 
+required to identify the type, the part in italics is optional. I.e., signed short int can be abbreviated as signed short, short int, 
+or simply short; they all identify the same fundamental type.
 
-Within each of the groups above, the difference between types is only their size (i.e., how much they occupy in memory): the first type in each group is the smallest, and the last is the largest, with each type being at least as large as the one preceding it in the same group. Other than that, the types in a group have the same properties.
+Within each of the groups above, the difference between types is only their size (i.e., how much they occupy in memory): the first 
+type in each group is the smallest, and the last is the largest, with each type being at least as large as the one preceding it in 
+the same group. Other than that, the types in a group have the same properties.
 
-Note in the panel above that other than char (which has a size of exactly one byte), none of the fundamental types has a standard size specified (but a minimum size, at most). Therefore, the type is not required (and in many cases is not) exactly this minimum size. This does not mean that these types are of an undetermined size, but that there is no standard size across all compilers and machines; each compiler implementation may specify the sizes for these types that fit the best the architecture where the program is going to run. This rather generic size specification for types gives the C++ language a lot of flexibility to be adapted to work optimally in all kinds of platforms, both present and future. 
+Note in the panel above that other than char (which has a size of exactly one byte), none of the fundamental types has a standard 
+size specified (but a minimum size, at most). Therefore, the type is not required (and in many cases is not) exactly this minimum size. 
+This does not mean that these types are of an undetermined size, but that there is no standard size across all compilers and machines; 
+each compiler implementation may specify the sizes for these types that fit the best the architecture where the program is going to run. 
+This rather generic size specification for types gives the C++ language a lot of flexibility to be adapted to work optimally in all 
+kinds of platforms, both present and future. 
 
-Type sizes above are expressed in bits; the more bits a type has, the more distinct values it can represent, but at the same time, also consumes more space in memory:
+Type sizes above are expressed in bits; the more bits a type has, the more distinct values it can represent, but at the same time, 
+also consumes more space in memory:
 
-Size	Unique representable values	Notes
-8-bit	256	= 28
-16-bit	65 536	= 216
-32-bit	4 294 967 296	= 232 (~4 billion)
-64-bit	18 446 744 073 709 551 616	= 264 (~18 billion billion)
+<table border="1">
+<tr><th>Size</th><th>Unique representable values</th><th>Notes</th></tr>
+<tr><td>8-bit</td><td>256</td><td>= 28</td></tr>
+<tr><td>16-bit</td><td>65,536</td><td>= 216</td></tr>
+<tr><td>32-bit</td><td>4,294,967,296</td><td>= 232 (~4 billion)</td></tr>
+<tr><td>64-bit</td><td>18,446,744,073,709,551,616</td><td>= 264 (~18 billion billion)</td></tr>
+</table>
 
-For integer types, having more representable values means that the range of values they can represent is greater; for example, a 16-bit unsigned integer would be able to represent 65536 distinct values in the range 0 to 65535, while its signed counterpart would be able to represent, on most cases, values between -32768 and 32767. Note that the range of positive values is approximately halved in signed types compared to unsigned types, due to the fact that one of the 16 bits is used for the sign; this is a relatively modest difference in range, and seldom justifies the use of unsigned types based purely on the range of positive values they can represent.
+For integer types, having more representable values means that the range of values they can represent is greater; for example, 
+a 16-bit unsigned integer would be able to represent 65536 distinct values in the range 0 to 65535, while its signed counterpart 
+would be able to represent, on most cases, values between -32768 and 32767. Note that the range of positive values is approximately 
+halved in signed types compared to unsigned types, due to the fact that one of the 16 bits is used for the sign; this is a relatively 
+modest difference in range, and seldom justifies the use of unsigned types based purely on the range of positive values they can represent.
 
 For floating-point types, the size affects their precision, by having more or less bits for their significant and exponent.
 
-If the size or precision of the type is not a concern, then char, int, and double are typically selected to represent characters, integers, and floating-point values, respectively. The other types in their respective groups are only used in very particular cases.
+If the size or precision of the type is not a concern, then char, int, and double are typically selected to represent characters, 
+integers, and floating-point values, respectively. The other types in their respective groups are only used in very particular cases.
 
-The properties of fundamental types in a particular system and compiler implementation can be obtained by using the numeric_limits classes (see standard header <limits>). If for some reason, types of specific sizes are needed, the library defines certain fixed-size type aliases in header <cstdint>.
+The properties of fundamental types in a particular system and compiler implementation can be obtained by using the numeric_limits 
+classes (see standard header <limits>). If for some reason, types of specific sizes are needed, the library defines certain fixed-size 
+type aliases in header <cstdint>.
 
-The types described above (characters, integers, floating-point, and boolean) are collectively known as arithmetic types. But two additional fundamental types exist: void, which identifies the lack of type; and the type nullptr, which is a special type of pointer. Both types will be discussed further in a coming chapter about pointers.
+The types described above (characters, integers, floating-point, and boolean) are collectively known as arithmetic types. But two 
+additional fundamental types exist: void, which identifies the lack of type; and the type nullptr, which is a special type of pointer. 
+Both types will be discussed further in a coming chapter about pointers.
 
-C++ supports a wide variety of types based on the fundamental types discussed above; these other types are known as compound data types, and are one of the main strengths of the C++ language. We will also see them in more detail in future chapters.
+C++ supports a wide variety of types based on the fundamental types discussed above; these other types are known as compound data types, 
+and are one of the main strengths of the C++ language. We will also see them in more detail in future chapters.
 
-Declaration of variables
-C++ is a strongly-typed language, and requires every variable to be declared with its type before its first use. This informs the compiler the size to reserve in memory for the variable and how to interpret its value. The syntax to declare a new variable in C++ is straightforward: we simply write the type followed by the variable name (i.e., its identifier). For example:
+### Declaration of variables
 
-1
-2
+C++ is a *strongly-typed* language, and requires every variable to be declared with its type before its first use. This informs the 
+compiler the size to reserve in memory for the variable and how to interpret its value. The syntax to declare a new variable in C++ 
+is straightforward: we simply write the type followed by the variable name (i.e., its identifier). For example:
+
+~~~
 int a;
 float mynumber;
+~~~
+{: .code}
 
+These are two valid declarations of variables. The first one declares a variable of type `int` with the identifier `a`. 
+The second one declares a variable of type `float` with the identifier `mynumber`. Once declared, the variables `a` and `mynumber`
+can be used within the rest of their scope in the program.
+If declaring more than one variable of the same type, they can all be declared in a single statement by separating their identifiers 
+with commas. For example:
 
-These are two valid declarations of variables. The first one declares a variable of type int with the identifier a. The second one declares a variable of type float with the identifier mynumber. Once declared, the variables a and mynumber can be used within the rest of their scope in the program.
-If declaring more than one variable of the same type, they can all be declared in a single statement by separating their identifiers with commas. For example:
-
- 
+~~~
 int a, b, c;
+~~~
+{: .code}
 
+This declares three variables (`a`, `b` and `c`), all of them of type `int`, and has exactly the same meaning as:
 
-This declares three variables (a, b and c), all of them of type int, and has exactly the same meaning as:
-
-1
-2
-3
+~~~
 int a;
 int b;
 int c;
+~~~
+{: .code}
 
+To see what variable declarations look like in action within a program, let's have a look at the entire C++ code of 
+the example about your mental memory proposed at the beginning of this chapter:
 
-To see what variable declarations look like in action within a program, let's have a look at the entire C++ code of the example about your mental memory proposed at the beginning of this chapter:
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
+~~~
 // operating with variables
 
 #include <iostream>
@@ -279,64 +286,45 @@ int main ()
   // terminate the program:
   return 0;
 }
-4
-Edit & Run
+~~~
+{: .code}
 
+Don't be worried if something else than the variable declarations themselves look a bit strange to you. Most of it will be explained in 
+more detail in coming chapters.
 
-Don't be worried if something else than the variable declarations themselves look a bit strange to you. Most of it will be explained in more detail in coming chapters.
+### Initialization of variables
 
-Initialization of variables
-When the variables in the example above are declared, they have an undetermined value until they are assigned a value for the first time. But it is possible for a variable to have a specific value from the moment it is declared. This is called the initialization of the variable.
+When the variables in the example above are declared, they have an undetermined value until they are assigned a value for the first time. 
+But it is possible for a variable to have a specific value from the moment it is declared. This is called the initialization of the variable.
 
-In C++, there are three ways to initialize variables. They are all equivalent and are reminiscent of the evolution of the language over the years:
+In C++, there are three ways to initialize variables. The first one, known as c-like initialization (because it is inherited from the C language), 
+consists of appending an equal sign followed by the value to which the variable is initialized. For example, to declare a variable of type `int`
+called `x` and initialize it to a value of zero from the same moment it is declared, we can write:
 
-The first one, known as c-like initialization (because it is inherited from the C language), consists of appending an equal sign followed by the value to which the variable is initialized:
-
-type identifier = initial_value; 
-For example, to declare a variable of type int called x and initialize it to a value of zero from the same moment it is declared, we can write:
-
- 
+~~~
 int x = 0;
+~~~
+{: .code}
 
-
-A second method, known as constructor initialization (introduced by the C++ language), encloses the initial value between parentheses (()):
-
-type identifier (initial_value); 
+A second method, known as constructor initialization (introduced by the C++ language), encloses the initial value between parentheses.
 For example:
 
- 
+~~~
 int x (0);
+~~~
+{: .code}
 
+Finally, a third method, known as uniform initialization, similar to the above, but using curly braces instead of parentheses 
+(this was introduced by the revision of the C++ standard, in 2011). For example:
 
-Finally, a third method, known as uniform initialization, similar to the above, but using curly braces ({}) instead of parentheses (this was introduced by the revision of the C++ standard, in 2011):
-
-type identifier {initial_value}; 
-For example:
-
- 
+~~~
 int x {0}; 
-
+~~~
+{: .code}
 
 All three ways of initializing variables are valid and equivalent in C++.
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
+~~~
 // initialization of variables
 
 #include <iostream>
@@ -355,52 +343,50 @@ int main ()
 
   return 0;
 }
-6
-Edit & Run
+~~~
+{: .code}
 
+### Type deduction: auto and decltype
 
-Type deduction: auto and decltype
-When a new variable is initialized, the compiler can figure out what the type of the variable is automatically by the initializer. For this, it suffices to use auto as the type specifier for the variable:
+When a new variable is initialized, the compiler can figure out what the type of the variable is automatically by the initializer. For this, 
+it suffices to use `auto` as the type specifier for the variable:
 
-1
-2
+~~~
 int foo = 0;
 auto bar = foo;  // the same as: int bar = foo; 
+~~~
+{: .code}
 
+Here, `bar` is declared as having an `auto` type; therefore, the type of `bar` is the type of the value used to initialize it: in this 
+case it uses the type of `foo`, which is `int`.
 
-Here, bar is declared as having an auto type; therefore, the type of bar is the type of the value used to initialize it: in this case it uses the type of foo, which is int.
+Variables that are not initialized can also make use of type deduction with the `decltype` specifier:
 
-Variables that are not initialized can also make use of type deduction with the decltype specifier:
-
-1
-2
+~~~
 int foo = 0;
 decltype(foo) bar;  // the same as: int bar; 
+~~~
+{: .code}
 
+Here, `bar` is declared as having the same type as `foo`.
 
-Here, bar is declared as having the same type as foo.
+`auto` and `decltype` are powerful features recently added to the language. But the type deduction features they introduce are meant to be 
+used either when the type cannot be obtained by other means or when using it improves code readability. The two examples above were likely 
+neither of these use cases. In fact they probably decreased readability, since, when reading the code, one has to search for the type of 
+`foo` to actually know the type of `bar`.
 
-auto and decltype are powerful features recently added to the language. But the type deduction features they introduce are meant to be used either when the type cannot be obtained by other means or when using it improves code readability. The two examples above were likely neither of these use cases. In fact they probably decreased readability, since, when reading the code, one has to search for the type of foo to actually know the type of bar.
+### Introduction to strings
 
-Introduction to strings
-Fundamental types represent the most basic types handled by the machines where the code may run. But one of the major strengths of the C++ language is its rich set of compound types, of which the fundamental types are mere building blocks.
+Fundamental types represent the most basic types handled by the machines where the code may run. But one of the major strengths of the C++ 
+language is its rich set of compound types, of which the fundamental types are mere building blocks.
 
-An example of compound type is the string class. Variables of this type are able to store sequences of characters, such as words or sentences. A very useful feature!
+An example of compound type is the `string` class. Variables of this type are able to store sequences of characters, such as words or sentences. 
+A very useful feature!
 
-A first difference with fundamental data types is that in order to declare and use objects (variables) of this type, the program needs to include the header where the type is defined within the standard library (header <string>): 
+A first difference with fundamental data types is that in order to declare and use objects (variables) of this type, the program needs to 
+include the header where the type is defined within the standard library (header <string>): 
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
+~~~
 // my first string
 #include <iostream>
 #include <string>
@@ -413,36 +399,23 @@ int main ()
   cout << mystring;
   return 0;
 }
-This is a string
-Edit & Run
+~~~
+{: .code}
 
+As you can see in the previous example, strings can be initialized with any valid string literal, just like numerical type variables can be 
+initialized to any valid numerical literal. As with fundamental types, all initialization formats are valid with strings:
 
-As you can see in the previous example, strings can be initialized with any valid string literal, just like numerical type variables can be initialized to any valid numerical literal. As with fundamental types, all initialization formats are valid with strings:
-
-1
-2
-3
+~~~
 string mystring = "This is a string";
 string mystring ("This is a string");
 string mystring {"This is a string"};
+~~~
+{: .code}
 
+Strings can also perform all the other basic operations that fundamental data types can, like being declared without an initial value and 
+change its value during execution:
 
-Strings can also perform all the other basic operations that fundamental data types can, like being declared without an initial value and change its value during execution:
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
+~~~
 // my first string
 #include <iostream>
 #include <string>
@@ -457,13 +430,18 @@ int main ()
   cout << mystring << endl;
   return 0;
 }
+~~~
+{: .code}
+
+Here is the output generated when this program is run:
+
+~~~
 This is the initial string content
 This is a different string content
-Edit & Run
+~~~
+{: .output}
 
-
-Note: inserting the endl manipulator ends the line (printing a newline character and flushing the stream).
-
-The string class is a compound type. As you can see in the example above, compound types are used in the same way as fundamental types: the same syntax is used to declare variables and to initialize them.
+The string class is a compound type. As you can see in the example above, compound types are used in the same way as fundamental types.
+The same syntax is used to declare variables and to initialize them.
 
 For more details on standard C++ strings, see the string class reference.
