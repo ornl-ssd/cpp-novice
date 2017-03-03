@@ -508,6 +508,7 @@ else if (x == 2) {
 else {
   cout << "value of x unknown";
 }
+
 </code></pre></td></tr>
 </table>
 
