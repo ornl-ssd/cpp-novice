@@ -9,7 +9,7 @@ keypoints:
 Once introduced to variables and constants, we can begin to operate with them by using operators. What follows is a complete list of operators. 
 At this point, it is likely not necessary to know all of them, but they are all listed here to also serve as reference.
 
-### Assignment operator (=)
+### Assignment operator (`=`)
 
 The assignment operator assigns a value to a variable.
 
@@ -114,7 +114,7 @@ x = 11 % 3;
 
 This results in variable `x` containing the value 2, since dividing 11 by 3 results in 3, with a remainder of 2.
 
-### Compound assignment (+=, -=, *=, /=, %=, \>\>=, \<\<=, &=, ^=, |=)
+### Compound assignment (`+=`, `-=`, `*=`, `/=`, `%=`, `\>\>=`, `\<\<=`, `&=`, `^=`, `|=`)
 
 Compound assignment operators modify the current value of a variable by performing an operation on it. They are equivalent to 
 assigning the result of an operation to the first operand:
@@ -151,7 +151,7 @@ The output from this program is:
 ~~~
 {: .code}
 
-### Increment and decrement (++, \-\-)
+### Increment and decrement (`++`, `\-\-`)
 
 Some expression can be shortened even more: the increment operator `++` and the decrement operator `--` increase or reduce by one the 
 value stored in a variable. They are equivalent to `+= 1` and to `-= 1`, respectively. Thus:
@@ -184,7 +184,7 @@ The following examples show the difference:
 In *Example 1*, the value assigned to `y` is the value of `x` after being increased. While in *Example 2*, it is the value `x` had before 
 being increased.
 
-### Relational and comparison operators ( ==, !=, \>, \<, \>=, \<= )
+### Relational and comparison operators ( `==`, `!=`, `\>`, `\<`, `\>=`, `\<=` )
 
 Two expressions can be compared using relational and equality operators. For example, to know if two values are equal or if one is 
 greater than the other. The result of such an operation is either true or false (i.e., a Boolean value).
@@ -228,7 +228,7 @@ Be careful! The assignment operator is not the same as the equality comparison o
 In the last expression `((b=2) == a)`, we first assigned the value 2 to `b` and then we compared it to `a` (that also stores the value 2), 
 yielding true.
 
-### Logical operators ( !, &&, || )
+### Logical operators ( `!`, `&&`, `||` )
 
 The operator `!` is the C++ operator for the Boolean operation NOT. It has only one operand, to its right, and inverts it, producing 
 false if its operand is true, and true if its operand is false. For example:
@@ -296,7 +296,7 @@ if ( (i<10) && (++i<n) ) { /*...*/ }   // note that the condition increments i
 Here, the combined conditional expression would increase `i` by one, but only if the condition on the left of `&&` is true, because
 otherwise, the condition on the right-hand side `(++i<n)` is never evaluated.
 
-### Conditional ternary operator ( ? )
+### Conditional ternary operator ( `?` )
 
 The conditional operator evaluates an expression, returning one value if that expression evaluates to true, and a different one if 
 the expression evaluates as false. Its syntax is:
@@ -345,7 +345,7 @@ The result from running this program is:
 In this example, `a` was 2, and `b` was 7, so the expression being evaluated `(a>b)` was not true, thus the first value specified after 
 the question mark was discarded in favor of the second value (the one after the colon) which was `b` (with a value of 7).
 
-### Comma operator ( , )
+### Comma operator ( `,` )
 
 The comma operator `,` is used to separate two or more expressions that are included where only one expression is expected. When the set 
 of expressions has to be evaluated for a value, only the right-most expression is considered.
@@ -360,7 +360,7 @@ a = (b=3, b+2);
 This code would first assign the value 3 to `b`, and then assign `b+2` to variable `a`. So, at the end, variable `a` would contain the value 
 5 while variable `b` would contain value 3.
 
-### Bitwise operators ( &, |, ^, ~, \<\<, \>\> )
+### Bitwise operators ( `&`, `|`, `^`, `~`, `\<\<`, `\>\>` )
 
 Bitwise operators modify variables considering the bit patterns that represent the values they store.
 
@@ -397,7 +397,7 @@ i = int (f);
 
 Both ways of casting types are valid in C++.
 
-### sizeof
+### `sizeof` operator
 
 This operator accepts one parameter, which can be either a type or a variable, and returns the size in bytes of that type or object:
 
