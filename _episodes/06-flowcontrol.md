@@ -485,7 +485,7 @@ constants (there may be any number of these), the program executes the statement
 Both of the following code fragments have the same behavior, demonstrating the `if-else` equivalent of a `switch` statement:
 
 <table border="1">
-<th>switch example</th><th>if-else equivalent</th></tr>
+<tr><th>switch example</th><th>if-else equivalent</th></tr>
 <tr><td><code>
 switch (x) {
   case 1:
