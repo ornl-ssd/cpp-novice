@@ -382,7 +382,7 @@ int main()
 
 Here we see the output
 
-~~~~
+~~~
 10, 9, 8, 7, 6, 5, 4, 3, countdown aborted!
 ~~~
 {: .output}
@@ -393,7 +393,7 @@ Here we see the output
 The `continue` statement causes the program to skip the rest of the loop in the current iteration, as if the end of the statement block had 
 been reached. The loop will immediately start the following iteration. For example, let's skip number 5 in our countdown:
 
-~~~~
+~~~
 // continue loop example
 #include <iostream>
 using namespace std;
@@ -430,7 +430,7 @@ of a valid identifier followed by a colon.
 The `goto` statement is generally deemed a low-level feature, with no particular use cases in modern higher-level programming paradigms 
 generally used with C++. But, just as an example, here is a version of our countdown loop using `goto`:
 
-~~~~
+~~~
 // goto loop example
 #include <iostream>
 using namespace std;
