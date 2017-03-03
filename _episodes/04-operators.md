@@ -114,7 +114,7 @@ x = 11 % 3;
 
 This results in variable `x` containing the value 2, since dividing 11 by 3 results in 3, with a remainder of 2.
 
-### Compound assignment (+=, -=, *=, /=, %=, >>=, <<=, &=, ^=, |=)
+### Compound assignment (+=, -=, *=, /=, %=, \>\>=, \<\<=, &=, ^=, |=)
 
 Compound assignment operators modify the current value of a variable by performing an operation on it. They are equivalent to 
 assigning the result of an operation to the first operand:
@@ -124,7 +124,7 @@ assigning the result of an operation to the first operand:
 <tr><td>y += x;</td><td>y = y + x;</td></tr>
 <tr><td>x -= 5;</td><td>x = x - 5;</td></tr>
 <tr><td>x /= y;</td><td>x = x / y;</td></tr>
-<tr><td>price *= units + 1;</th><td>price = price * (units+1);</td></tr>
+<tr><td>price *= units + 1;</td><td>price = price * (units+1);</td></tr>
 </table>
 
 The same applies for all the other compound assignment operators. For example:
@@ -138,7 +138,7 @@ int main ()
 {
   int a, b=3;
   a = b;
-  a+=2;             // equivalent to a=a+2
+  a += 2;             // equivalent to a=a+2
   cout << a;
 }
 ~~~
@@ -151,15 +151,15 @@ The output from this program is:
 ~~~
 {: .code}
 
-### Increment and decrement (++, --)
+### Increment and decrement (++, \-\-)
 
 Some expression can be shortened even more: the increment operator `++` and the decrement operator `--` increase or reduce by one the 
-value stored in a variable. They are equivalent to `+=1` and to `-=1`, respectively. Thus:
+value stored in a variable. They are equivalent to `+= 1` and to `-= 1`, respectively. Thus:
 
 ~~~
 ++x;
-x+=1;
-x=x+1;
+x += 1;
+x = x + 1;
 ~~~
 {: .code}
 
@@ -177,29 +177,14 @@ The following examples show the difference:
 
 <table border="1">
 <tr><th>Example 1</th><th>Example 2</th></tr>
-<tr><td>
-~~~
-x = 3;
-y = ++x;
-// x contains 4, y contains 4
-~~~
-{: .code}
-</td>
-<td>
-~~~
-x = 3;
-y = x++;
-// x contains 4, y contains 3
-~~~
-{: .code}
-</td>
-</tr>
+<tr><td rowspan="3">x = 3;<br>y = ++x;<br>// x contains 4, y contains 4</td>
+<td>x = 3;<br>y = x++;<br>// x contains 4, y contains 3</td></tr>
 </table>
 
 In *Example 1*, the value assigned to `y` is the value of `x` after being increased. While in *Example 2*, it is the value `x` had before 
 being increased.
 
-### Relational and comparison operators ( ==, !=, >, <, >=, <= )
+### Relational and comparison operators ( ==, !=, \>, \<, \>=, \<= )
 
 Two expressions can be compared using relational and equality operators. For example, to know if two values are equal or if one is 
 greater than the other. The result of such an operation is either true or false (i.e., a Boolean value).
@@ -319,7 +304,7 @@ the expression evaluates as false. Its syntax is:
 ~~~
 condition ? result1 : result2 
 ~~~
-{: .code}
+{: .output}
 
 If `condition` is true, the entire expression evaluates to `result1`, and otherwise to `result2`.
 
@@ -355,7 +340,7 @@ The result from running this program is:
 ~~~
 7
 ~~~
-{: .code}
+{: .output}
 
 In this example, `a` was 2, and `b` was 7, so the expression being evaluated `(a>b)` was not true, thus the first value specified after 
 the question mark was discarded in favor of the second value (the one after the colon) which was `b` (with a value of 7).
@@ -375,7 +360,7 @@ a = (b=3, b+2);
 This code would first assign the value 3 to `b`, and then assign `b+2` to variable `a`. So, at the end, variable `a` would contain the value 
 5 while variable `b` would contain value 3.
 
-### Bitwise operators ( &, |, ^, ~, <<, >> )
+### Bitwise operators ( &, |, ^, ~, \<\<, \>\> )
 
 Bitwise operators modify variables considering the bit patterns that represent the values they store.
 
@@ -452,11 +437,11 @@ From greatest to smallest priority, C++ operators are evaluated in the following
 <table border="1">
 <tr><th>Level</th><th>Precedence group</th><th>Operator</th><th>Description	Grouping</th></tr>
 <tr><td>1</td><td>Scope</td><td>::</td><td>scope qualifier</td><td>Left-to-right</td></tr>
-<tr><td rowspan="4">2</td><td rowspan="4">Postfix (unary)</td><td>++ --</td><td>postfix increment / decrement</td><td>Left-to-right</td></tr>
+<tr><td rowspan="4">2</td><td rowspan="4">Postfix (unary)</td><td>++ --</td><td>postfix increment / decrement</td><td rowspan="4">Left-to-right</td></tr>
 <tr><td>()</td><td>functional forms</td></tr>
 <tr><td>[]</td><td>subscript</td></tr>
 <tr><td>. -></td><td>member access</td></tr>
-<tr><td rowspan="7">3</td><td rowspan="7">Prefix (unary)</td><td>++ --</td><td>prefix increment / decrement</td><td>Right-to-left</td></tr>
+<tr><td rowspan="7">3</td><td rowspan="7">Prefix (unary)</td><td>++ --</td><td>prefix increment / decrement</td><td rowspan="7">Right-to-left</td></tr>
 <tr><td>~ !</td><td>bitwise NOT / logical NOT</td></tr>
 <tr><td>+ -</td><td>unary prefix</td></tr>
 <tr><td>& *</td><td>reference / dereference</td></tr>
@@ -474,7 +459,7 @@ From greatest to smallest priority, C++ operators are evaluated in the following
 <tr><td>12</td><td>Inclusive or</td><td>|</td><td>bitwise OR</td><td>Left-to-right</td></tr>
 <tr><td>13</td><td>Conjunction</td><td>&&</td><td>logical AND</td><td>Left-to-right</td></tr>
 <tr><td>14</td><td>Disjunction</td><td>||</td><td>logical OR</td><td>Left-to-right</td></tr>
-<tr><td rowspan="3">15</td><td rowspan="3">Assignment-level expressions</td><td rowspan="2">= *= /= %= += -=</td><td>assignment / compound assignment</td><td>Right-to-left</td></tr>
+<tr><td rowspan="3">15</td><td rowspan="3">Assignment-level expressions</td><td rowspan="2">= *= /= %= += -=</td><td>assignment / compound assignment</td><td rowspan="3">Right-to-left</td></tr>
 <tr><td>>>= <<= &= ^= |=</td></tr>
 <tr><td>?:</td><td>conditional operator</td></tr>
 </table>
