@@ -486,7 +486,7 @@ Both of the following code fragments have the same behavior, demonstrating the `
 
 <table border="1">
 <tr><th>switch example</th><th>if-else equivalent</th></tr>
-<tr><td><pre>
+<tr><td><pre><code>
 switch (x) {
   case 1:
     cout << "x is 1";
@@ -496,9 +496,9 @@ switch (x) {
     break;
   default:
     cout << "value of x unknown";
-  }
-</pre></td>
-<td><pre>
+}
+</code></pre></td>
+<td><pre><code>
 if (x == 1) {
   cout << "x is 1";
 }
@@ -508,7 +508,7 @@ else if (x == 2) {
 else {
   cout << "value of x unknown";
 }
-</pre></td></tr>
+</code></pre></td></tr>
 </table>
 
 The `switch` statement has a somewhat peculiar syntax inherited from the early times of the first C compilers, because it uses labels 
