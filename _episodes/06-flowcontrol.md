@@ -360,7 +360,7 @@ Jump statements allow the flow of a program to be changed by performing jumps to
 The `break` statement immediately leaves a loop, even if the condition for its end is not fulfilled. It can be used to end an infinite 
 loop, or to force it to end before its condition becomes false. For example, let's stop the countdown before its natural end:
 
-~~~~
+~~~
 // break loop example
 #include <iostream>
 using namespace std;
