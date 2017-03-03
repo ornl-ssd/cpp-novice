@@ -1,5 +1,5 @@
 ---
-title: "Statements and Control of Flow"
+title: "Control of Flow"
 teaching: 15
 exercises: 15
 questions:
