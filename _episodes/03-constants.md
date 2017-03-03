@@ -268,7 +268,7 @@ using namespace std;
 const double pi = 3.14159;
 const char newline = '\n';
 
-int main ()
+int main()
 {
   double r=5.0;               // radius
   double circle;

@@ -39,7 +39,7 @@ For example, let's have a look at the following code:
 #include <iostream>
 using namespace std;
 
-int main ()
+int main()
 {
   int a, b;         // a:?,  b:?
   a = 10;           // a:10, b:?
@@ -134,7 +134,7 @@ The same applies for all the other compound assignment operators. For example:
 #include <iostream>
 using namespace std;
 
-int main ()
+int main()
 {
   int a, b=3;
   a = b;
@@ -322,7 +322,7 @@ For example:
 #include <iostream>
 using namespace std;
 
-int main ()
+int main()
 {
   int a,b,c;
 

@@ -127,7 +127,7 @@ Let's use this to improve our second program:
 
 #include <iostream>
 
-int main ()
+int main()
 {
   std::cout << "Hello World! ";     // prints "Hello World!" with no "new line"
   std::cout << "I'm a C++ program" << std::endl ; // prints "I'm a C++ program" on the same line
@@ -166,7 +166,7 @@ With this in mind, the last example can be rewritten as follows:
 #include <iostream>
 use namespace std;
 
-int main ()
+int main()
 {
   cout << "Hello World! ";     // prints "Hello World!" with no "new line"
   cout << "I'm a C++ program" << endl ; // prints "I'm a C++ program" on the same line

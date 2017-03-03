@@ -268,7 +268,7 @@ the example about your mental memory proposed at the beginning of this chapter:
 #include <iostream>
 using namespace std;
 
-int main ()
+int main()
 {
   // declaring variables:
   int a, b;
@@ -330,7 +330,7 @@ All three ways of initializing variables are valid and equivalent in C++.
 #include <iostream>
 using namespace std;
 
-int main ()
+int main()
 {
   int a=5;               // initial value: 5
   int b(3);              // initial value: 3
@@ -392,7 +392,7 @@ include the header where the type is defined within the standard library (header
 #include <string>
 using namespace std;
 
-int main ()
+int main()
 {
   string mystring;
   mystring = "This is a string";
@@ -421,7 +421,7 @@ change its value during execution:
 #include <string>
 using namespace std;
 
-int main ()
+int main()
 {
   string mystring;
   mystring = "This is the initial string content";
