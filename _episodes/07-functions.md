@@ -259,9 +259,9 @@ platforms are:
 <tr><th>value</th><th>description</th></tr>
 <tr><td>0</td><td>The program was successful</td></tr>
 <tr><td rowspan="2">EXIT_SUCCESS</td><td>The program was successful (same as above).</td></tr>
-<tr><td>This value is defined in header <cstdlib>.</td></tr>
+<tr><td>This value is defined in header &lt;cstdlib&gt;.</td></tr>
 <tr><td rowspan="2">EXIT_FAILURE</td><td>The program failed.</td></tr>
-<tr><td>This value is defined in header <cstdlib>.</td></tr>
+<tr><td>This value is defined in header &lt;cstdlib&gt;.</td></tr>
 </table>
 
 ### Arguments passed by value and by reference
@@ -460,63 +460,48 @@ passed as argument, that is 4, yielding a result of 5.
 
 ### Declaring functions
 
-In C++, identifiers can only be used in expressions once they have been declared. For example, some variable x cannot be used before being declared with a statement, such as:
+In C++, identifiers can only be used in expressions once they have been declared. For example, some variable `x` cannot be used before 
+being declared with a statement such as:
 
- 
+~~~
 int x;
+~~~
+{: .code}
 
+The same rule applies to functions. Functions cannot be called before they are declared. That is why, in all the previous examples of 
+functions, the functions were always defined in the file before the `main` function, which is the function from where the other functions 
+were called. If `main` were defined before the other functions, this would break the rule that functions shall be declared before being used, 
+and the code would not compile.
 
-The same applies to functions. Functions cannot be called before they are declared. That is why, in all the previous examples of functions, the functions were always defined before the main function, which is the function from where the other functions were called. If main were defined before the other functions, this would break the rule that functions shall be declared before being used, and thus would not compile.
+This rule can cause problems in certain situations however, such as when two functions call each other. In such a case, it is not possible for
+both functions to be declared before the other. To deal with this, C++ permits a *prototype* of the function to be declared without actually 
+defining the function completely. The prototype provides just enough information so that the types involved in the function call are known. 
+When using a prototype, the function still needs to be defined completely, but this can be later in the file. 
 
-The prototype of a function can be declared without actually defining the function completely, giving just enough details to allow the types involved in a function call to be known. Naturally, the function shall be defined somewhere else, like later in the code. But at least, once declared like this, it can already be called.
+A prototype declaration must include all types involved (the return type and the types of its arguments), using the same syntax as used in 
+the definition of the function, but replacing the body of the function with an ending semicolon.
 
-The declaration shall include all types involved (the return type and the type of its arguments), using the same syntax as used in the definition of the function, but replacing the body of the function (the block of statements) with an ending semicolon.
+One difference is that the parameter list does not need to include the parameter names, but only their types. Parameter names can
+nevertheless be specified, but they are optional, and do not need to necessarily match those in the function definition. For example, 
+a function called `protofunction` with two `int` parameters can be declared with either of these statements:
 
-The parameter list does not need to include the parameter names, but only their types. Parameter names can nevertheless be specified, but they are optional, and do not need to necessarily match those in the function definition. For example, a function called protofunction with two int parameters can be declared with either of these statements:
-
-1
-2
+~~~
 int protofunction (int first, int second);
 int protofunction (int, int);
+~~~
+{: .code}
 
+It is good practice to include a name for each parameter, however, as this improves the readibility of the code.
 
-Anyway, including a name for each parameter always improves legibility of the declaration.
+This this example illustrates how functions can be declared before its definition:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
+~~~
 // declaring functions prototypes
 #include <iostream>
 using namespace std;
 
-void odd (int x);
-void even (int x);
+void odd(int x);
+void even(int x);
 
 int main()
 {
@@ -524,22 +509,28 @@ int main()
   do {
     cout << "Please, enter number (0 to exit): ";
     cin >> i;
-    odd (i);
-  } while (i!=0);
+    odd(i);
+  } while ( i!=0 );
   return 0;
 }
 
-void odd (int x)
+void odd(int x)
 {
-  if ((x%2)!=0) cout << "It is odd.\n";
-  else even (x);
+  if ((x % 2) != 0) cout << "It is odd.\n";
+  else even(x);
 }
 
-void even (int x)
+void even(int x)
 {
-  if ((x%2)==0) cout << "It is even.\n";
+  if ((x % 2) == 0) cout << "It is even.\n";
   else odd (x);
 }
+~~~
+{: .code}
+
+Here is an example session using this program:
+
+~~~
 Please, enter number (0 to exit): 9
 It is odd.
 Please, enter number (0 to exit): 6
@@ -548,70 +539,69 @@ Please, enter number (0 to exit): 1030
 It is even.
 Please, enter number (0 to exit): 0
 It is even.
-Edit & Run
+~~~
+{: .output}
 
 
-This example is indeed not an example of efficiency. You can probably write yourself a version of this program with half the lines of code. Anyway, this example illustrates how functions can be declared before its definition:
+The following lines declare the prototype of the functions:
 
-The following lines:
+~~~
+void odd(int a);
+void even(int a); 
+~~~
 
-1
-2
-void odd (int a);
-void even (int a); 
+These prototypes already contain all what is necessary to call the functions: the name, the types of their argument, and their return type 
+(`void` in this case). 
 
+### Recursive functions
 
-Declare the prototype of the functions. They already contain all what is necessary to call them, their name, the types of their argument, and their return type (void in this case). With these prototype declarations in place, they can be called before they are entirely defined, allowing for example, to place the function from where they are called (main) before the actual definition of these functions.
+A recursive function is a function that calls itself. Some algorithms benefit from recursion, such as sorting elements, or calculating 
+factorial numbers. For example, the mathematical formula for n! (factorial of n) is:
 
-But declaring functions before being defined is not only useful to reorganize the order of functions within the code. In some cases, such as in this particular case, at least one of the declarations is required, because odd and even are mutually called; there is a call to even in odd and a call to odd in even. And, therefore, there is no way to structure the code so that odd is defined before even, and even before odd.
-
-Recursivity
-Recursivity is the property that functions have to be called by themselves. It is useful for some tasks, such as sorting elements, or calculating the factorial of numbers. For example, in order to obtain the factorial of a number (n!) the mathematical formula would be:
-
+~~~
 n! = n * (n-1) * (n-2) * (n-3) ... * 1 
+~~~
+{: .code}
+
 More concretely, 5! (factorial of 5) would be:
 
+~~~
 5! = 5 * 4 * 3 * 2 * 1 = 120 
-And a recursive function to calculate this in C++ could be:
+~~~
+{: .output}
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
+A recursive function is generally the simplest and most elegant way to calculate n! in C++:
+
+~~~
 // factorial calculator
 #include <iostream>
 using namespace std;
 
-long factorial (long a)
+long factorial(long a)
 {
   if (a > 1)
    return (a * factorial (a-1));
-  else
-   return 1;
+  
+  return 1;
 }
 
-int main ()
+int main()
 {
   long number = 9;
   cout << number << "! = " << factorial (number);
   return 0;
 }
+~~~
+{: .code}
+
+The output from this program is:
+
+~~~
 9! = 362880
-Edit & Run
+~~~
+{: .output}
 
-
-Notice how in function factorial we included a call to itself, but only if the argument passed was greater than 1, since, otherwise, the function would perform an infinite recursive loop, in which once it arrived to 0, it would continue multiplying by all the negative numbers (probably provoking a stack overflow at some point during runtime).
+Notice how in function `factorial` there is a call to itself, but only if the argument passed was greater than 1. A condition like this is
+essential in a recursive function since it is the only way to determine when to stop the recursion.
+ 
+ 
