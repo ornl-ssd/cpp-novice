@@ -325,7 +325,7 @@ int main () {
 
 This produces the output:
 
-~
+~~~
 5
 3.1416
 ~~~
