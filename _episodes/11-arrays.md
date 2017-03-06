@@ -13,9 +13,9 @@ That means that, for example, five values of type `int` can be declared as an ar
 (each with its own identifier). Instead, using an array, the five `int` values are stored in contiguous memory locations, and all 
 five can be accessed using the same identifier, with the proper index.
 
-For example, an array containing 5 integer values of type `int` called `foo` could be represented as:
+For example, an array containing 5 integer values of type `int` called `my_array` could be represented as:
 
-<img src="{{ site.github.url }}/fig/11-arrays-first.png"/>
+<img src="{{ site.github.url }}/fig/11-arrays-repr-01.png"/>
  
 Each block represents an element of the array. In this case, these are values of type `int`. These elements are numbered from 0 to 4, 
 with 0 being the first and 4 the last. *In C++, the first element in an array is always numbered with a zero (not a one), no matter its length.*
@@ -30,10 +30,10 @@ type name [elements];
 For this declaration, `type` is a valid type (such as `int`, `float, etc.), `name` is a valid identifier, and the `elements` value 
 (which is always enclosed in square brackets []), specifies the length of the array in terms of the number of elements.
 
-Therefore, an array called `foo`, with five elements of type `int`, can be declared as:
+Therefore, an array called `my_array`, with five elements of type `int`, can be declared as:
 
 ~~~
-int foo[5];
+int my_array[5];
 ~~~
 {: .code}
 
@@ -49,13 +49,13 @@ by enclosing those initial values in braces `{}`.
 For example:
 
 ~~~
-int foo[5] = { 16, 2, 77, 40, 12071 }; 
+int my_array[5] = { 16, 2, 77, 40, 12071 }; 
 ~~~
 {: .code}
 
 This statement declares an array that can be represented like this:
 
-<img src="{{ site.github.url }}/fig/11-arrays-init-1.png"/>
+<img src="{{ site.github.url }}/fig/11-arrays-repr-02.png"/>
  
 The number of values between braces must not be greater than the number of elements in the array, however it can be less. If declared with 
 less, the remaining elements are set to their default values (which for fundamental types, means they are set to zero). 
@@ -63,42 +63,42 @@ less, the remaining elements are set to their default values (which for fundamen
 For example:
 
 ~~~
-int bar[5] = { 10, 20, 30 }; 
+int my_array2[5] = { 10, 20, 30 }; 
 ~~~
 {: .code}
 
 Will create an array like this:
 
-<img src="{{ site.github.url }}/fig/11-arrays-init-2.png"/>
+<img src="{{ site.github.url }}/fig/11-arrays-repr-03.png"/>
 
 The initializer can even have no values, just the braces:
 
 ~~~
-int baz[5] = { }; 
+int my_array3[5] = { }; 
 ~~~
 {: .code}
 
 This creates an array of five int values, each initialized with a value of zero:
 
-<img src="{{ site.github.url }}/fig/11-arrays-init-3.png"/>
+<img src="{{ site.github.url }}/fig/11-arrays-repr-04.png"/>
 
 When an initialization of values is provided for an array, C++ allows the possibility of leaving the square brackets empty. 
 In this case, the compiler will automatically size the array to matche the number of values included between the braces:
 
 ~~~
-int foo[] = { 16, 2, 77, 40, 12071 };
+int my_array[] = { 16, 2, 77, 40, 12071 };
 ~~~
 {: .code}
 
-After this declaration, array foo would contain 5 `int` elements, and each element would be initialized with the corresponding value.
+After this declaration, array `my_array` would contain 5 `int` elements, and each element would be initialized with the corresponding value.
 
 This array initialization syntax is common to both C and C++. However, C++ also provides a universal initialization syntax for any data types,
 and so this can be used for arrays as well. This syntax does not use an equal sign between the declaration and the initializer, but still uses
 curly braces for the values. Both of the following statements are equivalent:
 
 ~~~
-int foo[] = { 10, 20, 30 };
-int foo[] { 10, 20, 30 }; 
+int my_array[] = { 10, 20, 30 };
+int my_array[] { 10, 20, 30 }; 
 ~~~
 {: .code}
 
@@ -114,7 +114,7 @@ name[index]
 ~~~
 {: .code}
 
-The following diagram shows how to access each element of the `foo` array, either to reference the value of the element, or to store a new value at
+The following diagram shows how to access each element of the `my_array` array, either to reference the value of the element, or to store a new value at
 that location:
 
 <img src="{{ site.github.url }}/fig/11-arrays-access.png"/>
@@ -122,18 +122,18 @@ that location:
 For example, the following statement stores the value 75 in the third element of `foo`:
 
 ~~~
-foo[2] = 75;
+my_array[2] = 75;
 ~~~
 {: .code}
 
 The following statement copies the value of the third element of `foo` to a variable called `x`:
 
 ~~~
-x = foo[2];
+x = my_array[2];
 ~~~
 {: .code}
 
-The expression `foo[2]` is itself a variable of type `int`.
+The expression `my_array[2]` is itself a variable of type `int`.
 
 In C++, it is possible to exceed the valid range of indices for an array. The compiler will typically try to detect this situation and flag it as
 a warning to the user, but it is not always possible to determine this at compile-time. Instead, this may cause an error to occur at runtime,
@@ -145,8 +145,8 @@ hey perform two different tasks: one is to specify the size of arrays when they 
 indices for concrete array elements when they are accessed. Do not confuse these two possible uses of brackets [] with arrays.
 
 ~~~
-int foo[5];         // declaration of a new array
-foo[2] = 75;        // access to an element of the array.  
+int my_array[5];         // declaration of a new array
+my_array[2] = 75;        // access to an element of the array.  
 ~~~
 {: .code}
 
@@ -155,10 +155,10 @@ The main difference is that the declaration is preceded by the type of the eleme
 Some other valid operations with arrays:
 
 ~~~
-foo[0] = a;
-foo[a] = 75;
-b = foo [a+2];
-foo[foo[a]] = foo[2] + 5;
+my_array[0] = a;
+my_array[a] = 75;
+b = my_array[a+2];
+my_array[my_array[a]] = my_array[2] + 5;
 ~~~
 {: .code}
 
@@ -169,21 +169,27 @@ For example:
 #include <iostream>
 using namespace std;
 
-int foo [] = {16, 2, 77, 40, 12071};
-int n, result=0;
+int my_array[] = {16, 2, 77, 40, 12071};
+int n, result = 0;
 
-int main ()
+int main()
 {
-  for ( n=0 ; n<5 ; ++n )
+  for (n = 0 ; n < 5 ; ++n )
   {
     result += foo[n];
   }
   cout << result;
   return 0;
 }
-12206
 ~~~
 {: .code}
+
+This program generates the output:
+
+~~~
+12206
+~~~
+{: .output}
 
 #### Multidimensional arrays
 
