@@ -7,18 +7,20 @@ objectives:
 keypoints:
 ---
 An array is a series of elements of the same type placed in contiguous memory locations that can be individually referenced by adding an 
-index to a unique identifier.
+index to a memory address. An array is named using a unique identifier.
 
-That means that, for example, five values of type `int` can be declared as an array without having to declare 5 different variables 
-(each with its own identifier). Instead, using an array, the five `int` values are stored in contiguous memory locations, and all 
-five can be accessed using the same identifier, with the proper index.
+This means, for example, that five values of type `int` can be declared as an array without having to declare 5 different variables 
+each with its own identifier. Instead, using an array the five `int` values are stored in contiguous memory locations, and all 
+five can be accessed using the same identifier and associated index.
 
-For example, an array containing 5 integer values of type `int` called `my_array` could be represented as:
+In the diagram below, `my_array` represents an array containing 5 integer values of type `int`:
 
 <img src="{{ site.github.url }}/fig/11-arrays-repr-01.png"/>
  
 Each block represents an element of the array. In this case, these are values of type `int`. These elements are numbered from 0 to 4, 
 with 0 being the first and 4 the last. *In C++, the first element in an array is always numbered with a zero (not a one), no matter its length.*
+The name `my_array` refers to the memory address of the first element of the array. Subsequent elements are accessed by adding the
+index to the address.
 
 Like a regular variable, an array must be declared before it is used. A typical declaration for an array in C++ is:
 
@@ -27,23 +29,23 @@ type name [elements];
 ~~~
 {: .code}
 
-For this declaration, `type` is a valid type (such as `int`, `float, etc.), `name` is a valid identifier, and the `elements` value 
+For this declaration, `type` is a valid type (such as `int`, `float`, etc.), `name` is a valid identifier, and the `elements` value 
 (which is always enclosed in square brackets []), specifies the length of the array in terms of the number of elements.
 
-Therefore, an array called `my_array`, with five elements of type `int`, can be declared as:
+To declare the `my_array` array from above, we would use the following:
 
 ~~~
 int my_array[5];
 ~~~
 {: .code}
 
-NOTE: The elements field within square brackets `[]`, representing the number of elements in the array, must be a constant expression, 
-since arrays are blocks of static memory whose size must be determined at compile time, before the program runs.
+NOTE: The number of elements specified must be a constant expression, since arrays are blocks of static memory whose size must be determined 
+at compile time.
 
 #### Initializing arrays
 
 By default, regular arrays of local scope (for example, those declared within a function) are left uninitialized. This means that 
-narray's elements are indeterminate at the point the array is declared. The elements in an array can be explicitly initialized, however, 
+an array's elements are indeterminate at the point the array is declared. The elements in an array can be explicitly initialized, however, 
 by enclosing those initial values in braces `{}`. 
 
 For example:
@@ -57,13 +59,13 @@ This statement declares an array that can be represented like this:
 
 <img src="{{ site.github.url }}/fig/11-arrays-repr-02.png"/>
  
-The number of values between braces must not be greater than the number of elements in the array, however it can be less. If declared with 
+The number of values between braces must not be greater than the number of elements in the array. However, it can be less. If declared with 
 less, the remaining elements are set to their default values (which for fundamental types, means they are set to zero). 
 
 For example:
 
 ~~~
-int my_array2[5] = { 10, 20, 30 }; 
+int my_array[5] = { 10, 20, 30 }; 
 ~~~
 {: .code}
 
@@ -74,7 +76,7 @@ Will create an array like this:
 The initializer can even have no values, just the braces:
 
 ~~~
-int my_array3[5] = { }; 
+int my_array[5] = { }; 
 ~~~
 {: .code}
 
@@ -119,14 +121,14 @@ that location:
 
 <img src="{{ site.github.url }}/fig/11-arrays-access.png"/>
  
-For example, the following statement stores the value 75 in the third element of `foo`:
+For example, the following statement stores the value 75 in the third element of `my_array`:
 
 ~~~
 my_array[2] = 75;
 ~~~
 {: .code}
 
-The following statement copies the value of the third element of `foo` to a variable called `x`:
+The following statement copies the value of the third element of `my_array` to a variable called `x`:
 
 ~~~
 x = my_array[2];
@@ -176,7 +178,7 @@ int main()
 {
   for (n = 0 ; n < 5 ; ++n )
   {
-    result += foo[n];
+    result += my_array[n];
   }
   cout << result;
   return 0;
