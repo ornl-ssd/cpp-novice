@@ -53,7 +53,7 @@ int main () {
   }
   catch (int e)
   {
-    cout << "An exception occurred. Exception Nr. " << e << '\n';
+    cout << "An exception occurred. Exception Nr. " << e << '\\n';
   }
   return 0;
 }
@@ -153,7 +153,7 @@ int main() {
 ~~~
 {: .code}
 
-form target="_blank" method="post" action="http://cpp.sh/">
+<form target="_blank" method="post" action="http://cpp.sh/">
 <input type="hidden" name="source" id="sub2"/>
 <input type="submit" value="Try running it"/>
 <script type="text/javascript">
@@ -177,7 +177,7 @@ int main() {
   }
   catch (exception& e)
   {
-    cout << e.what() << '\n';
+    cout << e.what() << '\\n';
   }
   return 0;
 }
