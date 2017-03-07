@@ -234,7 +234,7 @@ the compiler remmbers the size of each dimension and uses this to calculate the 
 The following two pieces of code produce the exactly the same result, but one uses a two-dimensional array while the other uses a simple array: 
 
 <table border="1">
-<tr><th>multidimensional array</tr><th>pseudo-multidimensional array</th></tr>
+<tr><th>multidimensional array</th><th>pseudo-multidimensional array</th></tr>
 <tr><td><pre><code>
 const int WIDTH = 5;
 const int HEIGHT = 3;
