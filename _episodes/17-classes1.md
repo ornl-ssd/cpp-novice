@@ -663,7 +663,7 @@ They can be interpreted as:
 <table border="1">
 <tr><th>expression</th><th>can be read as</th></tr>
 <tr><td><code>*x</code></td><td>pointed to by x</td></tr>
-<tr><td>v&x</td></code><td>address of x</td></tr>
+<tr><td><code>&x</code></td><td>address of x</td></tr>
 <tr><td><code>x.y</code></td><td>member y of object x</td></tr>
 <tr><td><code>x->y</code></td><td>member y of object pointed to by x</td></tr>
 <tr><td><code>(*x).y</code></td><td>member y of object pointed to by x (equivalent to the previous one)</td></tr>
