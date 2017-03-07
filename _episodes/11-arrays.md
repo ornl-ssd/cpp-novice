@@ -196,7 +196,7 @@ This program generates the output:
 #### Multidimensional arrays
 
 Multidimensional arrays in C++ are defined by specifying more than one dimension. A C++ array with two dimensions can be considered 
-as a two-dimensional array made of elements, all of them of a same uniform data type.
+as a two-dimensional array comprising elements of the same uniform data type.
 
 <img src="{{ site.github.url }}/fig/11-arrays-multi-01.png"/>
 
@@ -207,7 +207,7 @@ int my_array[3][5];
 ~~~
 {: .code}
 
-To reference a specific element, say the element at the intersecton of the second row and column, the expression would be 
+To reference a specific element, for example, the element at the intersecton of the second row and fourth column, the expression would be 
 (remember that array indices always begin with zero):
 
 ~~~
@@ -215,15 +215,17 @@ my_array[1][3]
 ~~~
 {: .code}
 
-Multidimensional arrays are not limited to two indices (i.e., two dimensions). They can contain as many dimensions as needed. Although be careful: 
-the amount of memory needed for an array increases exponentially with each dimension. For example:
+<img src="{{ site.github.url }}/fig/11-arrays-multi-02.png"/>
+
+Multidimensional arrays are not limited to two indices (i.e., two dimensions). They can contain as many dimensions as needed. Although be careful, 
+as the amount of memory needed for the array can increase substantially with each dimension. For example:
 
 ~~~
 char century [100][365][24][60][60];
 ~~~
 {: .code}
 
-This declares an array with an element of type `char` for each second in a century. This amounts to more than 3 billion characters, so this 
+This declares a five-dimensional array with one element for each second in a century. This amounts to more than 3 billion characters, so this 
 declaration would consume more than 3 gigabytes of memory!
 
 Multidimensional arrays are just an abstraction for programmers. They are stored in the same way as single dimensional arrays, except that
@@ -232,8 +234,8 @@ the compiler remmbers the size of each dimension and uses this to calculate the 
 The following two pieces of code produce the exactly the same result, but one uses a two-dimensional array while the other uses a simple array: 
 
 <table border="1">
-<tr><th>multidimensional array</tr></tr>pseudo-multidimensional array</th></tr>
-<tr><td>
+<tr><th>multidimensional array</tr><th>pseudo-multidimensional array</th></tr>
+<tr><td><pre><code>
 const int WIDTH = 5;
 const int HEIGHT = 3;
 
@@ -246,7 +248,7 @@ int main()
     for (int m = 0; m < WIDTH; m++)
       my_array[n][m] = (n+1) * (m+1);
 }
-</td><td>
+</code></pre></td><td><pre><code>
 const int WIDTH = 5;
 const int HEIGHT = 3;
 
@@ -258,13 +260,13 @@ int main()
     for (int m = 0; m < WIDTH; m++)
       my_array[n * WIDTH + m] = (n+1) * (m+1);
 }
-</td></tr>
+</code></pre></td></tr>
 </table>
 
-None of the two code snippets above produce any output on the screen, but both assign values to the memory block called jimmy in the 
-following way: 
+The memory contents after running either of these programs will be the same, and will consist of:
 
- 
+<img src="{{ site.github.url }}/fig/11-arrays-multi-03.png"/>
+
 Note that the code uses constants for the width and height, instead of using directly their numerical values. This gives the code a better 
 readability, and allows changes in the code to be made easily in one place.
 
