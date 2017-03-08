@@ -281,7 +281,7 @@ int main()
   result = a - b;
 
   // print out the result:
-  cout << result;
+  cout << result << endl;
 
   // terminate the program:
   return 0;
@@ -339,7 +339,7 @@ int main()
 
   a = a + b;
   result = a - c;
-  cout << result;
+  cout << result << endl;
 
   return 0;
 }
@@ -396,7 +396,7 @@ int main()
 {
   string mystring;
   mystring = "This is a string";
-  cout << mystring;
+  cout << mystring << endl;
   return 0;
 }
 ~~~
@@ -433,13 +433,28 @@ int main()
 ~~~
 {: .code}
 
-Here is the output generated when this program is run:
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub1"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub1').value = `// my first string
+#include <iostream>
+#include <string>
+using namespace std;
 
-~~~
-This is the initial string content
-This is a different string content
-~~~
-{: .output}
+int main()
+{
+  string mystring;
+  mystring = "This is the initial string content";
+  cout << mystring << endl;
+  mystring = "This is a different string content";
+  cout << mystring << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 The string class is a compound type. As you can see in the example above, compound types are used in the same way as fundamental types.
 The same syntax is used to declare variables and to initialize them.

@@ -439,7 +439,7 @@ int main() {
   Circle baz {30.0};   // uniform init.
   Circle qux = {40.0}; // POD-like
 
-  cout << "foo's circumference: " << foo.circum() << '\n';
+  cout << "foo's circumference: " << foo.circum() << endl;
   return 0;
 }
 ~~~
@@ -466,7 +466,7 @@ int main() {
   Circle baz {30.0};   // uniform init.
   Circle qux = {40.0}; // POD-like
 
-  cout << "foo's circumference: " << foo.circum() << '\n';
+  cout << "foo's circumference: " << foo.circum() << endl;
   return 0;
 }
 `;
@@ -560,7 +560,7 @@ class Cylinder {
 int main() {
   Cylinder foo (10,20);
 
-  cout << "foo's volume: " << foo.volume() << '\n';
+  cout << "foo's volume: " << foo.volume() << endl;
   return 0;
 }
 ~~~
@@ -592,7 +592,7 @@ class Cylinder {
 int main() {
   Cylinder foo (10,20);
 
-  cout << "foo's volume: " << foo.volume() << '\n';
+  cout << "foo's volume: " << foo.volume() << endl;
   return 0;
 }
 `;
@@ -644,11 +644,11 @@ int main() {
   foo = &obj;
   bar = new Rectangle(5, 6);
   baz = new Rectangle[2] { {2,5}, {3,6} };
-  cout << "obj's area: " << obj.area() << '\n';
-  cout << "*foo's area: " << foo->area() << '\n';
-  cout << "*bar's area: " << bar->area() << '\n';
-  cout << "baz[0]'s area:" << baz[0].area() << '\n';
-  cout << "baz[1]'s area:" << baz[1].area() << '\n';       
+  cout << "obj's area: " << obj.area() << endl;
+  cout << "*foo's area: " << foo->area() << endl;
+  cout << "*bar's area: " << bar->area() << endl;
+  cout << "baz[0]'s area:" << baz[0].area() << endl;
+  cout << "baz[1]'s area:" << baz[1].area() << endl;       
   delete bar;
   delete[] baz;
   return 0;

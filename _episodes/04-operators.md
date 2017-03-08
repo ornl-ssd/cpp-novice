@@ -50,10 +50,36 @@ int main()
   cout << "a:";
   cout << a;
   cout << " b:";
-  cout << b;
+  cout << b << endl;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub1"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub1').value = `// assignment operator
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int a, b;         // a:?,  b:?
+  a = 10;           // a:10, b:?
+  b = 4;            // a:10, b:4
+  a = b;            // a:4,  b:4
+  b = 7;            // a:4,  b:7
+
+  cout << "a:";
+  cout << a;
+  cout << " b:";
+  cout << b << endl;
+}
+`;
+</script>
+</form>
+<br>
 
 This program generates the following output:
 
@@ -139,10 +165,30 @@ int main()
   int a, b=3;
   a = b;
   a += 2;             // equivalent to a=a+2
-  cout << a;
+  cout << a << endl;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub2"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub2').value = `// compound assignment operators
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int a, b=3;
+  a = b;
+  a += 2;             // equivalent to a=a+2
+  cout << a << endl;
+}
+`;
+</script>
+</form>
+<br>
 
 The output from this program is:
 
@@ -304,7 +350,7 @@ the expression evaluates as false. Its syntax is:
 ~~~
 condition ? result1 : result2 
 ~~~
-{: .output}
+{: .code}
 
 If `condition` is true, the entire expression evaluates to `result1`, and otherwise to `result2`.
 
@@ -330,10 +376,33 @@ int main()
   b=7;
   c = (a>b) ? a : b;
 
-  cout << c << '\n';
+  cout << c << endl;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub3"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub3').value = `// conditional operator
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int a,b,c;
+
+  a=2;
+  b=7;
+  c = (a>b) ? a : b;
+
+  cout << c << endl;
+}
+`;
+</script>
+</form>
+<br>
 
 The result from running this program is:
 

@@ -31,7 +31,7 @@ int main () {
   }
   catch (int e)
   {
-    cout << "An exception occurred. Exception Nr. " << e << '\n';
+    cout << "An exception occurred. Exception Nr. " << e << endl;
   }
   return 0;
 }
@@ -146,7 +146,7 @@ int main() {
   }
   catch (exception& e)
   {
-    cout << e.what() << '\n';
+    cout << e.what() << endl;
   }
   return 0;
 }

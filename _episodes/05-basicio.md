@@ -146,11 +146,34 @@ int main()
   cout << "Please enter an integer value: ";
   cin >> i;
   cout << "The value you entered is " << i;
-  cout << " and its double is " << i*2 << ".\n";
+  cout << " and its double is " << i*2 << ". << endl";
   return 0;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub1"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub1').value = `// i/o example
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int i;
+  cout << "Please enter an integer value: ";
+  cin >> i;
+  cout << "The value you entered is " << i;
+  cout << " and its double is " << i*2 << "." << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 This program will produce the following output, assuming "702" is entered at the prompt:
 
@@ -214,14 +237,39 @@ int main()
   string mystr;
   cout << "What's your name? ";
   getline(cin, mystr);
-  cout << "Hello " << mystr << ".\n";
+  cout << "Hello " << mystr << "." << endl;
   cout << "What is your favorite team? ";
   getline(cin, mystr);
-  cout << "I like " << mystr << " too!\n";
+  cout << "I like " << mystr << " too!" << endl;
   return 0;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub2"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub2').value = `// cin with strings
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+  string mystr;
+  cout << "What's your name? ";
+  getline(cin, mystr);
+  cout << "Hello " << mystr << "." << endl;
+  cout << "What is your favorite team? ";
+  getline(cin, mystr);
+  cout << "I like " << mystr << " too!" << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 Output from this program would look something like:
 
@@ -280,6 +328,36 @@ int main()
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub3"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub3').value = `// stringstreams
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+int main()
+{
+  string mystr;
+  float price=0;
+  int quantity=0;
+
+  cout << "Enter price: ";
+  getline(cin,mystr);
+  stringstream(mystr) >> price;
+  cout << "Enter quantity: ";
+  getline(cin,mystr);
+  stringstream(mystr) >> quantity;
+  cout << "Total price: " << price*quantity << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 An example session when running this program is:
 

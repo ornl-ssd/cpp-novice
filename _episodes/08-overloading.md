@@ -30,12 +30,43 @@ int main ()
 {
   int x=5,y=2;
   double n=5.0,m=2.0;
-  cout << operate(x, y) << '\n';
-  cout << operate(n, m) << '\n';
+  cout << operate(x, y) << endl;
+  cout << operate(n, m) << endl;
   return 0;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub1"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub1').value = `// overloading functions
+#include <iostream>
+using namespace std;
+
+int operate(int a, int b)
+{
+  return (a * b);
+}
+
+double operate(double a, double b)
+{
+  return (a / b);
+}
+
+int main ()
+{
+  int x=5,y=2;
+  double n=5.0,m=2.0;
+  cout << operate(x, y) << endl;
+  cout << operate(n, m) << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 Running this program produces:
 

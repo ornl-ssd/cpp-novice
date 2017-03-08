@@ -170,6 +170,30 @@ int main()
 ~~~
 {: .code}
 
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub1"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub1').value = `// custom countdown using while
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int n = 10;
+
+  while (n > 0) {
+    cout << n << ", ";
+    --n;
+  }
+
+  cout << "liftoff!" << endl;
+}
+`;
+</script>
+</form>
+<br>
+
 This code generates the following output:
 
 ~~~
@@ -212,11 +236,34 @@ int main()
   do {
     cout << "Enter text: ";
     getline (cin,str);
-    cout << "You entered: " << str << '\n';
+    cout << "You entered: " << str << endl;
   } while (str != "goodbye");
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub2"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub2').value = `// echo machine
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+  string str;
+  do {
+    cout << "Enter text: ";
+    getline (cin,str);
+    cout << "You entered: " << str << endl;
+  } while (str != "goodbye");
+}
+`;
+</script>
+</form>
+<br>
 
 Sample output would be:
 
@@ -269,10 +316,30 @@ int main()
   for (int n = 10; n > 0; n--) {
     cout << n << ", ";
   }
-  cout << "liftoff!\n";
+  cout << "liftoff!" << endl;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub3"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub3').value = `// countdown using a for loop
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  for (int n = 10; n > 0; n--) {
+    cout << n << ", ";
+  }
+  cout << "liftoff!" << endl;
+}
+`;
+</script>
+</form>
+<br>
 
 The three fields in a `for` loop are optional. They can be left empty, but in all cases the semicolon signs between them are still required. 
 For example, `for (; n < 10;)` and `for (; n < 10; ++n)` are both valid `for` loops. 
@@ -323,10 +390,33 @@ int main()
   {
     cout << "[" << c << "]";
   }
-  cout << '\n';
+  cout << endl;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub4"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub4').value = `// range-based for loop
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+  string str {"Hello!"};
+  for (char c : str)
+  {
+    cout << "[" << c << "]";
+  }
+  cout << endl;
+}
+`;
+</script>
+</form>
+<br>
 
 This program generates the oputput:
 
@@ -376,9 +466,36 @@ int main()
       break;
     }
   }
+  cout << endl;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub5"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub5').value = `// break loop example
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  for (int n=10; n>0; n--)
+  {
+    cout << n << ", ";
+    if (n==3)
+    {
+      cout << "countdown aborted!";
+      break;
+    }
+  }
+  cout << endl;
+}
+`;
+</script>
+</form>
+<br>
 
 Here we see the output
 
@@ -404,10 +521,31 @@ int main()
     if (n==5) continue;
     cout << n << ", ";
   }
-  cout << "liftoff!\n";
+  cout << "liftoff!" << endl;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub6"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub6').value = `// continue loop example
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  for (int n=10; n>0; n--) {
+    if (n==5) continue;
+    cout << n << ", ";
+  }
+  cout << "liftoff!" << endl;
+}
+`;
+</script>
+</form>
+<br>
 
 In this case, we now see the output:
 
@@ -442,7 +580,7 @@ mylabel:
   cout << n << ", ";
   n--;
   if (n>0) goto mylabel;
-  cout << "liftoff!\n";
+  cout << "liftoff!" << endl;
 }
 ~~~
 {: .code}
@@ -489,24 +627,24 @@ Both of the following code fragments have the same behavior, demonstrating the `
 <tr><td><pre><code>
 switch (x) {
   case 1:
-    cout << "x is 1";
+    cout << "x is 1" << endl;
     break;
   case 2:
-    cout << "x is 2";
+    cout << "x is 2" << endl;
     break;
   default:
-    cout << "value of x unknown";
+    cout << "value of x unknown" << endl;
 }
 </code></pre></td>
 <td><pre><code>
 if (x == 1) {
-  cout << "x is 1";
+  cout << "x is 1" << endl;
 }
 else if (x == 2) {
-  cout << "x is 2";
+  cout << "x is 2" << endl;
 }
 else {
-  cout << "value of x unknown";
+  cout << "value of x unknown" << endl;
 }
 
 </code></pre></td></tr>
@@ -530,10 +668,10 @@ switch (x) {
   case 1:
   case 2:
   case 3:
-    cout << "x is 1, 2 or 3";
+    cout << "x is 1, 2 or 3" << endl;
     break;
   default:
-    cout << "x is not 1, 2 nor 3";
+    cout << "x is not 1, 2 nor 3" << endl;
   }
 ~~~
 {: .code}

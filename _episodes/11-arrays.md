@@ -180,11 +180,36 @@ int main()
   {
     result += my_array[n];
   }
-  cout << result;
+  cout << result << endl;
   return 0;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub1"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub1').value = `// arrays example
+#include <iostream>
+using namespace std;
+
+int my_array[] = {16, 2, 77, 40, 12071};
+int n, result = 0;
+
+int main()
+{
+  for (n = 0 ; n < 5 ; ++n )
+  {
+    result += my_array[n];
+  }
+  cout << result << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 This program generates the output:
 
@@ -303,7 +328,7 @@ using namespace std;
 void printarray(int arr[], int length) {
   for (int n = 0; n < length; ++n)
     cout << arr[n] << ' ';
-  cout << '\n';
+  cout << endl;
 }
 
 int main ()
@@ -315,6 +340,32 @@ int main ()
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub2"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub2').value = `// arrays as parameters
+#include <iostream>
+using namespace std;
+
+void printarray(int arr[], int length) {
+  for (int n = 0; n < length; ++n)
+    cout << arr[n] << ' ';
+  cout << endl;
+}
+
+int main ()
+{
+  int firstarray[] = {5, 10, 15};
+  int secondarray[] = {2, 4, 6, 8, 10};
+  printarray(firstarray,3);
+  printarray(secondarray,5);
+}
+`;
+</script>
+</form>
+<br>
 
 The output from this program is:
 
@@ -376,7 +427,7 @@ int main()
     ++myarray[i];
 
   for (int elem : myarray)
-    cout << elem << '\n';
+    cout << elem << endl;
 }
 </td><td>
 #include <iostream>
@@ -391,7 +442,7 @@ int main()
     ++myarray[i];
 
   for (int elem : myarray)
-    cout << elem << '\n';
+    cout << elem << endl;
 }
 </td></tr>
 </table>

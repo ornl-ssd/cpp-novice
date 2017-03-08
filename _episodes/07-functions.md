@@ -43,10 +43,36 @@ int main()
 {
   int z;
   z = addition(5,3);
-  cout << "The result is " << z;
+  cout << "The result is " << z << endl;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub1"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub1').value = `// function example
+#include <iostream>
+using namespace std;
+
+int addition(int a, int b)
+{
+  int r;
+  r = a + b;
+  return r;
+}
+
+int main()
+{
+  int z;
+  z = addition(5,3);
+  cout << "The result is " << z << endl;
+}
+`;
+</script>
+</form>
+<br>
 
 When this program is run, the result is:
 
@@ -107,14 +133,44 @@ int main()
 {
   int x=5, y=3, z;
   z = subtraction (7, 2);
-  cout << "The first result is " << z << '\n';
-  cout << "The second result is " << subtraction (7, 2) << '\n';
-  cout << "The third result is " << subtraction (x, y) << '\n';
+  cout << "The first result is " << z << endl;
+  cout << "The second result is " << subtraction (7, 2) << endl;
+  cout << "The third result is " << subtraction (x, y) << endl;
   z= 4 + subtraction(x, y);
-  cout << "The fourth result is " << z << '\n';
+  cout << "The fourth result is " << z << endl;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub2"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub2').value = `// function example
+#include <iostream>
+using namespace std;
+
+int subtraction(int a, int b)
+{
+  int r;
+  r = a - b;
+  return r;
+}
+
+int main()
+{
+  int x=5, y=3, z;
+  z = subtraction (7, 2);
+  cout << "The first result is " << z << endl;
+  cout << "The second result is " << subtraction (7, 2) << endl;
+  cout << "The third result is " << subtraction (x, y) << endl;
+  z= 4 + subtraction(x, y);
+  cout << "The fourth result is " << z << endl;
+}
+`;
+</script>
+</form>
+<br>
 
 The result from running this program is:
 
@@ -134,7 +190,7 @@ Again, you can think of it as if the function call was itself replaced by the re
 
 ~~~
 z = subtraction(7, 2);
-cout << "The first result is " << z;
+cout << "The first result is " << z << endl;
 ~~~
 {: .code}
 
@@ -142,21 +198,21 @@ If we replace the function call by the value it returns (i.e., 5), we would have
 
 ~~~
 z = 5;
-cout << "The first result is " << z;
+cout << "The first result is " << z << endl;
 ~~~
 {: .code}
 
 With the same procedure, we could interpret:
 
 ~~~
-cout << "The second result is " << subtraction(7, 2);
+cout << "The second result is " << subtraction(7, 2) << endl;
 ~~~
 {: .code}
 
 as:
 
 ~~~
-cout << "The second result is " << 5;
+cout << "The second result is " << 5 << endl;
 ~~~
 {: .code}
 
@@ -165,7 +221,7 @@ since 5 is the value returned by `subtraction(7, 2)`.
 In the case of:
 
 ~~~
-cout << "The third result is " << subtraction (x,y);
+cout << "The third result is " << subtraction (x,y) << endl;
 ~~~
 {: .code}
 
@@ -209,7 +265,7 @@ using namespace std;
 
 void printmessage()
 {
-  cout << "I'm a function!";
+  cout << "I'm a function!" << endl;
 }
 
 int main()
@@ -232,7 +288,7 @@ For example, `printmessage` could have been declared as:
 ~~~
 void printmessage(void)
 {
-  cout << "I'm a function!";
+  cout << "I'm a function!" << endl;
 }
 ~~~
 {: .code}
@@ -300,11 +356,38 @@ int main()
 {
   int x=1, y=3, z=7;
   duplicate(x, y, z);
-  cout << "x=" << x << ", y=" << y << ", z=" << z;
+  cout << "x=" << x << ", y=" << y << ", z=" << z << endl;
   return 0;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub3"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub3').value = `// passing parameters by reference
+#include <iostream>
+using namespace std;
+
+void duplicate(int& a, int& b, int& c)
+{
+  a *= 2;
+  b *= 2;
+  c *= 2;
+}
+
+int main()
+{
+  int x=1, y=3, z=7;
+  duplicate(x, y, z);
+  cout << "x=" << x << ", y=" << y << ", z=" << z << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 When this program is run, the result is:
 
@@ -423,12 +506,38 @@ int divide(int a, int b=2)
 
 int main()
 {
-  cout << divide(12) << '\n';
-  cout << divide(20, 4) << '\n';
+  cout << divide(12) << endl;
+  cout << divide(20, 4) << endl;
   return 0;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub4"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub4').value = `// default values in functions
+#include <iostream>
+using namespace std;
+
+int divide(int a, int b=2)
+{
+  int r;
+  r = a / b;
+  return r;
+}
+
+int main()
+{
+  cout << divide(12) << endl;
+  cout << divide(20, 4) << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 Running this code results in:
 
@@ -516,17 +625,55 @@ int main()
 
 void odd(int x)
 {
-  if ((x % 2) != 0) cout << "It is odd.\n";
+  if ((x % 2) != 0) cout << "It is odd." << endl;
   else even(x);
 }
 
 void even(int x)
 {
-  if ((x % 2) == 0) cout << "It is even.\n";
+  if ((x % 2) == 0) cout << "It is even." << endl;
   else odd (x);
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub4"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub4').value = `// declaring functions prototypes
+#include <iostream>
+using namespace std;
+
+void odd(int x);
+void even(int x);
+
+int main()
+{
+  int i;
+  do {
+    cout << "Please, enter number (0 to exit): ";
+    cin >> i;
+    odd(i);
+  } while ( i!=0 );
+  return 0;
+}
+
+void odd(int x)
+{
+  if ((x % 2) != 0) cout << "It is odd." << endl;
+  else even(x);
+}
+
+void even(int x)
+{
+  if ((x % 2) == 0) cout << "It is even." << endl;
+  else odd (x);
+}
+`;
+</script>
+</form>
+<br>
 
 Here is an example session using this program:
 
@@ -588,11 +735,38 @@ long factorial(long a)
 int main()
 {
   long number = 9;
-  cout << number << "! = " << factorial (number);
+  cout << number << "! = " << factorial (number) << endl;
   return 0;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub5"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub5').value = `// factorial calculator
+#include <iostream>
+using namespace std;
+
+long factorial(long a)
+{
+  if (a > 1)
+   return (a * factorial (a-1));
+  
+  return 1;
+}
+
+int main()
+{
+  long number = 9;
+  cout << number << "! = " << factorial (number) << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 The output from this program is:
 

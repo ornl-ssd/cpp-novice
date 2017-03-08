@@ -21,6 +21,23 @@ We saw how to write a simple "Hello World" program in the C/C++ Development Tool
 ~~~
 {: .code}
 
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub1"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub1').value = `// My first Hello World program
+#include <iostream>
+
+int main() 
+{
+  std::cout << "Hello World!" << std::endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
+
 Let's examine this program line by line:
 
 Line 1: // My first Hello World program
@@ -135,6 +152,25 @@ int main()
 ~~~
 {: .code}
 
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub2"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub2').value = `/* My second program in C++
+   with more comments */
+
+#include <iostream>
+
+int main()
+{
+  std::cout << "Hello World! ";     // prints "Hello World!" with no "new line"
+  std::cout << "I'm a C++ program" << std::endl ; // prints "I'm a C++ program" on the same line
+}
+`;
+</script>
+</form>
+<br>
+
 While adding the comments, we also took the opportunity to show you how `std::endl` can be used to control
 where the output is printed.
 
@@ -173,7 +209,6 @@ int main()
 }
 ~~~
 {: .code}
-
 
 Both ways of accessing the elements of the `std` namespace are valid in C++ and produce the exact same behavior. For simplicity, and 
 to improve readability, the examples in these tutorials will more often use this latter approach with using declarations, although 

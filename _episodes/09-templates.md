@@ -25,12 +25,41 @@ double sum(double a, double b)
 
 int main()
 {
-  cout << sum(10, 20) << '\n';
-  cout << sum(1.0, 1.5) << '\n';
+  cout << sum(10, 20) << endl;
+  cout << sum(1.0, 1.5) << endl;
   return 0;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub1"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub1').value = `// overloaded functions
+#include <iostream>
+using namespace std;
+
+int sum(int a, int b)
+{
+  return a + b;
+}
+
+double sum(double a, double b)
+{
+  return a + b;
+}
+
+int main()
+{
+  cout << sum(10, 20) << endl;
+  cout << sum(1.0, 1.5) << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 With corresponding output:
 
@@ -120,12 +149,42 @@ int main() {
   double f=2.0, g=0.5, h;
   k=sum<int>(i,j);
   h=sum<double>(f,g);
-  cout << k << '\n';
-  cout << h << '\n';
+  cout << k << endl;
+  cout << h << endl;
   return 0;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub2"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub2').value = `// function template
+#include <iostream>
+using namespace std;
+
+template <class T>
+T sum(T a, T b)
+{
+  T result;
+  result = a + b;
+  return result;
+}
+
+int main() {
+  int i=5, j=6, k;
+  double f=2.0, g=0.5, h;
+  k=sum<int>(i,j);
+  h=sum<double>(f,g);
+  cout << k << endl;
+  cout << h << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 Running this code results in:
 
@@ -187,13 +246,40 @@ bool are_equal(T a, U b)
 int main()
 {
   if (are_equal(10, 10.0))
-    cout << "x and y are equal\n";
+    cout << "x and y are equal" << endl;
   else
-    cout << "x and y are not equal\n";
+    cout << "x and y are not equal" << endl;
   return 0;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub3"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub3').value = `// function templates
+#include <iostream>
+using namespace std;
+
+template <class T, class U>
+bool are_equal(T a, U b)
+{
+  return a == b;
+}
+
+int main()
+{
+  if (are_equal(10, 10.0))
+    cout << "x and y are equal" << endl;
+  else
+    cout << "x and y are not equal" << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 Running this code will produce:
 
@@ -236,11 +322,34 @@ T fixed_multiply(T val)
 }
 
 int main() {
-  std::cout << fixed_multiply<int, 2>(10) << '\n';
-  std::cout << fixed_multiply<int, 3>(10) << '\n';
+  std::cout << fixed_multiply<int, 2>(10) << endl;
+  std::cout << fixed_multiply<int, 3>(10) << endl;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub4"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub4').value = `// template arguments
+#include <iostream>
+using namespace std;
+
+template <class T, int N>
+T fixed_multiply(T val)
+{
+  return val * N;
+}
+
+int main() {
+  std::cout << fixed_multiply<int, 2>(10) << endl;
+  std::cout << fixed_multiply<int, 3>(10) << endl;
+}
+`;
+</script>
+</form>
+<br>
 
 The output from this program is:
 
