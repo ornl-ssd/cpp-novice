@@ -529,7 +529,7 @@ From greatest to smallest priority, C++ operators are evaluated in the following
 <tr><td>13</td><td>Conjunction</td><td>&&</td><td>logical AND</td><td>Left-to-right</td></tr>
 <tr><td>14</td><td>Disjunction</td><td>||</td><td>logical OR</td><td>Left-to-right</td></tr>
 <tr><td rowspan="3">15</td><td rowspan="3">Assignment-level expressions</td><td>= *= /= %= += -=</td><td rowspan="2">assignment / compound assignment</td><td rowspan="3">Right-to-left</td></tr>
-<tr><td>>>= <<= &= ^= |=</td><td></tr>
+<tr><td>>>= <<= &= ^= |=</td></tr>
 <tr><td>?:</td><td>conditional operator</td></tr>
 </table>
 
