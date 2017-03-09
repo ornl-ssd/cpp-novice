@@ -149,7 +149,7 @@ Let's see an example of using pointers:
 #include <iostream>
 using namespace std;
 
-int main ()
+int main()
 {
   int firstvalue, secondvalue;
   int * mypointer;
@@ -173,10 +173,10 @@ document.getElementById('sub1').value = `// my first pointer
 #include <iostream>
 using namespace std;
 
-int main ()
+int main()
 {
   int firstvalue, secondvalue;
-  int * mypointer;
+  int *mypointer;
 
   mypointer = &firstvalue;
   *mypointer = 10;
@@ -200,39 +200,20 @@ secondvalue is 20
 {: .output}
 
 
-Notice that even though neither firstvalue nor secondvalue are directly set any value in the program, both end up with a value set indirectly through the use of mypointer. This is how it happens:
+Notice that `firstvalue` and `secondvalue` are never directly set in the program, however both end up with a value.
+The program works by setting `mypointer` to the address of `firstvalue` and then the value pointed 
+to by `mypointer` is assigned a value of 10. Because `mypointer` is pointing to the memory location of `firstvalue`, 
+it is actually the value of `firstvalue` that is changed. `mypointer` is then set to the address of `secondvalue`
+and the process repeated, resulting in `secondvalue` containing 20.
 
-First, mypointer is assigned the address of firstvalue using the address-of operator (&). Then, the value pointed to by mypointer is assigned a value of 10. Because, at this moment, mypointer is pointing to the memory location of firstvalue, this in fact modifies the value of firstvalue.
+Here is slightly more elaborate example:
 
-In order to demonstrate that a pointer may point to different variables during its lifetime in a program, the example repeats the process with secondvalue and that same pointer, mypointer.
-
-Here is an example a little bit more elaborated:
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
+~~~
 // more pointers
 #include <iostream>
 using namespace std;
 
-int main ()
+int main()
 {
   int firstvalue = 5, secondvalue = 15;
   int * p1, * p2;
@@ -248,414 +229,477 @@ int main ()
   cout << "secondvalue is " << secondvalue << endl;
   return 0;
 }
+~~~
+{: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub2"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub2').value = `// more pointers
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int firstvalue = 5, secondvalue = 15;
+  int *p1, *p2;
+
+  p1 = &firstvalue;  // p1 = address of firstvalue
+  p2 = &secondvalue; // p2 = address of secondvalue
+  *p1 = 10;          // value pointed to by p1 = 10
+  *p2 = *p1;         // value pointed to by p2 = value pointed to by p1
+  p1 = p2;           // p1 = p2 (value of pointer is copied)
+  *p1 = 20;          // value pointed to by p1 = 20
+  
+  cout << "firstvalue is " << firstvalue << endl;
+  cout << "secondvalue is " << secondvalue << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
+
+The output from this program is:
+
+~~~
 firstvalue is 10
 secondvalue is 20
-Edit & Run
+~~~
+{: .output}
 
+Notice the follow line: 
 
-Each assignment operation includes a comment on how each line could be read: i.e., replacing ampersands (&) by "address of", and asterisks (*) by "value pointed to by".
+~~~
+int *p1, *p2;
+~~~
+{: .code}
 
-Notice that there are expressions with pointers p1 and p2, both with and without the dereference operator (*). The meaning of an expression using the dereference operator (*) is very different from one that does not. When this operator precedes the pointer name, the expression refers to the value being pointed, while when a pointer name appears without this operator, it refers to the value of the pointer itself (i.e., the address of what the pointer is pointing to).
+This declares the two pointers `p1` and `p2` on a single line, but requires a `*` for each variable to be a pointer.
+If, instead, the code was:
 
-Another thing that may call your attention is the line: 
+~~~
+int *p1, p2;
+~~~
+{: .code}
 
- 
-int * p1, * p2;
+You would end up with one pointer `p1`, nut`p2` would be of type `int`. Spaces do not matter at all for this purpose. 
 
+To avoid this kind of ambiguity, it is good practice to declare one variable per line:
 
-This declares the two pointers used in the previous example. But notice that there is an asterisk (*) for each pointer, in order for both to have type int* (pointer to int). This is required due to the precedence rules. Note that if, instead, the code was:
+~~~
+int *p1;
+int *p2;
+~~~
+{: .code}
 
- 
-int * p1, p2;
+### Pointers and arrays
 
+Arrays and pointers are closely related. An array can always be implicitly converted to the pointer of the proper type. 
+For example, consider these two declarations:
 
-p1 would indeed be of type int*, but p2 would be of type int. Spaces do not matter at all for this purpose. But anyway, simply remembering to put one asterisk per pointer is enough for most pointer users interested in declaring multiple pointers per statement. Or even better: use a different statemet for each variable.
-
-Pointers and arrays
-The concept of arrays is related to that of pointers. In fact, arrays work very much like pointers to their first elements, and, actually, an array can always be implicitly converted to the pointer of the proper type. For example, consider these two declarations:
-
-1
-2
-int myarray [20];
-int * mypointer;
-
+~~~
+int myarray[20];
+int *mypointer;
+~~~
+{: .code}
 
 The following assignment operation would be valid: 
 
- 
+~~~
 mypointer = myarray;
+~~~
+{: .code}
 
+After executing this statement, `mypointer` and `myarray` would be equivalent and in fact have very similar properties. The `mypointer`
+variable can be used to reference array elements, and the `myarray` variable can be deferenced as a pointer.
+In fact, the only difference is that `mypointer` can be assigned a value, while `myarray` can not, so the following assignment 
+it not allowed:
 
-After that, mypointer and myarray would be equivalent and would have very similar properties. The main difference being that mypointer can be assigned a different address, whereas myarray can never be assigned anything, and will always represent the same block of 20 elements of type int. Therefore, the following assignment would not be valid:
-
- 
+~~~
 myarray = mypointer;
-
+~~~
+{: .code}
 
 Let's see an example that mixes arrays and pointers:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
+~~~
 // more pointers
 #include <iostream>
 using namespace std;
 
-int main ()
+int main()
 {
   int numbers[5];
-  int * p;
-  p = numbers;  *p = 10;
-  p++;  *p = 20;
-  p = &numbers[2];  *p = 30;
-  p = numbers + 3;  *p = 40;
-  p = numbers;  *(p+4) = 50;
+  int *p;
+  p = numbers;
+  *p = 10;
+  p++;  
+  *p = 20;
+  p = &numbers[2];  
+  *p = 30;
+  p = numbers + 3;  
+  *p = 40;
+  p = numbers;  
+  *(p+4) = 50;
   for (int n=0; n<5; n++)
     cout << numbers[n] << ", ";
+  cout << endl;
   return 0;
 }
+~~~
+{: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub3"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub3').value = `// more pointers
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int numbers[5];
+  int *p;
+  p = numbers;
+  *p = 10;
+  p++;  
+  *p = 20;
+  p = &numbers[2];  
+  *p = 30;
+  p = numbers + 3;  
+  *p = 40;
+  p = numbers;  
+  *(p+4) = 50;
+  for (int n=0; n<5; n++)
+    cout << numbers[n] << ", ";
+  cout << endl;
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
+
+The output is:
+
+~~~
 10, 20, 30, 40, 50, 
-Edit & Run
+~~~
+{: .output}
 
+Recall that brackets `[]` are used to specify the index of an element of the array. These brackets are actually a dereferencing operator 
+known as *offset operator*. This operator dereferences a variable just as `*` does, but 
+also adds the number between brackets to the address being dereferenced. For example:
 
-Pointers and arrays support the same set of operations, with the same meaning for both. The main difference being that pointers can be assigned new addresses, while arrays cannot.
-
-In the chapter about arrays, brackets ([]) were explained as specifying the index of an element of the array. Well, in fact these brackets are a dereferencing operator known as offset operator. They dereference the variable they follow just as * does, but they also add the number between brackets to the address being dereferenced. For example:
-
-1
-2
+~~~
 a[5] = 0;       // a [offset of 5] = 0
 *(a+5) = 0;     // pointed to by (a+5) = 0  
+~~~
+{: .code}
 
+These two expressions are equivalent, and `a` can be either a pointer or an array.
 
-These two expressions are equivalent and valid, not only if a is a pointer, but also if a is an array. Remember that if an array, its name can be used just like a pointer to its first element.
+### Pointer initialization
 
-Pointer initialization
-Pointers can be initialized to point to specific locations at the very moment they are defined:
+Pointers can be initialized to point to specific locations when they are defined:
 
-1
-2
+~~~
 int myvar;
-int * myptr = &myvar;
+int *myptr = &myvar;
+~~~
+{: .code}
 
+The resulting state of variables after this code is the same as after the following:
 
-The resulting state of variables after this code is the same as after:
-
-1
-2
-3
+~~~
 int myvar;
 int * myptr;
 myptr = &myvar;
-
-
-When pointers are initialized, what is initialized is the address they point to (i.e., myptr), never the value being pointed (i.e., *myptr). Therefore, the code above shall not be confused with: 
-
-1
-2
-3
-int myvar;
-int * myptr;
-*myptr = &myvar;
-
-
-Which anyway would not make much sense (and is not valid code).
-
-The asterisk (*) in the pointer declaration (line 2) only indicates that it is a pointer, it is not the dereference operator (as in line 3). Both things just happen to use the same sign: *. As always, spaces are not relevant, and never change the meaning of an expression.
+~~~
+{: .code}
 
 Pointers can be initialized either to the address of a variable (such as in the case above), or to the value of another pointer (or array):
 
-1
-2
-3
+~~~
 int myvar;
 int *foo = &myvar;
 int *bar = foo;
+~~~
+{: .code}
 
+### Pointer arithmetic
 
-Pointer arithmetics
-To conduct arithmetical operations on pointers is a little different than to conduct them on regular integer types. To begin with, only addition and subtraction operations are allowed; the others make no sense in the world of pointers. But both addition and subtraction have a slightly different behavior with pointers, according to the size of the data type to which they point.
+Addition and subtraction operations on pointers work slightly differently than regular integer types, as it depends on
+the size of the data type to which they point.
 
-When fundamental data types were introduced, we saw that types have different sizes. For example: char always has a size of 1 byte, short is generally larger than that, and int and long are even larger; the exact size of these being dependent on the system. For example, let's imagine that in a given system, char takes 1 byte, short takes 2 bytes, and long takes 4.
+We can see this behavior using the following example which defines three pointers to types of different sizes: 
 
-Suppose now that we define three pointers in this compiler: 
-
-1
-2
-3
+~~~
 char *mychar;
 short *myshort;
 long *mylong;
+~~~
+{: .code}
 
+Let's suppose they point to the memory locations 1000, 2000, and 3000, respectively, and execute the following statements:
 
-and that we know that they point to the memory locations 1000, 2000, and 3000, respectively. 
-
-Therefore, if we write:
-
-1
-2
-3
+~~~
 ++mychar;
 ++myshort;
 ++mylong;
+~~~
+{: .code}
 
+We would find that `mychar` contains the value 1001, `myshort` contains the value 2002, and `mylong` contains the value 3004, even though 
+they each were incremented only once. The reason is that, when adding one to a pointer, the pointer is made to point to the following 
+element *of the same type*. To achieve this, the size (in bytes) of the type it points to is added to the pointer.
 
-mychar, as one would expect, would contain the value 1001. But not so obviously, myshort would contain the value 2002, and mylong would contain 3004, even though they have each been incremented only once. The reason is that, when adding one to a pointer, the pointer is made to point to the following element of the same type, and, therefore, the size in bytes of the type it points to is added to the pointer.
+This is applicable both when adding and subtracting pointers with any number. 
 
- 
-This is applicable both when adding and subtracting any number to a pointer. It would happen exactly the same if we wrote: 
+The increment `++` and decrement `--` operators, are commonly used with pointers as the provide a convenient way of moving the pointer
+to the next or previous value respectively. Recall that they can be used either as a prefix or a suffix of an expression. When used with
+pointers, this can have a subtle difference, as the result of the prefix operation is the new value, while the result of the suffix operation
+is the previous value.
 
-1
-2
-3
-mychar = mychar + 1;
-myshort = myshort + 1;
-mylong = mylong + 1;
+The following operations are equivalent:
 
-
-Regarding the increment (++) and decrement (--) operators, they both can be used as either prefix or suffix of an expression, with a slight difference in behavior: as a prefix, the increment happens before the expression is evaluated, and as a suffix, the increment happens after the expression is evaluated. This also applies to expressions incrementing and decrementing pointers, which can become part of more complicated expressions that also include dereference operators (*). Remembering operator precedence rules, we can recall that postfix operators, such as increment and decrement, have higher precedence than prefix operators, such as the dereference operator (*). Therefore, the following expression:
-
- 
+~~~
 *p++
+*(p++)
+~~~
+{: .code}
 
+This operation will increase the value of p (so it now points to the next element), but because `++` is used in suffix form, the expression 
+`p++` evaluates to the value pointed to before being incremented. This means that `*p++` references the location before the increment.
 
-is equivalent to *(p++). And what it does is to increase the value of p (so it now points to the next element), but because ++ is used as postfix, the whole expression is evaluated as the value pointed originally by the pointer (the address it pointed to before being incremented).
+Essentially, these are the four possible combinations of the dereference operator with both the prefix and suffix versions of the 
+increment operator (the same applies to the decrement operator):
 
-Essentially, these are the four possible combinations of the dereference operator with both the prefix and suffix versions of the increment operator (the same being applicable also to the decrement operator):
-
-1
-2
-3
-4
+~~~
 *p++   // same as *(p++): increment pointer, and dereference unincremented address
 *++p   // same as *(++p): increment pointer, and dereference incremented address
 ++*p   // same as ++(*p): dereference pointer, and increment the value it points to
 (*p)++ // dereference pointer, and post-increment the value it points to 
+~~~
+{: .code}
 
+Note that parenthesis are required in the last case as the `++` (and `--`) operators have higher precendence than `*`, so they get applied
+to the expression first.
 
-A typical -but not so simple- statement involving these operators is:
+Muliple operators can be combined into a single statement like the following:
 
- 
+~~~
 *p++ = *q++;
+~~~
+{: .code}
 
+The value assigned to *p is *q before both p and q are incremented, then both are incremented. It is equivalent to:
 
-Because ++ has a higher precedence than *, both p and q are incremented, but because both increment operators (++) are used as postfix and not prefix, the value assigned to *p is *q before both p and q are incremented. And then both are incremented. It would be roughly equivalent to:
-
-1
-2
-3
+~~~
 *p = *q;
 ++p;
 ++q;
+~~~
+{: .code}
 
+### Pointers and const
 
-Like always, parentheses reduce confusion by adding legibility to expressions.
+A pointer can be used to access a variable by its address, and this access may include modifying the variable value. Sometimes it is
+useful to be able to declare pointers that can read a value, but not modify it, and this is achieved by qualifying the declaration
+with `const`. For example:
 
-Pointers and const
-Pointers can be used to access a variable by its address, and this access may include modifying the value pointed. But it is also possible to declare pointers that can access the pointed value to read it, but not to modify it. For this, it is enough with qualifying the type pointed to by the pointer as const. For example:
-
-1
-2
-3
-4
-5
+~~~
 int x;
 int y = 10;
-const int * p = &y;
+const int *p = &y;
 x = *p;          // ok: reading p
 *p = x;          // error: modifying p, which is const-qualified 
+~~~
+{: .code}
 
+Here `p` points to a variable, but points to it in a const-qualified manner, which only permits read access to the value.
+The expression `&y` is of type `int*` (pointer to an `int`), but this is assigned to a pointer of type `const int*`. This is allowed
+as a pointer to non-`const` can be implicitly converted to a pointer to `const`. The reverse is not permitted as this would
+allow the constant value to be modified.
 
-Here p points to a variable, but points to it in a const-qualified manner, meaning that it can read the value pointed, but it cannot modify it. Note also, that the expression &y is of type int*, but this is assigned to a pointer of type const int*. This is allowed: a pointer to non-const can be implicitly converted to a pointer to const. But not the other way around! As a safety feature, pointers to const are not implicitly convertible to pointers to non-const.
+A common use of pointers to `const` elements is as function parameters. Without this, a function that takes a pointer as 
+a parameter can modify the value passed as an argument. Declaring the parameter as `const` prevents it from being modified
+(accidentally or otherwise).
 
-One of the use cases of pointers to const elements is as function parameters: a function that takes a pointer to non-const as parameter can modify the value passed as argument, while a function that takes a pointer to const as parameter cannot.
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
+~~~
 // pointers as arguments:
 #include <iostream>
 using namespace std;
 
-void increment_all (int* start, int* stop)
+void increment_all(int* start, int* stop)
 {
-  int * current = start;
+  int *current = start;
   while (current != stop) {
     ++(*current);  // increment value pointed
     ++current;     // increment pointer
   }
 }
 
-void print_all (const int* start, const int* stop)
+void print_all(const int* start, const int* stop)
 {
-  const int * current = start;
+  const int *current = start;
   while (current != stop) {
     cout << *current << endl;
     ++current;     // increment pointer
   }
 }
 
-int main ()
+int main()
 {
   int numbers[] = {10,20,30};
-  increment_all (numbers,numbers+3);
-  print_all (numbers,numbers+3);
+  increment_all(numbers,numbers+3);
+  print_all(numbers,numbers+3);
   return 0;
 }
+~~~
+{: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub4"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub4').value = `// pointers as arguments:
+#include <iostream>
+using namespace std;
+
+void increment_all(int* start, int* stop)
+{
+  int *current = start;
+  while (current != stop) {
+    ++(*current);  // increment value pointed
+    ++current;     // increment pointer
+  }
+}
+
+void print_all(const int* start, const int* stop)
+{
+  const int *current = start;
+  while (current != stop) {
+    cout << *current << endl;
+    ++current;     // increment pointer
+  }
+}
+
+int main()
+{
+  int numbers[] = {10,20,30};
+  increment_all(numbers,numbers+3);
+  print_all(numbers,numbers+3);
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
+
+The following output is generated by this program:
+
+~~~
 11
 21
 31
-Edit & Run
+~~~
+{: .output}
 
+In this example, `print_all` uses pointers that point to constant values. These pointers are not constant, so the pointers themselves
+can still be incremented or assigned different addresses.
 
-Note that print_all uses pointers that point to constant elements. These pointers point to constant content they cannot modify, but they are not constant themselves: i.e., the pointers can still be incremented or assigned different addresses, although they cannot modify the content they point to.
+In addition to pointing to constant values, it is also possible to declare the pointers as constant. The following code shows the
+different combinations for using `const`:
 
-And this is where a second dimension to constness is added to pointers: Pointers can also be themselves const. And this is specified by appending const to the pointed type (after the asterisk):
-
-1
-2
-3
-4
-5
+~~~
 int x;
-      int *       p1 = &x;  // non-const pointer to non-const int
-const int *       p2 = &x;  // non-const pointer to const int
-      int * const p3 = &x;  // const pointer to non-const int
+int *p1 = &x;  // non-const pointer to non-const int
+const int *p2 = &x;  // non-const pointer to const int
+int * const p3 = &x;  // const pointer to non-const int
 const int * const p4 = &x;  // const pointer to const int 
+~~~
+{: .code}
 
+The `const` qualifier can either precede or follow the pointed to type:
 
-The syntax with const and pointers is definitely tricky, and recognizing the cases that best suit each use tends to require some experience. In any case, it is important to get constness with pointers (and references) right sooner rather than later, but you should not worry too much about grasping everything if this is the first time you are exposed to the mix of const and pointers. More use cases will show up in coming chapters.
-
-To add a little bit more confusion to the syntax of const with pointers, the const qualifier can either precede or follow the pointed type, with the exact same meaning:
-
-1
-2
+~~~
 const int * p2a = &x;  //      non-const pointer to const int
 int const * p2b = &x;  // also non-const pointer to const int 
+~~~
+{: .code}
+
+### Pointers and string literals
+
+String literals (enclosed in quotes `"`) are essentially arrays containing null-terminated character sequences. The type
+of a string literal is an array of `const char` (as the elements of the literal cannot be modified).
+
+For example:
+
+~~~ 
+const char * mystring = "hello"; 
+~~~
+{: .code}
+
+This declares an array with the literal representation for `"hello"`, and `mystring` is assigned a pointer to its first element.
+The pointer `mystring` points to an array of characters, and because pointers and arrays behave essentially in the same way 
+in expressions, `mystring` can be used to access the characters in the same way arrays of null-terminated character sequences are. 
+
+For example:
+
+~~~
+*(mystring+4)
+mystring[4]
+~~~
+{: .code}
 
 
-As with the spaces surrounding the asterisk, the order of const in this case is simply a matter of style. This chapter uses a prefix const, as for historical reasons this seems to be more extended, but both are exactly equivalent. The merits of each style are still intensely debated on the internet.
+Both expressions have a value of `'o'` (the fifth element of the array).
 
-Pointers and string literals
-As pointed earlier, string literals are arrays containing null-terminated character sequences. In earlier sections, string literals have been used to be directly inserted into cout, to initialize strings and to initialize arrays of characters.
+### Pointers to pointers
 
-But they can also be accessed directly. String literals are arrays of the proper array type to contain all its characters plus the terminating null-character, with each of the elements being of type const char (as literals, they can never be modified). For example:
+C++ allows the use of pointers that point to other pointers, that in turn, point to data (or even to other pointers). 
+The syntax simply requires an asterisk `*` for each level of indirection in the declaration of the pointer:
 
- 
-const char * foo = "hello"; 
-
-
-This declares an array with the literal representation for "hello", and then a pointer to its first element is assigned to foo. If we imagine that "hello" is stored at the memory locations that start at address 1702, we can represent the previous declaration as:
-
- 
-Note that here foo is a pointer and contains the value 1702, and not 'h', nor "hello", although 1702 indeed is the address of both of these.
-
-The pointer foo points to a sequence of characters. And because pointers and arrays behave essentially in the same way in expressions, foo can be used to access the characters in the same way arrays of null-terminated character sequences are. For example:
-
-1
-2
-*(foo+4)
-foo[4]
-
-
-Both expressions have a value of 'o' (the fifth element of the array).
-
-Pointers to pointers
-C++ allows the use of pointers that point to pointers, that these, in its turn, point to data (or even to other pointers). The syntax simply requires an asterisk (*) for each level of indirection in the declaration of the pointer:
-
-1
-2
-3
-4
-5
-6
+~~~
 char a;
-char * b;
-char ** c;
+char *b;
+char **c;
 a = 'z';
 b = &a;
 c = &b;
-
+~~~
+{: .code}
 
 This, assuming the randomly chosen memory locations for each variable of 7230, 8092, and 10502, could be represented as:
 
  
-With the value of each variable represented inside its corresponding cell, and their respective addresses in memory represented by the value under them.
+With the value of each variable represented inside its corresponding cell, and their respective addresses in memory represented by the 
+value under them.
 
-The new thing in this example is variable c, which is a pointer to a pointer, and can be used in three different levels of indirection, each one of them would correspond to a different value:
+The new thing in this example is variable c, which is a pointer to a pointer, and can be used in three different levels of indirection, 
+each one of them would correspond to a different value:
 
-c is of type char** and a value of 8092
-*c is of type char* and a value of 7230
-**c is of type char and a value of 'z'
+* `c` is of type `char**` and a value of 8092
+* `*c` is of type `char*` and a value of 7230
+* `**c` is of type `char` and a value of 'z'
 
-void pointers
-The void type of pointer is a special type of pointer. In C++, void represents the absence of type. Therefore, void pointers are pointers that point to a value that has no type (and thus also an undetermined length and undetermined dereferencing properties).
+### `void` pointers
 
-This gives void pointers a great flexibility, by being able to point to any data type, from an integer value or a float to a string of characters. In exchange, they have a great limitation: the data pointed to by them cannot be directly dereferenced (which is logical, since we have no type to dereference to), and for that reason, any address in a void pointer needs to be transformed into some other pointer type that points to a concrete data type before being dereferenced.
+The `void` type of pointer is a special type of pointer. In C++, `void` represents the absence of type. Therefore, `void` pointers 
+are pointers that point to a value that has no type (and thus also an undetermined length and undetermined dereferencing properties).
+
+This gives `void` pointers a great flexibility, by being able to point to any data type, from an integer value or a float to a 
+string of characters. In exchange, they have a great limitation: the data pointed to by them cannot be directly dereferenced 
+(which is logical, since we have no type to dereference to), and for that reason, any address in a void pointer needs to be 
+transformed into some other pointer type that points to a concrete data type before being dereferenced.
 
 One of its possible uses may be to pass generic parameters to a function. For example: 
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
+~~~
 // increaser
 #include <iostream>
 using namespace std;
@@ -677,75 +721,69 @@ int main ()
   cout << a << ", " << b << endl;
   return 0;
 }
+~~~
+{: .code}
+
+~~~
 y, 1603
-Edit & Run
+~~~
+{: .output}
 
 
-sizeof is an operator integrated in the C++ language that returns the size in bytes of its argument. For non-dynamic data types, this value is a constant. Therefore, for example, sizeof(char) is 1, because char has always a size of one byte. 
+The `sizeof` operator is integrated in the C++ language that returns the size in bytes of its argument. For non-dynamic data types, this value 
+is a constant. Therefore, for example, sizeof(char) is 1, because char has always a size of one byte. 
 
-Invalid pointers and null pointers
-In principle, pointers are meant to point to valid addresses, such as the address of a variable or the address of an element in an array. But pointers can actually point to any address, including addresses that do not refer to any valid element. Typical examples of this are uninitialized pointers and pointers to nonexistent elements of an array:
+### Invalid pointers and null pointers
 
-1
-2
-3
-4
+In principle, pointers are meant to point to valid addresses, such as the address of a variable or the address of an element in an array. 
+But pointers can actually point to any address, including addresses that do not refer to any valid element. Typical examples of this are 
+uninitialized pointers and pointers to nonexistent elements of an array:
+
+~~~
 int * p;               // uninitialized pointer (local variable)
 
 int myarray[10];
 int * q = myarray+20;  // element out of bounds 
+~~~
+{: .code}
 
+Neither `p` nor `q` point to addresses known to contain a value, but none of the above statements causes an error. In C++, pointers are 
+allowed to take any address value, no matter whether there actually is something at that address or not. What can cause an error is to 
+dereference such a pointer (i.e., actually accessing the value they point to). Accessing such a pointer causes undefined behavior, ranging 
+from an error during runtime to accessing some random value.
 
-Neither p nor q point to addresses known to contain a value, but none of the above statements causes an error. In C++, pointers are allowed to take any address value, no matter whether there actually is something at that address or not. What can cause an error is to dereference such a pointer (i.e., actually accessing the value they point to). Accessing such a pointer causes undefined behavior, ranging from an error during runtime to accessing some random value.
+But, sometimes, a pointer really needs to explicitly point to nowhere, and not just an invalid address. For such cases, there exists a 
+special value that any pointer type can take: the null pointer value. This value can be expressed in C++ in two ways: either with an 
+integer value of zero, or with the nullptr keyword:
 
-But, sometimes, a pointer really needs to explicitly point to nowhere, and not just an invalid address. For such cases, there exists a special value that any pointer type can take: the null pointer value. This value can be expressed in C++ in two ways: either with an integer value of zero, or with the nullptr keyword:
-
-1
-2
+~~~
 int * p = 0;
 int * q = nullptr;
+~~~
+{: .code}
 
+Here, both `p` and `q` are null pointers, meaning that they explicitly point to nowhere, and they both actually compare equal: all 
+null pointers compare equal to other null pointers. It is also quite usual to see the defined constant `NULL` be used in older code to 
+refer to the null pointer value:
 
-Here, both p and q are null pointers, meaning that they explicitly point to nowhere, and they both actually compare equal: all null pointers compare equal to other null pointers. It is also quite usual to see the defined constant NULL be used in older code to refer to the null pointer value:
-
- 
+~~~
 int * r = NULL;
+~~~
+{: .code}
 
+`NULL` is defined in several headers of the standard library, and is defined as an alias of some null pointer constant value (such as 0 or nullptr).
 
-NULL is defined in several headers of the standard library, and is defined as an alias of some null pointer constant value (such as 0 or nullptr).
+Do not confuse null pointers with void pointers! A null pointer is a value that any pointer can take to represent that it is pointing to 
+"nowhere", while a void pointer is a type of pointer that can point to somewhere without a specific type. One refers to the value stored in the 
+pointer, and the other to the type of data it points to.
 
-Do not confuse null pointers with void pointers! A null pointer is a value that any pointer can take to represent that it is pointing to "nowhere", while a void pointer is a type of pointer that can point to somewhere without a specific type. One refers to the value stored in the pointer, and the other to the type of data it points to.
+### Pointers to functions
 
-Pointers to functions
-C++ allows operations with pointers to functions. The typical use of this is for passing a function as an argument to another function. Pointers to functions are declared with the same syntax as a regular function declaration, except that the name of the function is enclosed between parentheses () and an asterisk (*) is inserted before the name:
+C++ allows operations with pointers to functions. The typical use of this is for passing a function as an argument to another function. 
+Pointers to functions are declared with the same syntax as a regular function declaration, except that the name of the function is enclosed 
+between parentheses () and an asterisk (*) is inserted before the name:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
+~~~
 // pointer to functions
 #include <iostream>
 using namespace std;
@@ -773,12 +811,21 @@ int main ()
   cout <<n;
   return 0;
 }
+~~~
+{: .code}
+
+~~~
 8
-Edit & Run
+~~~
+{: .output}
 
+In the example above, minus is a pointer to a function that has two parameters of type int. It is directly initialized to point to the 
+function subtraction:
 
-In the example above, minus is a pointer to a function that has two parameters of type int. It is directly initialized to point to the function subtraction:
-
- 
+~~~
 int (* minus)(int,int) = subtraction;
+~~~
+{: .code}
+
 (note: both c_str and data members of string are equivalent)
+
