@@ -3,8 +3,15 @@ title: "Structure of a Program"
 teaching: 15
 exercises: 0
 questions:
+- "What are the basic elements of a C++ program?"
+- "How do I use comments in C++?"
+- "What are namespaces?"
 objectives:
+- "Learn the basic structure of a C++ program."
 keypoints:
+- "C++ formatting is very flexible, whitespace generally doesn't matter."
+- "C++ has two styles of comments, for single lines, and for multi-lines."
+- "Libraries generally exist in a separate namespace."
 ---
 
 Let's start with the simple "Hello World" program, and look at it in more detail:
