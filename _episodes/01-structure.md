@@ -1,7 +1,7 @@
 ---
 title: "Structure of a Program"
 teaching: 15
-exercises: 15
+exercises: 0
 questions:
 objectives:
 keypoints:
@@ -148,6 +148,7 @@ int main()
 {
   std::cout << "Hello World! ";     // prints "Hello World!" with no "new line"
   std::cout << "I'm a C++ program" << std::endl ; // prints "I'm a C++ program" on the same line
+  return 0;
 }
 ~~~
 {: .code}
@@ -165,6 +166,7 @@ int main()
 {
   std::cout << "Hello World! ";     // prints "Hello World!" with no "new line"
   std::cout << "I'm a C++ program" << std::endl ; // prints "I'm a C++ program" on the same line
+  return 0;
 }
 `;
 </script>
@@ -176,22 +178,21 @@ where the output is printed.
 
 ### Using Namespaces
 
-If you have seen C++ code before, you may have seen `cout` being used instead of `std::cout`. Both name the same object: the first one uses 
-the name `cout`, while the second *qualifies* it directly within the namespace `std` (as `std::cout`).
+If you have seen C++ code before, you may have seen `cout` being used instead of `std::cout`. These both refer to the same
+object.
 
-The name `cout` is part of the standard library, and all the elements in the standard C++ library are declared within what is called a namespace,
+The name `cout` is part of the standard C++ library. Everything within this library are declared in a *namespace*,
 which in this case is called `std`. 
 
-In order to refer to the elements in the `std` namespace a program shall either qualify each and every use of elements of the library 
-(as we have done by prefixing `cout` with `std::`), or introduce visibility of its components. The most typical way to introduce 
-visibility of these components is by means of using declarations:
+In order to refer to the elements in the `std` namespace a program has to either *qualify* each use with `std::`, or introduce visibility 
+of its components. The most typical way to introduce visibility of these components is via a `using` declaration:
 
 ~~~
 using namespace std;
 ~~~
 {: .code}
 
-The above declaration allows all elements in the `std` namespace to be accessed in an *unqualified* manner (without the `std::` prefix).
+The above declaration enables all elements in the `std` namespace to be accessed in an *unqualified* manner (without the `std::` prefix).
 
 With this in mind, the last example can be rewritten as follows:
 
@@ -200,18 +201,39 @@ With this in mind, the last example can be rewritten as follows:
    with more comments */
 
 #include <iostream>
-use namespace std;
+using namespace std;
 
 int main()
 {
   cout << "Hello World! ";     // prints "Hello World!" with no "new line"
   cout << "I'm a C++ program" << endl ; // prints "I'm a C++ program" on the same line
+  return 0;
 }
 ~~~
 {: .code}
 
-Both ways of accessing the elements of the `std` namespace are valid in C++ and produce the exact same behavior. For simplicity, and 
-to improve readability, the examples in these tutorials will more often use this latter approach with using declarations, although 
-note that explicit qualification is the only way to guarantee that name collisions never happen.
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub3"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub3').value = `/* My second program in C++
+   with more comments */
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  cout << "Hello World! ";     // prints "Hello World!" with no "new line"
+  cout << "I'm a C++ program" << endl ; // prints "I'm a C++ program" on the same line
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
+
+Both ways of accessing the elements of the `std` namespace are valid in C++ and produce the exactly same behavior. For simplicity, and 
+to improve readability, the examples in these lessons will usually use the unqualified method.
 
 Namespaces are explained in more detail in a later chapter.
