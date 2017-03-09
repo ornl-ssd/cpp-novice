@@ -218,9 +218,9 @@ This program generates the output:
 ~~~
 {: .output}
 
-#### Multidimensional arrays
+#### Multi-dimensional arrays
 
-Multidimensional arrays in C++ are defined by specifying more than one dimension. A C++ array with two dimensions can be considered 
+Multi-dimensional arrays in C++ are defined by specifying more than one dimension. A C++ array with two dimensions can be considered 
 as a two-dimensional array comprising elements of the same uniform data type.
 
 <img src="{{ site.github.url }}/fig/11-arrays-multi-01.png"/>
@@ -242,7 +242,7 @@ my_array[1][3]
 
 <img src="{{ site.github.url }}/fig/11-arrays-multi-02.png"/>
 
-Multidimensional arrays are not limited to two indices (i.e., two dimensions). They can contain as many dimensions as needed. Although be careful, 
+Multi-dimensional arrays are not limited to two indices (i.e., two dimensions). They can contain as many dimensions as needed. Although be careful, 
 as the amount of memory needed for the array can increase substantially with each dimension. For example:
 
 ~~~
@@ -253,13 +253,13 @@ char century [100][365][24][60][60];
 This declares a five-dimensional array with one element for each second in a century. This amounts to more than 3 billion characters, so this 
 declaration would consume more than 3 gigabytes of memory!
 
-Multidimensional arrays are just an abstraction for programmers. They are stored in the same way as single dimensional arrays, except that
+Multi-dimensional arrays are just an abstraction for programmers. They are stored in the same way as single dimensional arrays, except that
 the compiler remmbers the size of each dimension and uses this to calculate the location of the element.
 
 The following two pieces of code produce the exactly the same result, but one uses a two-dimensional array while the other uses a simple array: 
 
 <table border="1">
-<tr><th>multidimensional array</th><th>pseudo-multidimensional array</th></tr>
+<tr><th>multi-dimensional array</th><th>pseudo multi-dimensional array</th></tr>
 <tr><td><pre><code>
 const int WIDTH = 5;
 const int HEIGHT = 3;
@@ -278,6 +278,7 @@ const int WIDTH = 5;
 const int HEIGHT = 3;
 
 int my_array[HEIGHT * WIDTH];
+
 
 int main()
 {
@@ -380,7 +381,7 @@ For that reason, we have included a second parameter that tells the function the
 its first parameter. This allows the for loop that prints out the array to know the range to iterate in the array passed, 
 without going out of range.
 
-In a function declaration, it is also possible to include multidimensional arrays. For multidemensional array paramemters, the
+In a function declaration, it is also possible to include multi-dimensional arrays. For multi-demensional array paramemters, the
 first dimension is always left empty. 
 
 For example, a function with a 3-dimensional array as argument could be: 
@@ -413,7 +414,7 @@ Just as an example, these are two versions of the same example using the languag
 container in the library:
 
 <table border="1">
-<tr><th>built-in array</tr></tr>library array</th></tr>
+<tr><th>built-in array</th></th>library array</th></tr>
 <tr><td>
 #include <iostream>
 
