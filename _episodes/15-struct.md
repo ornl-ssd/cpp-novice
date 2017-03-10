@@ -114,6 +114,53 @@ void printmovie(movies_t movie)
 ~~~
 {: .code}
 
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub1"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub1').value = `// example about structures
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+struct movies_t {
+  string title;
+  int year;
+} mine, yours;
+
+void printmovie(movies_t movie);
+
+int main()
+{
+  string mystr;
+
+  mine.title = "2001 A Space Odyssey";
+  mine.year = 1968;
+
+  cout << "Enter title: ";
+  getline (cin,yours.title);
+  cout << "Enter year: ";
+  getline(cin,mystr);
+  stringstream(mystr) >> yours.year;
+
+  cout << "My favorite movie is: " << endl;
+  printmovie(mine);
+  cout << "And yours is: " << endl;
+  printmovie(yours);
+  return 0;
+}
+
+void printmovie(movies_t movie)
+{
+  cout << movie.title;
+  cout << " (" << movie.year << ")" << endl;
+}
+`;
+</script>
+</form>
+<br>
+
 Running this code produces output like the following:
 
 ~~~
@@ -128,7 +175,7 @@ And yours is:
 {: .output}
 
 The example shows how the members of an object act just as regular variables. For example, the member `yours.year` is a valid variable of type `int`, 
-and `mine.titl`e is a variable of type `string`.
+and `mine.title` is a variable of type `string`.
 
 One of the features of structures is the ability to refer to both their members 
 individually or to the entire structure as a whole. 
@@ -165,17 +212,64 @@ int main()
 
   cout << "\nYou have entered these movies:" << endl;
   for (n=0; n<3; n++)
-    printmovie (films[n]);
+    printmovie(films[n]);
   return 0;
 }
 
-void printmovie (movies_t movie)
+void printmovie(movies_t movie)
 {
   cout << movie.title;
   cout << " (" << movie.year << ")" << endl;
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub2"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub2').value = `// array of structures
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+struct movies_t {
+  string title;
+  int year;
+} films [3];
+
+void printmovie(movies_t movie);
+
+int main()
+{
+  string mystr;
+  int n;
+
+  for (n=0; n<3; n++)
+  {
+    cout << "Enter title: ";
+    getline (cin,films[n].title);
+    cout << "Enter year: ";
+    getline (cin,mystr);
+    stringstream(mystr) >> films[n].year;
+  }
+
+  cout << "\nYou have entered these movies:" << endl;
+  for (n=0; n<3; n++)
+    printmovie(films[n]);
+  return 0;
+}
+
+void printmovie(movies_t movie)
+{
+  cout << movie.title;
+  cout << " (" << movie.year << ")" << endl;
+}
+`;
+</script>
+</form>
+<br>
 
 Running this produces:
 
@@ -194,6 +288,7 @@ Taxi Driver (1976)
 ~~~
 {: .output}
 
+## Advanced Topics
 
 ### Pointers to structures
 
@@ -256,6 +351,46 @@ int main()
 }
 ~~~
 {: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub3"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub3').value = `// pointers to structures
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+struct movies_t {
+  string title;
+  int year;
+};
+
+int main()
+{
+  string mystr;
+
+  movies_t amovie;
+  movies_t * pmovie;
+  pmovie = &amovie;
+
+  cout << "Enter title: ";
+  getline (cin, pmovie->title);
+  cout << "Enter year: ";
+  getline (cin, mystr);
+  (stringstream) mystr >> pmovie->year;
+
+  cout << "\nYou have entered:" << endl;
+  cout << pmovie->title;
+  cout << " (" << pmovie->year << ")" << endl;
+
+  return 0;
+}
+`;
+</script>
+</form>
+<br>
 
 Running this produces:
 
