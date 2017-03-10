@@ -180,7 +180,7 @@ There are two additional fundamental types:
 * `void`, which identifies the absence of a type; and
 * `nullptr`, which is a special type of pointer.
 
-Both of these types will be discussed further in a the lesson on pointers.
+Both of these types will be discussed further in the lesson on [pointers]({{ page.root }}/13-pointers).
 
 C++ supports a wide variety of types based on the fundamental types. These are known as *compound data types*, 
 and are one of the main strengths of the C++ language. We will also see them in more detail in future lessons.
