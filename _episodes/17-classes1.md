@@ -1,15 +1,23 @@
 ---
 title: "Classes I"
-teaching: 15
-exercises: 15
+teaching: 45
+exercises: 0
 questions:
+- "What are classes and how are they defined and used in C++?"
 objectives:
+- "Learn how to declare and use classes."
+- "Learn how to define class constructors."
+- "Learn how to initialize classes."
 keypoints:
+- "Classes encapsulate both data and functions."
+- "Classes are types, objects are variables."
+- "Classes allow access to members to be controlled."
+- "A constructor can be used to initialize data members."
 ---
 Classes build on the `struct` type by adding functions in addition to the data. So, while a `struct` encapsulates data only (the what), a
 `class` encapsulates both data (the what) and functions that operate on that data (the how).
 
-If class can be thought of as a blueprint, then an instantation of the blueprint is an *instance* of the class. An instance of a class
+A class is a type that can be thought of as a blueprint. An instantation of the blueprint is an *instance* of the class. An instance of a class
 is also known as an *object*. In terms of variables, a class would be the type, and an object would be the variable.
 
 Classes are defined using either keyword `class` or keyword `struct`, with the following syntax:
@@ -25,18 +33,21 @@ class class_name {
 ~~~
 {: .code}
 
-In this definition, `class_name` is a valid identifier for the class, and `object_names` is an optional list of names for objects of this class. 
-The body of the declaration can contain members, which can either be data or function declarations, and optionally *access specifiers*. 
+In this definition, `class_name` is a valid identifier for the class, and `object_names` are an optional list of names for objects of this class. 
+The body of the declaration can contain members, which can either be data or function declarations.
 
-An access specifier is one of the following three keywords: `private`, `public` or `protected`. These specifiers modify the access rights 
+In addition to the data and function declarations, a `class` declaration can also optionally include *access specifiers*.  An access specifier 
+is one of the following three keywords: `private`, `public` or `protected`. These specifiers modify the access rights 
 for the members that follow them:
 
-* private members of a class are accessible only from within other members of the same class (or from their "friends").
-* protected members are accessible from other members of the same class (or from their "friends"), but also from members of their derived classes.
-* public members are accessible from anywhere where the object is visible.
+* `private` members of a class are accessible only from within other members of the same class (or from their "friends").
+* `protected` members are accessible from other members of the same class (or from their "friends"), but also from members of their derived classes.
+* `public` members are accessible from anywhere where the object is visible.
 
-By default, all members of a class declared with the `class` keyword have private access for all its members. Therefore, any member that is 
-declared before any other access specifier has private access automatically. For example: 
+By default, all members of a class declared with the `class` keyword have `private` access. Therefore, any member that is 
+declared before any other access specifier has `private` access automatically. 
+
+For example: 
 
 ~~~
 class Rectangle {
@@ -48,31 +59,29 @@ class Rectangle {
 ~~~
 {: .code}
 
-This declares a class (i.e., a type) called `Rectangle` and an instance (i.e., a variable) of this class, called `rect`. This class contains four members: 
-two data members of type `int` (member `width` and member `height`) with private access and two member functions with public access: the functions 
-`set_values` and `area`, of which for now we have only included their declaration, but not their definition.
+This declares a class called `Rectangle` and an instance of this class, called `rect`. This class contains four members: 
+two data members (`width` and `height`) with `private` access and two member functions (`set_values` and `area`) with `public` access.
+The member functions have only included using their declaration, but not their definition.
 
-Notice the difference between the class name and the object name: In the previous example, `Rectangle` was the class name (i.e., the type), 
-whereas `rect` was an object of type `Rectangle`. It is the same relationship `int` and `a` have in the following declaration where `int` is 
-the type name (the class) and `a` is the variable name (the object). 
-
+Notice the difference between the class name and the object name. In the previous example, `Rectangle` was the class name (i.e., the type), 
+whereas `rect` was an object of type `Rectangle` (i.e. the variable). It is the same relationship `int` and `a` have in the following declaration: 
 
 ~~~
 int a;
 ~~~
 {: .code}
 
-After the declarations of `Rectangle` and `rect`, any of the public members of object `rect` can be accessed as if they were normal functions or ]
+Any of the `public` members of object `rect` can be accessed as if they were normal functions or
 normal variables, by simply inserting a dot (.) between object name and member name. This follows the same syntax as accessing the members of 
 plain `struct` types. For example: 
 
 ~~~
-rect.set_values (3,4);
+rect.set_values(3,4);
 myarea = rect.area(); 
 ~~~
 {: .code}
 
-The only members of `rect` that cannot be accessed from "outside" the class are `width` and `height`, since they have private access and 
+The `width` and `height` members of `rect` cannot be accessed from "outside" the class, since they have `private` access and 
 can only be referred to from within other members of that same class.
 
 Here is the complete example of class `Rectangle`:
@@ -134,17 +143,19 @@ int main() {
 </form>
 <br>
 
-The members `width` and `height` have private access as no access specifier was used. By declaring them private, access from outside the class is 
+The members `width` and `height` have `private` access, so access from outside the class is 
 not allowed. Instead, we have defined a member function `set_values` to set the values for those members within the object. 
 The rest of the program does not need to have direct access to these members, and controlling access to data members in this way is a very
 important aspect of object oriented programming.
 
-Notice that the definition of the member function `area` has been included directly within the definition of class `Rectangle` given its  
-simplicity. The `set_values` member function is more complicated, so only its prototype is declared within the class. The actual definition
+Notice that the definition of the member function `area` has been included directly within the definition of class `Rectangle` given its
+simplicity.
+
+The `set_values` member function is more complicated, so only its prototype is declared within the class. The actual definition
 of `set_values` is outside the class, and uses the scope operator `::` to indicate that the function being defined is a member of the 
 class `Rectangle` and not a regular non-member function. This grants exactly the same scope properties to the function, as if the
 definition was directly included within the class. This allows the function to have access to the variables `width` and `height`, 
-even though they are declared as private members of class.
+even though they are declared as `private` members of class.
 
 The most important property of a class is that it is a type, and as such, we can declare multiple objects of this type in the same way we 
 can declare multiple variables of type `int`. Let's declare two `Rectangle` objects instead of one:
@@ -210,11 +221,10 @@ int main() {
 </form>
 <br>
 
-In this case, the class (type of the objects) is `Rectangle`, of which there are two instances `rect_a` and `rect_b`. Each one of them has its own 
-member variables and member functions.
+In this we have created to instances of the class `Rectangle` called `rect_a` and `rect_b`.
 
 Notice that the call to `rect_a.area()` does not give the same result as the call to `rect_b.area()`. This is because each object of class
-`Rectangle` has its own variables `width` and `height`, an their function members `set_value` and `area` 
+has its own variables `width` and `height`, and the function members `set_value` and `area` 
 operate only on the object's own member variables.
 
 Classes allow programming using object-oriented paradigms. Data and functions are both members of the object, reducing the need to pass and
@@ -225,7 +235,7 @@ objects `rect_a` and `rect_b`.
 ### Constructors
 
 What would happen in the previous example if we called the member function `area` before having called `set_values`? The members `width` and 
-`height` had not been assigned a value, so the result is unpredictable.
+`height` have not been assigned a value at that point, so the result is unpredictable.
 
 In order to avoid this situation, a class can include a special function called its *constructor*, which is automatically called whenever 
 a new object of this class is created. The function of the constructor is to allow the class to initialize member variables or allocate storage
@@ -304,8 +314,10 @@ Rectangle rect_b(5,6);
 ~~~
 {: .code}
 
-Constructors cannot be called explicitly as if they were regular member functions. They are only executed once, when a new object of that 
+Constructors cannot be called explicitly. They are only executed once, automatically, when a new object of the 
 class is created.
+
+## Advanced Topics
 
 ### Overloading constructors
 
