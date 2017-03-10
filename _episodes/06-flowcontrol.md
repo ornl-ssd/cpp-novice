@@ -1,10 +1,15 @@
 ---
 title: "Control of Flow"
-teaching: 15
-exercises: 15
+teaching: 30
+exercises: 0
 questions:
+- "How do I control the flow of execution in C++?"
 objectives:
+- "Learn about the different control structures."
+- "Use decision and looping structures to see how they work."
 keypoints:
+- "Decisions are made using `if` and `select` statements."
+- "Looping is performed with `while`, `do-while`, and `for` statements."
 ---
 Simple C++ statements are the individual instructions in a program, and always end with a semicolon. Simple statements are executed 
 in the same order in which they appear in a program.
