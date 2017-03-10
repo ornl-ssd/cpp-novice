@@ -364,30 +364,6 @@ int main()
 </form>
 <br>
 
-### Type deduction: `auto` and `decltype`
-
-By declaring a variable of type `auto`, the compiler can work out what the type the variable should be from its initializer. This 
-works for initializers that are constant or other variables:
-
-~~~
-int foo = 0;
-auto bar = foo;  // the same as: int bar = foo; 
-~~~
-{: .code}
-
-Because `bar` is declared as having an `auto` type, it takes its type from the initializer. In this 
-case the initializer is `foo`, which is type `int`, so `bar` is also of type `int`.
-
-The `decltype` specifier can be used to do a similar thing for variables that are not initialized:
-
-~~~
-int foo = 0;
-decltype(foo) bar;  // the same as: int bar; 
-~~~
-{: .code}
-
-Here, `bar` is declared as having the same type as `foo`.
-
 ### Introduction to the `string` class
 
 The `string` class is not a fundamential data type like `float` or `int`, but rather a *compound* type known as a class. Although there is
@@ -493,3 +469,29 @@ int main()
 <br>
 
 For more details on standard C++ strings, see the [string class reference](http://www.cplusplus.com/string).
+
+## Advanced Topics
+
+### Type deduction: `auto` and `decltype`
+
+By declaring a variable of type `auto`, the compiler can work out what the type the variable should be from its initializer. This 
+works for initializers that are constant or other variables:
+
+~~~
+int foo = 0;
+auto bar = foo;  // the same as: int bar = foo; 
+~~~
+{: .code}
+
+Because `bar` is declared as having an `auto` type, it takes its type from the initializer. In this 
+case the initializer is `foo`, which is type `int`, so `bar` is also of type `int`.
+
+The `decltype` specifier can be used to do a similar thing for variables that are not initialized:
+
+~~~
+int foo = 0;
+decltype(foo) bar;  // the same as: int bar; 
+~~~
+{: .code}
+
+Here, `bar` is declared as having the same type as `foo`.
