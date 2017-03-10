@@ -1,26 +1,34 @@
 ---
 title: "Arrays"
-teaching: 15
-exercises: 15
+teaching: 30
+exercises: 0
 questions:
+- "How does C++ represent multiple values of the same type?"
 objectives:
+- "Learn how to declare and use arrays in C++."
+- "Learn how to pass arrays as arguments to functions."
 keypoints:
+- "Arrays provide a convenient way of storing many values of the same type."
+- "Arrays are defined by a name and elements are accessed using an index."
+- "C++ supports multi-dimensional arrays."
+- "Arrays can only be passed by reference as parameters to functions."
 ---
-An array is a series of elements of the same type placed in contiguous memory locations that can be individually referenced by adding an 
-index to a memory address. An array is named using a unique identifier.
+An array is a sequence of elements of the same type. The elements of an array are placed in contiguous memory locations so that they 
+can be individually referenced by adding an index to a memory address. An array is named using a unique identifier. Arrays provide
+a convenient way of storing multiple values without having to declare a separate variable for each value.
 
-This means, for example, that five values of type `int` can be declared as an array without having to declare 5 different variables 
+For example, five values of type `int` can be declared as an array without having to declare five different variables 
 each with its own identifier. Instead, using an array the five `int` values are stored in contiguous memory locations, and all 
-five can be accessed using the same identifier and associated index.
+five can be accessed using just a single identifier and an associated index.
 
-In the diagram below, `my_array` represents an array containing 5 integer values of type `int`:
+In the diagram below, `my_array` represents an array containing five integer values of type `int`:
 
 <img src="{{ site.github.url }}/fig/11-arrays-repr-01.png"/>
  
-Each block represents an element of the array. In this case, these are values of type `int`. These elements are numbered from 0 to 4, 
-with 0 being the first and 4 the last. *In C++, the first element in an array is always numbered with a zero (not a one), no matter its length.*
-The name `my_array` refers to the memory address of the first element of the array. Subsequent elements are accessed by adding the
-index to the address.
+Each block represents an element of the array, which in this case are values of type `int`. These elements are numbered from 0 to 4, 
+with 0 being the first and 4 the last. *In C++, the element of an array are always numbered starting from 0.*
+The name `my_array` refers to the memory address of the first element of the array. Elements of the array are accessed by specifying
+the index of the required element.
 
 Like a regular variable, an array must be declared before it is used. A typical declaration for an array in C++ is:
 
@@ -29,8 +37,8 @@ type name [elements];
 ~~~
 {: .code}
 
-For this declaration, `type` is a valid type (such as `int`, `float`, etc.), `name` is a valid identifier, and the `elements` value 
-(which is always enclosed in square brackets []), specifies the length of the array in terms of the number of elements.
+For this declaration, `type` is a valid type (such as `int`, `float`, etc.), `name` is a valid identifier, and `elements` 
+specifies the length of the array in terms of the number of elements.
 
 To declare the `my_array` array from above, we would use the following:
 
@@ -46,7 +54,7 @@ at compile time.
 
 By default, regular arrays of local scope (for example, those declared within a function) are left uninitialized. This means that 
 an array's elements are indeterminate at the point the array is declared. The elements in an array can be explicitly initialized, however, 
-by enclosing those initial values in braces `{}`. 
+by enclosing those initial values in braces. 
 
 For example:
 
@@ -59,8 +67,8 @@ This statement declares an array that can be represented like this:
 
 <img src="{{ site.github.url }}/fig/11-arrays-repr-02.png"/>
  
-The number of values between braces must not be greater than the number of elements in the array. However, it can be less. If declared with 
-less, the remaining elements are set to their default values (which for fundamental types, means they are set to zero). 
+The number of values between braces must not be greater than the number of elements in the array. However, it can be less, in which case
+the remaining elements are set to their default values (which for fundamental types, means they are set to zero). 
 
 For example:
 
@@ -84,19 +92,22 @@ This creates an array of five int values, each initialized with a value of zero:
 
 <img src="{{ site.github.url }}/fig/11-arrays-repr-04.png"/>
 
-When an initialization of values is provided for an array, C++ allows the possibility of leaving the square brackets empty. 
-In this case, the compiler will automatically size the array to matche the number of values included between the braces:
+When initializing values of an array in this way, there is no need to specify the size of the array, since C++ is able to deduce
+this from the number of elements being initialized. 
+
+For example:
 
 ~~~
 int my_array[] = { 16, 2, 77, 40, 12071 };
 ~~~
 {: .code}
 
-After this declaration, array `my_array` would contain 5 `int` elements, and each element would be initialized with the corresponding value.
+After this declaration, array `my_array` would contain 5 elements, and each element would be initialized with the corresponding value.
 
-This array initialization syntax is common to both C and C++. However, C++ also provides a universal initialization syntax for any data types,
-and so this can be used for arrays as well. This syntax does not use an equal sign between the declaration and the initializer, but still uses
-curly braces for the values. Both of the following statements are equivalent:
+This array initialization syntax is common to both C and C++. However, C++ also provides a universal initialization syntax that can be used
+for any data types, including arrays. This syntax is almost the same, there is just no equals sin before the first curly brace. 
+
+Both of the following statements are equivalent:
 
 ~~~
 int my_array[] = { 10, 20, 30 };
@@ -104,8 +115,8 @@ int my_array[] { 10, 20, 30 };
 ~~~
 {: .code}
 
-Static (global) arrays, and those declared directly in a namespace (outside any function), are always initialized. If no explicit initializer is 
-specified, all the elements are default-initialized (with zeroes, for fundamental types).
+Arrays declared with global scope, and those declared directly in a namespace (outside any function), are always initialized. If no explicit 
+initializer is  specified, all the elements are default-initialized (with zeroes, for fundamental types).
 
 #### Accessing the values of an array
 
@@ -142,9 +153,8 @@ a warning to the user, but it is not always possible to determine this at compil
 since accessing out-of-range elements can return invalid values, or overwrite important data in the program. The programmer should be very
 careful to ensure this situation does not occur.
 
-At this point, it is important to be able to clearly distinguish between the two uses that brackets [] have related to arrays. 
-hey perform two different tasks: one is to specify the size of arrays when they are declared; and the second one is to specify 
-indices for concrete array elements when they are accessed. Do not confuse these two possible uses of brackets [] with arrays.
+It is important to note the two different uses of brackets with arrays. One is to specify the size of an array when it is declared, and 
+the other is to specify the index of an element to be accessed.
 
 ~~~
 int my_array[5];         // declaration of a new array
@@ -152,9 +162,7 @@ my_array[2] = 75;        // access to an element of the array.
 ~~~
 {: .code}
 
-The main difference is that the declaration is preceded by the type of the elements, while the access is not.
-
-Some other valid operations with arrays:
+This example shows some other valid operations with arrays:
 
 ~~~
 my_array[0] = a;
@@ -164,7 +172,7 @@ my_array[my_array[a]] = my_array[2] + 5;
 ~~~
 {: .code}
 
-For example:
+Here is a slightly more complex example:
 
 ~~~
 // arrays example
@@ -242,8 +250,10 @@ my_array[1][3]
 
 <img src="{{ site.github.url }}/fig/11-arrays-multi-02.png"/>
 
-Multi-dimensional arrays are not limited to two indices (i.e., two dimensions). They can contain as many dimensions as needed. Although be careful, 
-as the amount of memory needed for the array can increase substantially with each dimension. For example:
+Multi-dimensional arrays are not limited to two dimensions, but can be declared with any number of dimensions. Be aware that
+the amount of memory needed for the array can increase substantially with each added dimension. 
+
+For example:
 
 ~~~
 char century [100][365][24][60][60];
@@ -254,7 +264,7 @@ This declares a five-dimensional array with one element for each second in a cen
 declaration would consume more than 3 gigabytes of memory!
 
 Multi-dimensional arrays are just an abstraction for programmers. They are stored in the same way as single dimensional arrays, except that
-the compiler remmbers the size of each dimension and uses this to calculate the location of the element.
+the compiler remembers the size of each dimension and uses this to calculate the location of the element.
 
 The following two pieces of code produce the exactly the same result, but one uses a two-dimensional array while the other uses a simple array: 
 
@@ -293,16 +303,15 @@ The memory contents after running either of these programs will be the same, and
 
 <img src="{{ site.github.url }}/fig/11-arrays-multi-03.png"/>
 
-Note that the code uses constants for the width and height, instead of using directly their numerical values. This gives the code a better 
-readability, and allows changes in the code to be made easily in one place.
+### Advanced Topics
 
-#### Arrays as parameters
+#### Arrays as function parameters
 
-At some point, we may need to pass an array to a function as a parameter. In C++, it is not possible to pass the entire block of memory 
-represented by an array to a function directly as an argument. But what can be passed instead is its address. In practice, this has 
+At some point, we may need to pass an array to a function. In C++, it is not possible to pass the entire block of memory 
+represented by an array to a function directly as an argument, but it can be passed instead by its address. In practice, this has 
 almost the same effect, and it is a much faster and more efficient operation.
 
-To accept an array as parameter for a function, the parameters can be declared as the array type, but with empty brackets, omitting the 
+To accept an array as parameter for a function, the parameters can be declared as the array type, but omitting the 
 actual size of the array. For example:
 
 ~~~
@@ -310,12 +319,12 @@ void procedure(int arr[])
 ~~~
 {: .code}
 
-This function accepts a parameter of type "array of int" called `arr`. An array can be passed to this function as follows:
+This function accepts a parameter of type "array of int". An array can be passed to this function as follows:
 
 ~~~
 int myarray[40];
 
-procedure (myarray);
+procedure(myarray);
 ~~~
 {: .code}
 
@@ -376,10 +385,10 @@ The output from this program is:
 ~~~
 {: .output}
 
-In the code above, the first parameter (`int arr[]`) accepts any array whose elements are of type `int`, whatever its length. 
-For that reason, we have included a second parameter that tells the function the length of each array that we pass to it as 
-its first parameter. This allows the for loop that prints out the array to know the range to iterate in the array passed, 
-without going out of range.
+In the code above, the first parameter (`int arr[]`) accepts any array whose elements are of type `int` of any length. 
+For that reason, it is often necessary to provide a second parameter that tells the function the length of the array that 
+is passed to it. In this case the length is used to determine how many loop iterations are required to display all the
+array values.
 
 In a function declaration, it is also possible to include multi-dimensional arrays. For multi-demensional array paramemters, the
 first dimension is always left empty. 
@@ -391,7 +400,7 @@ void procedure(int myarray[][3][4])
 ~~~
 {: .code}
 
-Notice that the first brackets`[]` are left empty, while the following ones specify sizes for their respective dimensions. This is 
+Notice that the first set of brackets is left empty, while the following ones specify sizes for their respective dimensions. This is 
 necessary in order for the compiler to be able to determine the depth of each additional dimension.
 
 In a way, passing an array as argument always loses a dimension. The reason is that the array is actully being passed using a *pointer*. This is a 
