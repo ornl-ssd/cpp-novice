@@ -1,21 +1,30 @@
 ---
 title: "Exceptions"
-teaching: 15
-exercises: 15
+teaching: 20
+exercises: 0
 questions:
+- "How can programs deal with exceptional conditions?"
 objectives:
+- "Learn how to protect code from exceptional conditions."
+- "Learn the syntax of a try-catch block."
+- "Learn about how exception handlers are invoked."
+- "Learn about standard exceptions."
 keypoints:
+- "Exceptional conditions occur within any program."
+- "Handling exceptions is important to ensuring program correctness."
+- "Exception handlers are just like regular functions."
+- "Operations in the standard library throw exceptions."
 ---
-Exceptions provide a way to deal with exceptional conditions in your program. An exception is a value that is created when something unusual
-happens in the program, usually in response to a runtime error condition. Exceptions are dealt with by being *caught* and transferring control 
-to special functions called *handlers*.
+Exceptions provide a way to deal with exceptional conditions in your program. An exception is a value used to represent something unusual that
+has happened in the program. They are usually created in response to a runtime error condition. Exceptions are dealt with by being *caught* and 
+execution of the program is transferred to a special function called a *handler*.
 
-To catch an exception, a section of code is enclosed in a special construct called a *`try` block*. 
+To catch an exception, a section of code is enclosed in a special construct called a *`try`* block. 
 When an exceptional circumstance arises within that block, an exception is thrown that transfers the control to the exception handler. 
 If no exception is thrown, the code continues normally and all handlers are ignored.
 
-An exception is thrown by using the `throw` keyword from inside the `try` block. Exception handlers are declared with the keyword `catch`, 
-which must be placed immediately after the `try` block. 
+An exception is thrown by using the `throw` keyword from somewhere inside the `try` block, or from calling other function in the block. 
+Handlers are declared with the keyword `catch`, and are placed immediately after the closing brace of the `try` block. 
 
 The following example shows a simple `try` block in action.
 
@@ -72,9 +81,8 @@ throw 20;
 
 A `throw` expression accepts one parameter which is passed as an argument to the exception handler.
 
-The exception handler is declared with the `catch` keyword immediately after the closing brace of the `try` block. The syntax for `catch` is 
-similar to a regular function with one parameter. The type of this parameter is very important, since the type of the argument passed by the 
-`throw` expression is checked against it, and only in the case they match, will the exception be caught by that handler.
+The syntax for `catch` is similar to a regular function with one parameter. The type of this parameter is very important, since the type of the 
+argument passed by the `throw` expression is checked against it, and only if the *types* match, will the exception be caught by that handler.
 
 Multiple handlers (i.e., `catch` expressions) can be chained, each one with a different parameter type. Only the handler whose argument type 
 matches the type of the exception specified in the `throw` statement is executed.
@@ -96,10 +104,10 @@ catch (...) { cout << "default exception"; }
 
 In this case, the last handler would catch any exception thrown of a type that is neither `int` nor `char`.
 
-After an exception has been handled the program, execution resumes after the `try-catch` block, not after the `throw` statement!.
+After an exception has been handled the program, execution resumes after the entire `try-catch` block, not after the `throw` statement!.
 
-It is also possible to nest a `try-catch` block within a `try` blocks. If the nested catch block wishes to forward the exception
-to the next level, it can do so with the expression `throw;`. 
+It is also possible to nest a `try-catch` block within a `try` block. If the nested catch block wishes to forward the exception
+to the next level, it can do so with the statement `throw;`. 
 
 For example: 
 
@@ -211,7 +219,7 @@ custom exceptions to report errors:
 <tr><td><code>runtime_error</code></td><td>error detected during runtime</td></tr>
 </table>
 
-A typical example where standard exceptions need to be checked for is on memory allocation:
+A typical example where exception handling should always be used is when allocating memory:
 
 ~~~
 // bad_alloc standard exception
