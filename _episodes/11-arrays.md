@@ -50,7 +50,7 @@ int my_array[5];
 NOTE: The number of elements specified must be a constant expression, since arrays are blocks of static memory whose size must be determined 
 at compile time.
 
-#### Initializing arrays
+### Initializing arrays
 
 By default, regular arrays of local scope (for example, those declared within a function) are left uninitialized. This means that 
 an array's elements are indeterminate at the point the array is declared. The elements in an array can be explicitly initialized, however, 
@@ -118,7 +118,7 @@ int my_array[] { 10, 20, 30 };
 Arrays declared with global scope, and those declared directly in a namespace (outside any function), are always initialized. If no explicit 
 initializer is  specified, all the elements are default-initialized (with zeroes, for fundamental types).
 
-#### Accessing the values of an array
+### Accessing the values of an array
 
 The values of any of the elements in an array can be accessed just like the value of a regular variable of the same type. The syntax is:
 
@@ -226,7 +226,7 @@ This program generates the output:
 ~~~
 {: .output}
 
-#### Multi-dimensional arrays
+### Multi-dimensional arrays
 
 Multi-dimensional arrays in C++ are defined by specifying more than one dimension. A C++ array with two dimensions can be considered 
 as a two-dimensional array comprising elements of the same uniform data type.
@@ -305,7 +305,7 @@ The memory contents after running either of these programs will be the same, and
 
 ### Advanced Topics
 
-#### Arrays as function parameters
+### Arrays as function parameters
 
 At some point, we may need to pass an array to a function. In C++, it is not possible to pass the entire block of memory 
 represented by an array to a function directly as an argument, but it can be passed instead by its address. In practice, this has 
@@ -406,7 +406,7 @@ necessary in order for the compiler to be able to determine the depth of each ad
 In a way, passing an array as argument always loses a dimension. The reason is that the array is actully being passed using a *pointer*. This is a 
 common source of errors for novice programmers. Pointers are explained in greater detail in a subsequent lesson.
 
-#### Library arrays
+### Library arrays
 
 The arrays we've discussed so far are built-in arrays. These are inherited from the C language. They are a great feature, but 
 by restricting its copy and easily decay into pointers, they probably suffer from an excess of optimization.
