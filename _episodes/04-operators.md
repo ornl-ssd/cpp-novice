@@ -344,6 +344,8 @@ if ( (i<10) && (++i<n) ) { /*...*/ }   // note that the condition increments var
 Here, the combined conditional expression will increment `i` by one only if the condition on the left of `&&` is `true`.
 If the condition is `false` then the right-hand side `(++i<n)` is never evaluated.
 
+## Advance Topics 
+
 ### Conditional ternary operator: `?`
 
 The conditional operator evaluates an expression, returning one value if that expression evaluates to true, and a different one if 
@@ -415,8 +417,6 @@ The result from running this program is:
 
 In this example, `a` is 2, and `b` is 7, so the expression being evaluated `(a>b)` is `false`. The conditional operator returns
 the second value (the one after the colon) in this case, which was `b` (with a value of 7).
-
-## Advance Topics 
 
 ### Comma operator: `,`
 
