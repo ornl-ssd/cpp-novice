@@ -31,6 +31,8 @@ C++ considers this entire block to be a single statement.
 
 ### Selection statements
 
+Selection statements are used to make decisions about how the flow of execution should proceed.
+
 #### `if` and `else` statements
 
 The `if` keyword is used to execute a statement or block, *if, and only if*, a condition is fulfilled. Its syntax is:
