@@ -6,14 +6,14 @@ questions:
 objectives:
 keypoints:
 ---
-A simple C++ statement is each of the individual instructions of a program, like the variable declarations and expressions seen in 
-previous sections. They always end with a semicolon, and are executed in the same order in which they appear in a program.
+Simple C++ statements are the individual instructions in a program, and always end with a semicolon. Simple statements are executed 
+in the same order in which they appear in a program.
 
-However, programs are not limited to a linear sequence of statements. During its process, a program may repeat segments of code, 
-or take decisions to execute different sections of code. For that purpose, C++ provides flow control statements that serve to 
-specify what has to be done by our program, when, and under which circumstances.
+However, programs are not limited to a linear sequence of statements. During execution, a program may repeat segments of code, 
+or make decisions to execute different sections of code. Like most other languages, C++ provides a number of flow control 
+operations that enable the sequential flow of execution to be modified by the programmer.
 
-Flow control operations generally act on a block of code. This block of code may be a single C++ statement, terminated by a semicolon,
+In C++, flow control operations generally act on a block of code. This block may be a single C++ statement terminated by a semicolon,
 or a compound statement. A compound statement is a group of statements, each of them terminated by its own semicolon. The grouping is
 indicated by surrounding the statements with curly braces as follows:
 
@@ -22,9 +22,11 @@ indicated by surrounding the statements with curly braces as follows:
 ~~~
 {: .code}
 
-C++ considers this entire block as a single statement.
+C++ considers this entire block to be a single statement.
 
-### Selection statements: `if` and `else`
+### Selection statements
+
+#### `if` and `else` statements
 
 The `if` keyword is used to execute a statement or block, *if, and only if*, a condition is fulfilled. Its syntax is:
 
@@ -36,7 +38,7 @@ if (condition) statement
 Here, `condition` is an expression that is to be evaluated. If the result of the expression is true, `statement` is executed. If it is false, 
 `statement` is not executed and is simply ignored. The program continues right after the entire `if` statement.
 
-For example, the following code fragment prints the message `x is 100`, only if the value stored in the `x` variable is indeed 100:
+For example, the following code fragment prints the message "x is 100", only if the value stored in the `x` variable is indeed 100:
 
 ~~~
 if (x == 100)
@@ -44,7 +46,8 @@ if (x == 100)
 ~~~
 {: .code}
 
-Remember that C++ allows any kind of spaces or indenting, so we've moved the statement to the following line to make it more readable. 
+Remember that C++ allows any kind of spaces or indenting, so we've moved the statement to the following line and indented it 
+to make it more readable. 
 
 If you want to include more than a single statement to be executed when the condition is true, 
 these statements are enclosed in a block as follows:
@@ -65,7 +68,7 @@ if (x == 100) { cout << "x is "; cout << x; }
 ~~~
 {: .code}
 
-Selection statements with `if` can also specify what happens when the condition is not fulfilled, by using the`else` keyword to 
+Selection statements with `if` can also specify what happens when the condition is not fulfilled. This is achieved by using the `else` keyword to 
 introduce an alternative statement. Its syntax is:
 
 ~~~
@@ -85,8 +88,9 @@ else
 ~~~
 {: .code}
 
-This prints `x is 100`, if indeed `x` has a value of 100. If `x` has any other value, it prints `x is not 100` instead.
-The `else` keyword can be combined with `if` to check a range of conditions. For example:
+This prints "x is 100", if indeed `x` has a value of 100. If `x` has any other value, it prints "x is not 100" instead.
+
+The `else` keyword can also be combined with `if` to check a range of conditions. For example:
 
 ~~~
 if (x > 0)
@@ -98,7 +102,8 @@ else
 ~~~
 {: .code}
 
-This prints `x is positive` if `x` is greater than zero, `x is negative` if `x` is less than zero, or `x is 0` if `x` is exactly equal to zero. 
+This prints "x is positive" if `x` is greater than zero, "x is negative" if `x` is less than zero, or "x is 0" if `x` is exactly equal to zero. 
+Note that `else if` are two separate keywords, not a single keyword, so the can be separated by spaces and newlines.
 
 >## Abiguity
 >
@@ -134,458 +139,8 @@ This prints `x is positive` if `x` is greater than zero, `x is negative` if `x` 
 > {: .code}
 {: .callout}
 
-### Iteration statements (loops)
 
-Loops repeat a statement a certain number of times, or while some condition is fulfilled. They are introduced by the keywords `while`, 
-`do`, and `for`.
-
-#### The `while` loop
-
-The simplest kind of loop is the `while` loop. Its syntax is:
-
-~~~
-while (expression) statement
-~~~
-{: .code}
-
-The `while` loop simply repeats statement *while* the `expression` is true. If, after any execution of `statement`, `expression` is no longer 
-true, the loop ends, and the program continues right after the loop. For example, let's have a look at a countdown using a `while` loop:
-
-~~~
-// custom countdown using while
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  int n = 10;
-
-  while (n > 0) {
-    cout << n << ", ";
-    --n;
-  }
-
-  cout << "liftoff!\n";
-}
-~~~
-{: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub1"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub1').value = `// custom countdown using while
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  int n = 10;
-
-  while (n > 0) {
-    cout << n << ", ";
-    --n;
-  }
-
-  cout << "liftoff!" << endl;
-}
-`;
-</script>
-</form>
-<br>
-
-This code generates the following output:
-
-~~~
-10, 9, 8, 7, 6, 5, 4, 3, 2, 1, liftoff!
-~~~
-{: .output}
-
-The first statement in main sets `n` to a value of 10. This is the first number in the countdown. Then the `while` loop begins. 
-If this value fulfills the condition `n > 0`, then the block that follows the condition is executed, and repeated for as long as the 
-condition remains true. The *body* of the loop does two things. First it outputs the calue of `n` followed by a comma, then it
-decrements the value of `n`	by one. The loop condition is now evaluated again, and because it is still true, the loop body will again
-be executed. This will continue until the value of `n` becomes 0, at which point the loop will finish, and the string `liftoff!` will
-be output.
-
-An important thing to consider with `while` loops is that the loop should end at some point, and thus the statement must alter value (or values) checked in 
-the condition in some way. Otherwise, the loop will continue forever. 
-
-#### The `do-while` loop
-
-A very similar loop is the `do-while` loop, whose syntax is:
-
-~~~
-do statement while (condition);
-~~~
-{: .code}
-
-This loop behaves like a `while` loop, except that `condition` is evaluated *after* the execution of statement instead of before. This
-guarantees at least one execution of `statement`, even if `condition` is never fulfilled. For example, the following example program 
-echoes any text the user introduces until the user enters "goodbye":
-
-~~~
-// echo machine
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-  string str;
-  do {
-    cout << "Enter text: ";
-    getline (cin,str);
-    cout << "You entered: " << str << endl;
-  } while (str != "goodbye");
-}
-~~~
-{: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub2"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub2').value = `// echo machine
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-  string str;
-  do {
-    cout << "Enter text: ";
-    getline (cin,str);
-    cout << "You entered: " << str << endl;
-  } while (str != "goodbye");
-}
-`;
-</script>
-</form>
-<br>
-
-Sample output would be:
-
-~~~
-Enter text: hello
-You entered: hello
-Enter text: who's there?
-You entered: who's there?
-Enter text: goodbye
-You entered: goodbye
-~~~
-{: .output}
-
-The `do-while` loop is usually preferred over a `while` loop when the statement needs to be executed at least once, such as when the 
-condition that is checked to end of the loop is determined within the loop statement itself. In the previous example, the user 
-input within the block is what will determine if the loop ends. And thus, even if the user wants to end the loop as soon as possible 
-by entering goodbye, the block in the loop needs to be executed at least once to prompt for input, and the condition can, in fact, 
-only be determined after it is executed.
-
-#### The `for` loop
-
-The `for` loop is designed to iterate a number of times. Its syntax is:
-
-~~~
-for (initialize; condition; modify) statement;
-~~~
-{: .code}
-
-Like the `while` loop, the `for` loop repeats `statement` while `condition` is true. However, in addition, the `for` loop provides specific 
-the ability to initialize and and modify values. The `initialize` section is executed before the loop begins the first time, and 
-the `modify` section is executed immediately after each iteration, but before `condition` is checked.
-
-The `for` loop is identical to the following `while` loop:
-
-~~~
-initialize;
-while (condition) { statement; modify; }
-~~~
-{: .code}
-
-Here is the same countdown example using a `for` loop instead:
-
-~~~
-// countdown using a for loop
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  for (int n = 10; n > 0; n--) {
-    cout << n << ", ";
-  }
-  cout << "liftoff!" << endl;
-}
-~~~
-{: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub3"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub3').value = `// countdown using a for loop
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  for (int n = 10; n > 0; n--) {
-    cout << n << ", ";
-  }
-  cout << "liftoff!" << endl;
-}
-`;
-</script>
-</form>
-<br>
-
-The three fields in a `for` loop are optional. They can be left empty, but in all cases the semicolon signs between them are still required. 
-For example, `for (; n < 10;)` and `for (; n < 10; ++n)` are both valid `for` loops. 
-
-A loop with no condition is equivalent to a loop with true as condition (i.e., an infinite loop).
-
-Because each of the fields is executed in a particular time in the lifecycle of a loop, it may be useful to execute more than a single 
-expression as any of `initialize`, `condition`, or `modify`. Unfortunately, these are not statements, but rather, simple expressions, 
-and thus cannot be replaced by a block. It is possible to make use of the comma operator, however, as a way of separating multiple
-experssions as follows:
-
-~~~
-for ( n=0, i=100 ; n!=i ; ++n, --i )
-{
-   // whatever here...
-}
-~~~
-{: .code}
-
-This loop will execute 50 times if neither `n` or `i` are modified within the loop:
-
-#### Range-based `for` loop
-
-The `for` loop has another syntax, which is used exclusively with ranges:
-
-~~~
-for ( declaration : range ) statement;
-~~~
-{: .code}
-
-This kind of `for` loop iterates over all the elements in `range`, where `declaration` declares some variable able to take the value of an 
-element in this range. Ranges are sequences of elements, including arrays, containers, and any other type supporting the functions 
-`begin` and `end`. Most of these types have not yet been introduced in this tutorial, but we are already acquainted with at least one 
-kind of range: strings, which are sequences of characters.
-
-An example of range-based for loop using strings:
-
-~~~
-// range-based for loop
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-  string str {"Hello!"};
-  for (char c : str)
-  {
-    cout << "[" << c << "]";
-  }
-  cout << endl;
-}
-~~~
-{: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub4"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub4').value = `// range-based for loop
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-  string str {"Hello!"};
-  for (char c : str)
-  {
-    cout << "[" << c << "]";
-  }
-  cout << endl;
-}
-`;
-</script>
-</form>
-<br>
-
-This program generates the oputput:
-
-~~~
-[H][e][l][l][o][!]
-~~~
-{: .output}
-
-Note how what precedes the colon in the `for` loop is the declaration of a `char` variable (the elements in a `string` are of type `char`). 
-We then use this variable, `c`, in the statement block to represent the value of each of the elements in the range.
-
-This loop is automatic and does not require the explicit declaration of any counter variable.
-
-Range based loops usually also make use of type deduction for the type of the elements with auto. Typically, the range-based loop 
-above can also be written as:
-
-~~~
-for (auto c : str)
-  cout << "[" << c << "]";
-~~~
-{: .code}
-
-Here, the type of `c` is automatically deduced as the type of the elements in `str`.
-
-### Jump statements
-
-Jump statements allow the flow of a program to be changed by performing jumps to specific locations.
-
-#### The `break` statement
-
-The `break` statement immediately leaves a loop, even if the condition for its end is not fulfilled. It can be used to end an infinite 
-loop, or to force it to end before its condition becomes false. For example, let's stop the countdown before its natural end:
-
-~~~
-// break loop example
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  for (int n=10; n>0; n--)
-  {
-    cout << n << ", ";
-    if (n==3)
-    {
-      cout << "countdown aborted!";
-      break;
-    }
-  }
-  cout << endl;
-}
-~~~
-{: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub5"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub5').value = `// break loop example
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  for (int n=10; n>0; n--)
-  {
-    cout << n << ", ";
-    if (n==3)
-    {
-      cout << "countdown aborted!";
-      break;
-    }
-  }
-  cout << endl;
-}
-`;
-</script>
-</form>
-<br>
-
-Here we see the output
-
-~~~
-10, 9, 8, 7, 6, 5, 4, 3, countdown aborted!
-~~~
-{: .output}
-
-
-#### The `continue` statement
-
-The `continue` statement causes the program to skip the rest of the loop in the current iteration, as if the end of the statement block had 
-been reached. The loop will immediately start the following iteration. For example, let's skip number 5 in our countdown:
-
-~~~
-// continue loop example
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  for (int n=10; n>0; n--) {
-    if (n==5) continue;
-    cout << n << ", ";
-  }
-  cout << "liftoff!" << endl;
-}
-~~~
-{: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub6"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub6').value = `// continue loop example
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  for (int n=10; n>0; n--) {
-    if (n==5) continue;
-    cout << n << ", ";
-  }
-  cout << "liftoff!" << endl;
-}
-`;
-</script>
-</form>
-<br>
-
-In this case, we now see the output:
-
-~~~
-10, 9, 8, 7, 6, 4, 3, 2, 1, liftoff!
-~~~
-{: .output}
-
-Notice that the number 5 is missing.
-
-#### The `goto` statement
-
-The `goto` statement is rarely used, but it allows an absolute jump to another point in the program. This unconditional jump ignores nesting 
-levels, and does not cause any automatic stack unwinding. Therefore, it is a feature to use with care, and preferably within the same block 
-of statements, especially in the presence of local variables.
-
-The destination point of the `goto` is identified by a label, which is then used as an argument for the `goto` statement. A label is made 
-of a valid identifier followed by a colon.
-
-The `goto` statement is generally deemed a low-level feature, with no particular use cases in modern higher-level programming paradigms 
-generally used with C++. But, just as an example, here is a version of our countdown loop using `goto`:
-
-~~~
-// goto loop example
-#include <iostream>
-using namespace std;
-
-int main ()
-{
-  int n=10;
-mylabel:
-  cout << n << ", ";
-  n--;
-  if (n>0) goto mylabel;
-  cout << "liftoff!" << endl;
-}
-~~~
-{: .code}
-
-### The `switch` statement
+#### The `switch` statement
 
 The syntax of the `switch` statement is a bit peculiar. Its purpose is to check for a value among a number of possible constant expressions. 
 It is similar to concatenating `if-else` statements, but limited to checking the values against constant expressions. Its most typical 
@@ -679,3 +234,456 @@ switch (x) {
 Notice that `switch` is limited to compareing its evaluated expression against labels that are constant expressions. It is not possible 
 to use variables or ranges as labels, because they are not valid C++ constant expressions. If you wish to do this,
 as series of `if` and `else if` statements would be a better approach.
+
+
+### Iteration statements (loops)
+
+Loops repeat a statement a certain number of times, or while some condition is fulfilled. They are introduced by the keywords `while`, 
+`do`, and `for`.
+
+#### The `while` loop
+
+The simplest kind of loop is the `while` loop. Its syntax is:
+
+~~~
+while (expression) statement
+~~~
+{: .code}
+
+The `while` loop simply repeats statement *while* the `expression` is true. If, after any execution of `statement`, `expression` is no longer 
+true, the loop ends, and the program continues right after the loop. For example, let's have a look at a countdown using a `while` loop:
+
+~~~
+// custom countdown using while
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int n = 10;
+
+  while (n > 0) {
+    cout << n << ", ";
+    --n;
+  }
+
+  cout << "liftoff!\n";
+}
+~~~
+{: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub1"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub1').value = `// custom countdown using while
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int n = 10;
+
+  while (n > 0) {
+    cout << n << ", ";
+    --n;
+  }
+
+  cout << "liftoff!" << endl;
+}
+`;
+</script>
+</form>
+<br>
+
+This code generates the following output:
+
+~~~
+10, 9, 8, 7, 6, 5, 4, 3, 2, 1, liftoff!
+~~~
+{: .output}
+
+The first statement in the function `main` sets `n` to a value of 10. This is the initial number for the countdown. Then the `while` loop begins. 
+If this value fulfills the condition `n > 0`, then the block that follows the condition is executed, and repeated for as long as the 
+condition remains true. The *body* of the loop does two things. First it outputs the value of `n` followed by a comma, then it
+decrements the value of `n`	by one. The loop condition is now evaluated again, and because it is still true, the loop body will again
+be executed. This will continue until the value of `n` becomes 0, at which point the loop will finish, and the string `liftoff!` will
+be output.
+
+An important thing to consider with `while` loops is that the loop should end at some point, and thus the `statement` part must alter 
+the value (or values) checked in the condition in some way. Otherwise, the loop will continue forever. 
+
+#### The `do-while` loop
+
+A very similar loop is the `do-while` loop, whose syntax is:
+
+~~~
+do statement while (condition);
+~~~
+{: .code}
+
+This loop behaves like a `while` loop, except that `condition` is evaluated *after* the execution of `statement` instead of before. This
+guarantees at least one execution of `statement`, even if `condition` is never fulfilled. For example, the following example program 
+echoes any text the user introduces until the user enters "goodbye":
+
+~~~
+// echo machine
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+  string str;
+  do {
+    cout << "Enter text: ";
+    getline(cin,str);
+    cout << "You entered: " << str << endl;
+  } while (str != "goodbye");
+}
+~~~
+{: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub2"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub2').value = `// echo machine
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+  string str;
+  do {
+    cout << "Enter text: ";
+    getline(cin,str);
+    cout << "You entered: " << str << endl;
+  } while (str != "goodbye");
+}
+`;
+</script>
+</form>
+<br>
+
+Sample output would be:
+
+~~~
+Enter text: hello
+You entered: hello
+Enter text: who's there?
+You entered: who's there?
+Enter text: goodbye
+You entered: goodbye
+~~~
+{: .output}
+
+The `do-while` loop is usually preferred over a `while` loop when the statement needs to be executed at least once, such as when the 
+value of `condition` is determined within `statement`. In the last example, the user 
+input within the block is what will determine if the loop ends. Even if the user wants to end the loop as soon as possible 
+by entering "goodbye", the block in the loop needs to be executed at least once to prompt for input, and the condition can 
+only be determined after the input has been entered.
+
+#### The `for` loop
+
+The `for` loop is designed to iterate a specific number of times. Its syntax is:
+
+~~~
+for (initialize; condition; modify) statement;
+~~~
+{: .code}
+
+Like the `while` loop, the `for` loop repeats `statement` while `condition` is true. However, in addition, the `for` loop provides 
+the ability to initialize and modify values that affect the loop `condition`. The `initialize` section is executed before the loop begins the first time, and 
+the `modify` section is executed immediately after each iteration, but before `condition` is checked.
+
+The `for` loop is identical to the following `while` loop:
+
+~~~
+initialize;
+while (condition) { statement; modify; }
+~~~
+{: .code}
+
+Here is the same countdown example using a `for` loop instead:
+
+~~~
+// countdown using a for loop
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  for (int n = 10; n > 0; n--) {
+    cout << n << ", ";
+  }
+  cout << "liftoff!" << endl;
+}
+~~~
+{: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub3"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub3').value = `// countdown using a for loop
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  for (int n = 10; n > 0; n--) {
+    cout << n << ", ";
+  }
+  cout << "liftoff!" << endl;
+}
+`;
+</script>
+</form>
+<br>
+
+The three fields in a `for` loop are optional. They can be left empty, but the semicolon separators are still required. 
+For example, the following loops are valid:
+
+~~~
+for (; n < 10;) {}
+for (; n < 10; ++n) {}
+for (i = 0; ; i++) {}
+~~~
+{: .code} 
+
+The last example shows a loop with no condition. This is equivalent to a loop with `true` as condition (i.e., an infinite loop).
+
+Because each of the fields is executed in a particular time in the lifecycle of a loop, it may be useful to execute more than a single 
+expression as any of `initialize`, `condition`, or `modify`. The syntax of C++ does not allow blocks to be used for these components, 
+however, it is possible to include multiple statements using the comma operator:
+
+~~~
+for ( n=0, i=100 ; n!=i ; ++n, --i )
+{
+   // whatever here...
+}
+~~~
+{: .code}
+
+This loop will execute 50 times assuming `n` and `i` are not modified within the loop:
+
+#### Range-based `for` loop
+
+The `for` loop has another syntax, which is used exclusively with ranges:
+
+~~~
+for ( declaration : range ) statement;
+~~~
+{: .code}
+
+This kind of `for` loop iterates over all the elements in `range`, where `declaration` declares some variable able to take the value of an 
+element in this range. Ranges are sequences of elements, including arrays, containers, and any other type supporting the functions 
+`begin` and `end`. Most of these types have not yet been introduced in this tutorial, but we are already acquainted with at least one 
+kind of range: the `string` class.
+
+An example of range-based for loop using strings:
+
+~~~
+// range-based for loop
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+  string str {"Hello!"};
+  for (char c : str)
+  {
+    cout << "[" << c << "]";
+  }
+  cout << endl;
+}
+~~~
+{: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub4"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub4').value = `// range-based for loop
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+  string str {"Hello!"};
+  for (char c : str)
+  {
+    cout << "[" << c << "]";
+  }
+  cout << endl;
+}
+`;
+</script>
+</form>
+<br>
+
+This program generates the oputput:
+
+~~~
+[H][e][l][l][o][!]
+~~~
+{: .output}
+
+Note that the declaration of a `char` variable (the elements in a `string` are of type `char`) is included in the `for` loop. 
+We can then use this variable, `c`, in the statement block to represent the value of each of the elements in the range.
+
+This loop is automatic and does not require the explicit declaration of any counter variable.
+
+### Jump statements
+
+Jump statements allow the flow of a program to be changed by performing jumps to specific locations.
+
+#### The `continue` statement
+
+The `continue` statement causes the program to skip the rest of the loop in the current iteration, as if the end of the statement block had 
+been reached. The loop will immediately start the following iteration. 
+
+For example, let's skip the number 5 in our countdown:
+
+~~~
+// continue loop example
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  for (int n=10; n>0; n--) {
+    if (n==5) continue;
+    cout << n << ", ";
+  }
+  cout << "liftoff!" << endl;
+}
+~~~
+{: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub6"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub6').value = `// continue loop example
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  for (int n=10; n>0; n--) {
+    if (n==5) continue;
+    cout << n << ", ";
+  }
+  cout << "liftoff!" << endl;
+}
+`;
+</script>
+</form>
+<br>
+
+In this case, we now see the output:
+
+~~~
+10, 9, 8, 7, 6, 4, 3, 2, 1, liftoff!
+~~~
+{: .output}
+
+Notice that the number 5 is missing.
+
+#### The `break` statement
+
+The `break` statement immediately leaves a loop, even if the `condition` is not false. It can also be used to end an infinite 
+loop. 
+
+For example, let's stop the countdown before it would normally end:
+
+~~~
+// break loop example
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  for (int n=10; n>0; n--)
+  {
+    cout << n << ", ";
+    if (n==3)
+    {
+      cout << "countdown aborted!";
+      break;
+    }
+  }
+  cout << endl;
+}
+~~~
+{: .code}
+
+<form target="_blank" method="post" action="http://cpp.sh/">
+<input type="hidden" name="source" id="sub5"/>
+<input type="submit" value="Try running it"/>
+<script type="text/javascript">
+document.getElementById('sub5').value = `// break loop example
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  for (int n=10; n>0; n--)
+  {
+    cout << n << ", ";
+    if (n==3)
+    {
+      cout << "countdown aborted!";
+      break;
+    }
+  }
+  cout << endl;
+}
+`;
+</script>
+</form>
+<br>
+
+Here we see the output
+
+~~~
+10, 9, 8, 7, 6, 5, 4, 3, countdown aborted!
+~~~
+{: .output}
+
+
+## Advanced Topics
+
+### The `goto` statement
+
+The `goto` statement is rarely used, but it allows an absolute jump to another point in the program. This unconditional jump ignores nesting 
+levels, and does not cause any automatic stack unwinding. Therefore, this feature has to be used with care, and preferably within the same block 
+of statements, especially in the presence of local variables.
+
+The destination point of the `goto` is identified by a label, which is then used as an argument for the `goto` statement. A label is made 
+of a valid identifier followed by a colon.
+
+The `goto` statement is generally deemed a low-level feature, with no particular use cases in modern higher-level programming paradigms 
+generally used with C++. But, just as an example, here is a version of our countdown loop using `goto`:
+
+~~~
+// goto loop example
+#include <iostream>
+using namespace std;
+
+int main ()
+{
+  int n=10;
+mylabel:
+  cout << n << ", ";
+  n--;
+  if (n>0) goto mylabel;
+  cout << "liftoff!" << endl;
+}
+~~~
+{: .code}
