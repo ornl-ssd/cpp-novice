@@ -1,12 +1,19 @@
 ---
 title: "Name Visibility"
-teaching: 15
-exercises: 15
+teaching: 30
+exercises: 0
 questions:
+- "How does C++ control visibility of objects?"
 objectives:
+- "Learn about different scopes."
+- "Understand namespaces and how to use them."
+- "Learn about storage classes."
 keypoints:
+- "Different scopes provide a means of controlling the visibility and life of variables."
+- "Namespaces provide additional flexibility for name visibility."
+- "How data is stored is related to its scope."
 ---
-### Scopes
+### Scope
 
 Named entities, such as variables, functions, and compound types need to be declared before being used in C++. The point in the program where 
 this declaration happens influences its *visibility*. There are two types of visibility, or *scope*:
@@ -15,13 +22,13 @@ Global scope
 : An entity declared outside any block has *global scope*, meaning that its name is valid anywhere in the code. 
 
 Block scope
-: An entity declared within a block, such as a function or a selective statement, has *block scope*, and is only visible within the 
+: An entity declared within a block, such as a function or a selection statement, has *block scope*, and is only visible within the 
 specific block in which it is declared, but not outside it.
 
 Variables with global scope are known as *global variables*, and variables with block scope are known as *local variables*.
 
 For example, a variable declared in the body of a function is a local variable that extends until the end of the the function 
-(i.e., until the brace } that closes the function definition), but not outside it:
+(i.e., until the closing brace that ends the function definition), but not outside it:
 
 ~~~
 int foo;        // global variable - outside any block
@@ -58,6 +65,9 @@ because it is a different block, can re-use a name from an outer scope and make 
 will refer to a different entity only within the inner block, hiding the entity it names outside. While outside the inner block, the name
 will still refer to the original entity. 
 
+Entities in a block can also override those declared with global scope, so a local variable with the same name as a global variable will
+hide references to the global variable.
+
 For example:
 
 ~~~
@@ -65,8 +75,10 @@ For example:
 #include <iostream>
 using namespace std;
 
+int x = 1; // global variable
+
 int main() {
-  int x = 10;
+  int x = 10; // hides global variable
   int y = 20;
   {
     int x;   // ok, inner scope.
@@ -92,8 +104,10 @@ document.getElementById('sub1').value = `// inner block scopes
 #include <iostream>
 using namespace std;
 
+int x = 1; // global variable
+
 int main() {
-  int x = 10;
+  int x = 10; // hides global variable
   int y = 20;
   {
     int x;   // ok, inner scope.
@@ -127,8 +141,10 @@ y: 50
 
 Note that `y` is not hidden in the inner block, and thus accessing `y` still accesses the outer variable.
 
-Variables in declarations that introduce a block, such as function parameters and variables declared in loops and conditions 
-(such as those declared on a `for` or an `if`) are local to the block they introduce.
+Variables in declarations that introduce a block, such as function parameters, and variables declared in loops and conditions 
+(such as those declared on a `for` or an `if`) are local to the block.
+
+## Advanced Topics
 
 ### Namespaces
 
@@ -164,7 +180,7 @@ namespace myNamespace
 
 Here, the variables `a` and `b` are normal variables declared within a namespace called `myNamespace`. These variables can be accessed from 
 within the namespace by using just their identifier (i.e. `a` or `b`), but if accessed from outside the namespace they have to be 
-properly qualified with the scope operator `::`. For example, to access the previous variables from outside `myNamespace` they 
+*qualified* using the scope operator `::`. For example, to access the previous variables from outside `myNamespace` they 
 must be qualified as follows:
 
 ~~~
