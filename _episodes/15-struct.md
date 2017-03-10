@@ -1,13 +1,21 @@
 ---
 title: "Structs"
 teaching: 30
-exercises: 
+exercises: 0
 questions:
+- "How are data types grouped together in C++?"
 objectives:
+- "Learn how to declare and use struct types."
 keypoints:
+- "Struct types are for grouping different data types together."
+- "Accessing members of a struct is just like accessing a variable."
+- "Arrays of structs are allowed."
+- "Structs can contain any data type, including other structs."
 ---
 A `struct` (short for structure) is a mechanism for grouping data elements together under a single name. These data elements, known as members, 
-can have different types and different lengths. Structures can be declared in C++ using the following syntax:
+can have different types and different lengths. 
+
+Structures are declared in C++ using the following syntax:
 
 ~~~
 struct type_name {
@@ -20,9 +28,9 @@ member_type3 member_name3;
 ~~~
 {: .code}
 
-Where `type_name` is a name for the structure type and `object_names` is a list of valid identifiers for objects that have the type of this structure. 
+Where `type_name` is a name for the structure type, and `object_names` are a list of valid identifiers for objects that have the type of this structure. 
 A list of the data members comprising the `struct` are included in the braces. Each data member is specified with a type and a name. If the 
-`object_names` are omitted, then this declares a type. If the `type_name` is omitted, then the objects have an *anonymous struct type*.
+`object_names` are omitted, then this declares a type only. If the `type_name` is omitted, then the objects have an *anonymous struct type*.
 
 For example:
 
@@ -42,9 +50,8 @@ This declaration creates a new type `product`, which is then used to declare thr
 `apple`, `banana`, and `melon`. 
 Note how once `product` is declared, it can be used just like any other type.
 
-Right at the end of the struct definition, and before the ending semicolon (;), the optional field `object_names` can be used to directly 
-declare objects of the structure type. For example, the structure objects `apple`, `banana` and `melon` can be declared at the moment the 
-structure type is defined: 
+If `object_names` are specified, then objects of this type can be declared directly. For example, the structure objects `apple`, `banana` and `melon` 
+could be declared this way as follows: 
 
 ~~~
 struct product {
@@ -180,7 +187,10 @@ and `mine.title` is a variable of type `string`.
 One of the features of structures is the ability to refer to both their members 
 individually or to the entire structure as a whole. 
 
-Because structures are types, they can also be used as the base type of arrays:
+Because structures are types, they can also be used as the base type of arrays. Each element of the array is a different `struct` object that is
+referred to using the array name and index value.
+
+For example:
 
 ~~~
 // array of structures
@@ -305,7 +315,7 @@ movies_t *pmovie;
 ~~~
 {: .code}
 
-Here amovie is an object of structure type movies_t, and pmovie is a pointer to point to objects of structure type movies_t. Therefore, 
+Here `amovie` is an object of structure type `movies_t`, and `pmovie` is a pointer to objects of structure type `movies_t`. Therefore, 
 the following code would also be valid:
 
 ~~~
@@ -313,9 +323,9 @@ pmovie = &amovie;
 ~~~
 {: .code}
 
-The value of the pointer pmovie would be assigned the address of object amovie.
+The value of the pointer pmovie would be assigned the address of object `amovie`.
 
-Now, let's see another example that mixes pointers and structures, and will serve to introduce a new operator: the arrow operator (->):
+Now, let's see another example that mixes pointers and structures, and will serve to introduce a new operator: the arrow operator `->`:
 
 ~~~
 // pointers to structures
@@ -404,8 +414,10 @@ Invasion of the body snatchers (1978)
 {: .output}
 
 
-The arrow operator (->) is a dereference operator that is used exclusively with pointers to objects that have members. This operator 
-serves to access the member of an object directly from its address. For example, in the example above:
+The arrow operator is a dereference operator that is used exclusively with pointers to objects that have members. This operator 
+serves to access the member of an object directly from its address. 
+
+For example:
 
 ~~~
 pmovie->title
@@ -419,23 +431,23 @@ is, for all purposes, equivalent to:
 ~~~
 {: .code}
 
-Both expressions, pmovie->title and (*pmovie).title are valid, and both access the member title of the data structure pointed by a 
-pointer called pmovie. It is definitely something different than:
+Both expressions, `pmovie->title` and `(*pmovie).title` are valid, and both access the member `title` of the data structure referenced by a 
+pointer called `pmovie`. It is definitely something different than:
 
 ~~~
 *pmovie.title
 ~~~
 {: .code}
 
-which is rather equivalent to:
+which is equivalent to:
 
 ~~~
 *(pmovie.title)
 ~~~
 {: .code}
 
-This would access the value pointed by a hypothetical pointer member called title of the structure object pmovie (which is not the case, 
-since title is not a pointer type). The following panel summarizes possible combinations of the operators for pointers and for structure members:
+This would access the value pointed by a hypothetical pointer member called `title` of the structure object `pmovie` (which is not the case, 
+since `title` is not a pointer type). The following panel summarizes possible combinations of the operators for pointers and for structure members:
 
 <table border="1">
 <tr><th>Expression</th><th>What is evaluated</th><th>Equivalent</th></tr>
