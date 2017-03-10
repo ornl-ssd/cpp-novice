@@ -1,15 +1,23 @@
 ---
 title: "Functions"
-teaching: 15
-exercises: 15
+teaching: 60
+exercises: 0
 questions:
+- "What are functions and how do I use them in C++?"
 objectives:
+- "Learn how to structure code into functions."
+- "Learn the syntax for declaring functions."
+- "Learn about passing arguments to functions."
 keypoints:
+- "Functions are the primary way to structure programs and achieve code reuse."
+- "Execution can be transferred to a function, then resume at the point the function was invoked."
+- "Functions can be supplied multiple values, but only return a single value."
 ---
-Functions allow to structure programs in segments of code to perform individual tasks.
+Functions enable programs to be broken into segments of code that perform individual tasks, and are the primary way of
+achieving structure and code reuse.
 
 In C++, a function is a group of statements that is given a name, and which can be called from some point of the program. The most common 
-syntax to define a function is:
+syntax used to define a function is:
 
 ~~~
 type name ( parameter1, parameter2, ...) { statements }
@@ -319,6 +327,8 @@ platforms are:
 <tr><td rowspan="2">EXIT_FAILURE</td><td>The program failed.</td></tr>
 <tr><td>This value is defined in header &lt;cstdlib&gt;.</td></tr>
 </table>
+
+## Advanced Topics
 
 ### Arguments passed by value and by reference
 
