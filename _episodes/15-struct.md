@@ -12,7 +12,7 @@ keypoints:
 - "Arrays of structs are allowed."
 - "Structs can contain any data type, including other structs."
 ---
-A `struct` (short for structure) is a mechanism for grouping data elements together under a single name. These data elements, known as members, 
+A `struct` (short for structure) is a mechanism for grouping data elements together under a single name. These data elements, known as *members*, 
 can have different types and different lengths. 
 
 Structures are declared in C++ using the following syntax:
