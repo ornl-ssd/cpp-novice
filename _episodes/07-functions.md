@@ -50,7 +50,7 @@ int addition(int a, int b)
 int main()
 {
   int z;
-  z = addition(5,3);
+  z = addition(5, 3);
   cout << "The result is " << z << endl;
 }
 ~~~
@@ -74,7 +74,7 @@ int addition(int a, int b)
 int main()
 {
   int z;
-  z = addition(5,3);
+  z = addition(5, 3);
   cout << "The result is " << z << endl;
 }
 `;
@@ -89,36 +89,36 @@ The result is 8
 ~~~
 {: .output}
 
-This program is divided in two functions: `addition` and `main`. Remember that no matter the order in which they are defined, a C++ 
+This program is divided in two functions: `addition` and `main`. Remember that no matter which order functions are defined, a C++ 
 program always starts by calling `main`. In fact, `main` is the only function called automatically, and the code in any other function 
 is only executed if its function is called from `main` (directly or indirectly).
 
-In the example above, `main` begins by declaring the variable `z` of type `int`, and right after that, it calls the `addition` function. \
-The call to a function follows a structure very similar to its declaration.
+In the example above, `main` begins by declaring the variable `z` of type `int`. Then it calls the `addition` function and supplies
+two values, 5 and 3.
  
 The parameters in the function declaration have a clear correspondence to the arguments passed in the function call. The call passes 
-two values, 5 and 3, to the function, and these correspond to the parameters `a` and `b`, declared for function addition.
+two values to the function, and these correspond to the parameters `a` and `b`, declared for function addition. You can think of the
+parameters as being variables that are accessible only within the function.
 
-At the point at which the function `addition` is called from within `main`, control is passed to the new function and further execution of 
+At the point at which the function `addition` is called from within `main`, control is passed to the new function. Further execution of 
 `main` is suspended, and will only resume once the `addition` function ends. At the moment of the function call, the value of both 
-arguments (5 and 3) are assigned to the local variables `int a` and `int b` within the function.
+arguments are assigned ta variables `a` and `b` within the function.
 
-Then, inside `addition`, another local variable is declared (`int r`), and the result of the expression `a + b` 
-is assigned to `r`. For this case, `a` will have the value 5 and `b` the value 3, which results in the value 8 being assigned to `r`.
+Inside  the `addition` function, another variable `r` is declared, and is assigned the result of the expression `a + b`.
+Since `a` has the value 5, and `b` the value 3, the result assigned to `r` will be 8.
 
 The final statement within the function is `return r;`. This statement ends the function and returns the control back to the statement
 immediately following the point where it was called, i.e. to function `main`. Because the `addition` function has a return type, the 
-call is evaluated as having a value, and this value is the value specified in the `return` statement that ended the function.
- 
-Therefore, the call to `addition` is an expression with the value returned by the function, and in this case, that value, 8, is assigned to `z`. 
-It is as if the entire function call was replaced by the value it returns (i.e., 8).
+call is evaluated as having a value, and this value is the value specified in the `return` statement that ended the function. This
+results in the value, 8 being assigned to `z` in `main`. 
 
 > ## Parameters and arguments
 >
-> The term *parameters* (or sometimes *formal parameters*) is used to refer to the identifiers used in the function definition, and correspond
-> to local variables that are used within the function.
+> The term *parameter* (or sometimes *formal parameter*) is used to refer to the identifier used in the function definition, and that corresponds
+> to a local variable used within the function.
 >
-> The term *arguments* is used to refer to the values (literals, variables, etc.) that are *passed* to the function via a function call.
+> The term *argument* is used to refer to the value (literal, variable, etc.) that is *passed* to the function via a function call, and that is
+> matched to the corresponding parameter.
 >
 > In many cases these terms are used interchangeably, but we will stick to the defintions here.
 {: .callout}
@@ -194,7 +194,7 @@ This example defines a `subtract` function that simply returns the difference be
 several times, demonstrating more possible ways in which a function can be called.
 
 Let's examine each of these calls, bearing in mind that each function call is itself an expression that is evaluated as the value it returns. 
-Again, you can think of it as if the function call was itself replaced by the returned value:
+You can think of it as if the function call was replaced by the returned value:
 
 ~~~
 z = subtraction(7, 2);
@@ -210,30 +210,28 @@ cout << "The first result is " << z << endl;
 ~~~
 {: .code}
 
-With the same procedure, we could interpret:
+Similarly for the statement:
 
 ~~~
 cout << "The second result is " << subtraction(7, 2) << endl;
 ~~~
 {: .code}
 
-as:
+If we replace the function call by 5, we would have:
 
 ~~~
 cout << "The second result is " << 5 << endl;
 ~~~
 {: .code}
 
-since 5 is the value returned by `subtraction(7, 2)`.
-
-In the case of:
+In this example, the arguments passed to `subtraction` are variables instead of literals:
 
 ~~~
 cout << "The third result is " << subtraction (x,y) << endl;
 ~~~
 {: .code}
 
-The arguments passed to `subtraction` are variables instead of literals. The function is called with whatever the values of `x` and `y` are
+The function is called with whatever the values of `x` and `y` are
 at the moment of the call. 
 
 The fourth call is again similar:
@@ -243,7 +241,7 @@ z = 4 + subtraction(x, y);
 ~~~
 {: .code}
 
-The only addition being that now the function call is also an operand of an addition operation. Again, the result is the same as if the 
+The only change being that the function call is also an operand of an addition operation. Again, the result is the same as if the 
 function call was replaced by its result: 6. Note, that thanks to the commutative property of additions, the above can also be written as:
 
 ~~~
@@ -251,7 +249,7 @@ z = subtraction(x, y) + 4;
 ~~~
 {: .code}
 
-With exactly the same result. Note also that the semicolon does not necessarily go after the function call, but, as always, at the end of the 
+This produces exactly the same result. Note also that the semicolon does not necessarily go after the function call, but is always at the end of the 
 whole statement. Again, the logic behind may be easily seen again by replacing the function calls by their returned value:
 
 ~~~
@@ -262,9 +260,13 @@ z = 2 + 4;    // same as z = subtraction (x,y) + 4;
 
 ### Functions with no return type
 
-The syntax shown above for functions requires the declaration to begin with a type. This is the type of the value returned by the function. 
-BWhat if the function does not need to return a value? In this case, the type to be used is `void`, which is a special type to represent the 
-absence of value. For example, a function that simply prints a message may not need to return any value:
+The syntax we have used for declaring functions requires the declaration begin with a type. This is the type of the value returned by the function. 
+What if the function does not need to return a value? 
+
+In this case, the function can be declared to return the type `void`. This is a special type to represent the 
+absence of value. 
+
+For example, a function that simply prints a message may not need to return any value:
 
 ~~~
 // void function example
@@ -305,9 +307,9 @@ An empty parameter list can be used instead of `void `with same meaning.
 
 ### The return value of `main`
 
-You may have noticed that the return type of `main` (which is just a regular function) is `int,` but most examples in this and earlier chapters 
+You may have noticed that the return type of `main` (which is just a regular function) is `int,` but most examples in this and earlier lessons 
 did not actually return any value. This is because the compiler treats `main` differently from other functions, and will automatically include
-an implicit return statement if one is not found. It is good practice to include a return statement at the end of `main`, however:
+an implicit return statement if one is not found. However, it is good practice to include a return statement at the end of `main`:
 
 ~~~
 return 0;
@@ -315,17 +317,15 @@ return 0;
 {: .code}
 
 When `main` returns zero (either implicitly or explicitly), it is interpreted by the environment that the program ended successfully. Other 
-values may be returned by `main`, and some environments give access to that value to the caller in some way, although this behavior is not 
-required nor necessarily portable between platforms. The values for `main` that are guaranteed to be interpreted in the same way on all 
-platforms are:
+values may be returned by `main`, and some environments use this value to indicate the result of the program execution. 
+However,  this behavior is not required, nor portable, between platforms. The values for `main` that are guaranteed to be interpreted 
+in the same way on all platforms are as follows. Note that these values are defined in the header `<cstdlib>`:
 
 <table border="1">
 <tr><th>value</th><th>description</th></tr>
 <tr><td>0</td><td>The program was successful</td></tr>
-<tr><td rowspan="2">EXIT_SUCCESS</td><td>The program was successful (same as above).</td></tr>
-<tr><td>This value is defined in header &lt;cstdlib&gt;.</td></tr>
-<tr><td rowspan="2">EXIT_FAILURE</td><td>The program failed.</td></tr>
-<tr><td>This value is defined in header &lt;cstdlib&gt;.</td></tr>
+<tr><td>EXIT_SUCCESS</td><td>The program was successful (same as above).</td></tr>
+<tr><td>EXIT_FAILURE</td><td>The program failed.</td></tr>
 </table>
 
 ## Advanced Topics
