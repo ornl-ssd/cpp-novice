@@ -187,18 +187,18 @@ to improve readability, the examples in these lessons will usually use the unqua
 Namespaces are explained in more detail in a later chapter.
 
 >## Challenge
-> Often you will see statements that include the sequence `\n` at the end of a string, rather than using `<< std::endl`:
+> Often you will see statements that include the sequence "`\n`" at the end of a string, rather than using "`<< std::endl`" as shown below.
 >
-> ---
+> ~~~
 > std::cout << "Hello World!\n";
-> ---
+> ~~~
 > {: .code}
 >
 > Both of these sequences refer to "end of line" or inserting a new line at the end of the string. However there is a
 > subtle difference: `endl` also flushes the stream, which forces any output to be displayed. In most cases, they can be
 > used interchangeably.
 >
-> Compile and run the program and run the program above to see the output it generates. Now modify the program to use 
+> Compile and run the program above to see the output it generates. Now modify the program to use 
 > `\n` instead of `endl`. Re-compile and re-run it to verify that it generates the same output.
 >
-{: .callout}
+{: .challenge}
