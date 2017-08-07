@@ -287,7 +287,7 @@ int main()
 {: .code}
 
 > ## Challenge
-> Modify the above program to compute the volume of a cone of constant height 10. Compile and run it to check that it generates the correct
-> value.
+> Modify the above program to compute the volume of a cone of constant height 10.0 (using the same radius value of 5.0). Compile 
+> and run it to check that it generates the correct value.
 {: .challenge}
 
