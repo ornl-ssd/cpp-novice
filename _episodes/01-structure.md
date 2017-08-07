@@ -199,6 +199,6 @@ Namespaces are explained in more detail in a later chapter.
 > used interchangeably.
 >
 > Compile and run the program above to see the output it generates. Now modify the program to use 
-> `\n` instead of `endl`. Re-compile and re-run it to verify that it generates the same output.
+> "`\n`" instead of "`endl`". Re-compile and re-run it to verify that it generates the same output.
 >
 {: .challenge}
