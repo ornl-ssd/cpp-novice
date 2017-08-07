@@ -1,7 +1,7 @@
 ---
 title: "Variables and Types"
 teaching: 20
-exercises: 0
+exercises: 10
 questions:
 - "What fundamental types are available?"
 - "How are variables declared and initialized?"
@@ -308,7 +308,7 @@ int main()
 >## Challenge
 >
 > Write a program that declares a variable of type `float` called `val`. Print out the value of `val` before it has been initialized. What 
-> value do you get? What happens if you run the program a second time? Do you get the same value?
+> value do you get? What happens if you run the program a second time? Do you get the same value? Why?
 >
 {: .challenge}
 
@@ -368,6 +368,18 @@ int main()
 }
 ~~~
 {: .code}
+
+>## Challenge
+> When applied to a string, the `+=` operator appends a new sequence of characters to the end of an existing string. For example:
+>
+> ~~~
+> string_var += "some characters";
+> ~~~
+> {: .code}
+>
+> Modify the above program to use the `+=` operator instead of `append`. Compile and run the program to verify it produces the output
+> you expect.
+{: .challenge}
 
 For more details on standard C++ strings, see the [string class reference](http://www.cplusplus.com/string).
 
