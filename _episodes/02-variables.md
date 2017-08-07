@@ -20,7 +20,7 @@ a memory location at which the data is being stored. This concept differs signif
 ### Identifiers
 
 The name of a variable is known as an *identifier*. A valid identifier is a sequence of one or more letters, digits, or 
-underscore characters `_`. Spaces, punctuation marks, and symbols cannot be part of an identifier. 
+underscore characters. Spaces, punctuation marks, and symbols cannot be part of an identifier. 
 
 Identifiers must always begin with a letter or an underscore. The use of an underscore as the first character of an
 identifier is generally considered to have a special meaning.
@@ -246,38 +246,6 @@ int main()
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub1"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub1').value = `// operating with variables
-
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  // declaring variables:
-  int a, b;
-  int result;
-
-  // process:
-  a = 5;
-  b = 2;
-  a = a + 1;
-  result = a - b;
-
-  // print out the result:
-  cout << result << endl;
-
-  // terminate the program:
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
-
 The main thing to notice is that the variables are declared before they are used anywhere else in the program. All three variables
 are of type `int` so they can be used interchangeably in expressions.
 
@@ -337,32 +305,12 @@ int main()
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub2"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub2').value = `// initialization of variables
-
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  int a=5;               // initial value: 5
-  int b(3);              // initial value: 3
-  int c{2};              // initial value: 2
-  int result;            // initial value undetermined
-
-  a = a + b;
-  result = a - c;
-  cout << result << endl;
-
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
+>## Challenge
+>
+> Write a program that declares a variable of type `float` called `val`. Print out the value of `val` before it has been initialized. What 
+> value do you get? What happens if you run the program a second time? Do you get the same value?
+>
+{: .challenge}
 
 ### Introduction to the `string` class
 
@@ -387,28 +335,7 @@ int main()
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub3"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub3').value = `// my first string
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-  string mystring;
-  mystring = "This is a string";
-  cout << mystring << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
-
-As can been seen in this example, strings can be initialized using a *string literal*. Any of the intialization
+As can been seen in this example, strings can be initialized using a *string literal*. Any of the initialization
 formats can also be used:
 
 ~~~
@@ -441,32 +368,6 @@ int main()
 }
 ~~~
 {: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub4"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub4').value = `// my first string operations
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-  string mystring;
-  mystring = "This is the initial string content";
-  cout << mystring << endl;
-  mystring = "This is a different string content";
-  cout << mystring << endl;
-  cout << "The string is " << mystring.size() << " characters in length" << endl;
-  mystring.append(", with another string appended");
-  cout << mystring << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
 
 For more details on standard C++ strings, see the [string class reference](http://www.cplusplus.com/string).
 
