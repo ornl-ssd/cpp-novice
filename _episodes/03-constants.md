@@ -1,7 +1,7 @@
 ---
 title: "Constants"
 teaching: 20
-exercises: 0
+exercises: 5
 questions:
 - "What are the different types of literal constants in C++?"
 - "How are constant expressions defined?"
@@ -129,8 +129,8 @@ Character and string literals are enclosed in quotes:
 {: .code}
 
 The first two expressions represent single-character literals, and the following two represent string literals composed of several characters. 
-Notice that to represent a single character, we enclose it between single quotes `'`, and to express a string (which consists of one or more 
-characters), we enclose the characters between double quotes `"`. A single character string and a single character are different types.
+Notice that to represent a single character, we enclose it between single quotes, and to express a string (which consists of one or more 
+characters), we enclose the characters between double quotes. A single character string and a single character are different types.
 
 Both single-character and string literals require quotation marks surrounding them to distinguish them from possible variable identifiers or 
 reserved keywords. Notice the difference between these two expressions:
@@ -264,7 +264,7 @@ const char tab = '\t';
 ~~~
 {: .code}
 
-These are just like initiliazed variables, however their value cannot be changed. We can then use these names instead of the 
+These are just like initialized variables, however their value cannot be changed. We can then use these names instead of the 
 literals themselves:
 
 ~~~
@@ -286,26 +286,8 @@ int main()
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub1"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub1').value = `#include <iostream>
-using namespace std;
+> ## Challenge
+> Modify the above program to compute the volume of a cone of constant height 10. Compile and run it to check that it generates the correct
+> value.
+{: .challenge}
 
-const double pi = 3.14159;
-const char newline = '\n';
-
-int main()
-{
-  double r=5.0;               // radius
-  double circle;
-
-  circle = 2 * pi * r;
-  cout << circle;
-  cout << newline;
-}
-`;
-</script>
-</form>
-<br>
