@@ -1,7 +1,7 @@
 ---
 title: "Structure of a Program"
 teaching: 15
-exercises: 0
+exercises: 5
 questions:
 - "What are the basic elements of a C++ program?"
 - "How do I use comments in C++?"
