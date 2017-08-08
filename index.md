@@ -11,7 +11,12 @@ x-, y-, and z-directions[^1]:
 <img src="{{ site.github.url }}/fig/spatial_variation.png" height="25%" width="25%"/>
 
 $$
-\frac{\partial T}{\partial t} = \frac{\lambda}{\rho c}\left [ \frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial Y^2}
+\frac{\partial T}{\partial t} = \frac{\lambda}{\rho c}\left [ \frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2}
++ \frac{\partial^2 T}{\partial z^2} \right ]
+$$
+
+$$
+= a \left [ \frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2}
 + \frac{\partial^2 T}{\partial z^2} \right ]
 $$
 
@@ -22,6 +27,14 @@ One solution of the generic equation for steady-state distribution of temperatur
 by Rosenthal[^2] as:
 
 <img src="{{ site.github.url }}/fig/temperature_distribution.png" height="35%" width="35%"/>
+
+$$
+T\{x,R\} = T_0 + \frac{\eta V I}{2 \pi \lambda}\left ( \frac{1}{R} \right ) \textup{exp}\left \{ - \frac{v}{2 a} (R + x)\right \}
+$$
+
+$$
+R = \sqrt{x^2 + y^2 + z^2}
+$$
 
 where $$ T\{x,R\} $$ is the temperature as a function of the radial distance ($$ R $$) and distance ($$ x $$) along the welding centerline,
 $$ T_0 $$ is the preheat temperature, $$ V $$ is the arc voltage, $$ I $$ is the welding current, $$ v $$ is the welding speed, 
