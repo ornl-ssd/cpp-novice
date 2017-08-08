@@ -16,7 +16,7 @@ $$ a $$ is the thermal diffusivity of the material being welded.
 One solution of the generic equation for steady-state distribution of temperature in a plate during arc welding was given
 by Rosenthal[^2] as:
 
-<img src="{{ site.github.url }}/fig/temperature_distribution.png" height="50%" width="50%"/>
+<img src="{{ site.github.url }}/fig/temperature_distribution.png" height="35%" width="35%"/>
 
 where $$ T{x,R} $$ is the temperature as a function of the radial distance ($$ R $$) and distance ($$ x $$) along the welding centerline,
 $$ T_0 $$ is the preheat temperature, $$ V $$ is the arc voltage, $$ I $$ is the welding current, $$ v $$ is the welding speed, 
