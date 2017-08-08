@@ -1,7 +1,7 @@
 ---
 title: "Operators"
 teaching: 45
-exercises: 0
+exercises: 5
 questions:
 - "What built-in operators are availble?"
 objectives:
@@ -12,7 +12,7 @@ keypoints:
 Operators are used to perform operations on variables and constants. There are a large number of operators in C++, so it is important
 to become familiar with the different types and how they are used.
 
-### Assignment operator: `=`
+### Assignment operator `=`
 
 The assignment operator assigns a value to a variable.
 
@@ -57,32 +57,6 @@ int main()
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub1"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub1').value = `// assignment operator
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  int a, b;         // a:?,  b:?
-  a = 10;           // a:10, b:?
-  b = 4;            // a:10, b:4
-  a = b;            // a:4,  b:4
-  b = 7;            // a:4,  b:7
-
-  cout << "a:";
-  cout << a;
-  cout << " b:";
-  cout << b << endl;
-}
-`;
-</script>
-</form>
-<br>
-
 This program generates the following output:
 
 ~~~
@@ -90,10 +64,9 @@ a:4 b:7
 ~~~
 {: .output}
 
-This program prints the final values of `a` and `b`, which are 4 and 7, respectively. Notice how `a` was not affected by the final modification of `b`, 
-even though we declared `a = b` earlier.
+This program prints the final values of `a` and `b`, which are 4 and 7, respectively. Notice how `a` was not affected by the final modification of `b`, even though we declared `a = b` earlier.
 
-*Assignment operations are expressions that can be evaluated.*
+#### Assignment operations are expressions that can be evaluated
 
 That means that the assignment itself has a value, which for fundamental types, is the one assigned in the operation. 
 
@@ -123,7 +96,7 @@ x = y = z = 5;
 It assigns 5 to the all three variables: `x`, `y` and `z`. This assignment is done from right-to-left. First `z` is assigned 5. The result of this
 assignment is 5, which is assigned to `y`. The result of this assignment is also 5, which is finally assigned to `x`.
 
-### Arithmetic operators: `+`, `-`, `*`, `/`, `%`
+### Arithmetic operators `+`, `-`, `*`, `/`, `%`
 
 The five arithmetical operations supported by C++ are: 
 
@@ -146,7 +119,7 @@ x = 11 % 3;
 
 This results in variable `x` containing the value 2, since dividing 11 by 3 results in 3, with a remainder of 2.
 
-### Compound assignment: `+=`, `-=`, `*=`, `/=`, `%=`, `>>=`, `<<=`, `&=`, `^=`, `|=`
+### Compound assignment `+=`, `-=`, `*=`, `/=`, `%=`, `>>=`, `<<=`, `&=`, `^=`, `|=`
 
 Compound assignment operators modify the current value of a variable by performing an operation on it. They are equivalent to 
 assigning the result of an operation to the first operand:
@@ -176,26 +149,6 @@ int main()
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub2"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub2').value = `// compound assignment operators
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  int a, b=3;
-  a = b;
-  a += 2;             // equivalent to a=a+2
-  cout << a << endl;
-}
-`;
-</script>
-</form>
-<br>
-
 The output from this program is:
 
 ~~~
@@ -203,7 +156,11 @@ The output from this program is:
 ~~~
 {: .code}
 
-### Increment and decrement: `++`, `--`
+Recall that when the compound addition operator `+=` is applied to a string, it causes a new string to be appended. So the type of the 
+variable being used with the operator determines the actual result. You should not assume that the operation will be arithmetic unless
+the variable is an arithmetic type.
+
+### Increment and decrement `++`, `--`
 
 The increment operator `++` and the decrement operator `--` increase or reduce the 
 value stored in a variable by one. They are equivalent to `+= 1` and to `-= 1`, respectively. 
@@ -230,7 +187,7 @@ The following examples show the difference:
 <td>x = 3;<br>y = x++;<br>// x contains 4, y contains 3</td></tr>
 </table>
 
-### Comparison operators: `==`, `!=`, `>`, `<`, `>=`, `<=`
+### Comparison operators `==`, `!=`, `>`, `<`, `>=`, `<=`
 
 Two expressions can be compared using comparison operators. The result of such an operation is either `true` or `false` (i.e., a Boolean value).
 
@@ -246,7 +203,8 @@ The relational operators in C++ are:
 <tr><td>>=</td><td>Greater than or equal to</td></tr>
 </table>
 
-Here there are some examples, assuming that `a=2`, `b=3` and `c=6`:
+Here there are some examples, assuming that `a=2`, `b=3` and `c=6`. Notice that you can add parentheses around expressions. These can
+be used to ensure that the expressions are evaluated in the order you expect.
 
 ~~~
 (7 == 5)     // evaluates to false
@@ -261,11 +219,15 @@ Here there are some examples, assuming that `a=2`, `b=3` and `c=6`:
 ~~~
 {: .code}
 
+> ## Assignment versus equality
+> Note that the equality operator '==' is different from the assignment operator '=' to avoid ambiguity. In the last expression `((b=2) == a)`, 
+> the value 2 is first assigned to `b` (the result of which is the value 2) and then compared to `a`.
+>
+> This distinction is particularly important in C++, since the use of assignment in a logical expression is legal. Other languages, such as
+> Python, do not allow assignment to be used in this way.
+{: .callout}
 
-Note that the equality operator '==' is different from the assignment operator '=' to avoid ambiguity. In the last expression `((b=2) == a)`, 
-the value 2 is first assigned to `b` (the result of which is the value 2) and then compared to `a`.
-
-### Logical operators: `!`, `&&`, `||`
+### Logical operators `!`, `&&`, `||`
 
 The `!` operator corresponds to the logical operation NOT. It has only one operand, to its right. The result of the operator is
 as follows:
@@ -336,13 +298,24 @@ Although this may seem somewhat abstract, it becomes very important when the rig
 in the following example:
 
 ~~~
-if ( (i<10) && (++i<n) ) { /*...*/ }   // note that the condition increments variable i 
+if ( (i<10) && (++i<n) ) { /*...body...*/ }   // note that the condition increments variable i 
 ~~~
 {: .code}
 
-
 Here, the combined conditional expression will increment `i` by one only if the condition on the left of `&&` is `true`.
 If the condition is `false` then the right-hand side `(++i<n)` is never evaluated.
+
+> ## Challenge
+> Suppose that `i` has the value 5 and `n` has the value 5. Will the body `if` statement be executed? What will the values
+> of `i` and `n` be after the statement is executed?
+>
+> > ##Solution
+> > No, the body will not be executed. Since `i` is less than 10, `i<10` is true and the second part of the `&&` expression 
+> > will be evaluated. The `++i` expression will cause the value of `i` to be incremented by 1 to 6, so it will be greater than `n` 
+> > and so `++i<n` will be false. The result of `true && false` is `false`, so the body of the `if` statement is not executed.
+> >
+> > At the end of the statement, the value of `i` will be 6 and the value of `n` will be 5.
+{: .challenge}
 
 ## Advance Topics 
 
@@ -384,29 +357,6 @@ int main()
 }
 ~~~
 {: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub3"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub3').value = `// conditional operator
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  int a,b,c;
-
-  a=2;
-  b=7;
-  c = (a>b) ? a : b;
-
-  cout << c << endl;
-}
-`;
-</script>
-</form>
-<br>
 
 The result from running this program is:
 

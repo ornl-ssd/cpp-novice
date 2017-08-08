@@ -303,6 +303,7 @@ int main()
 > > {
 > >   double r=5.0;               // radius
 > >   double circle;
+> >   double cone;
 > > 
 > >   circle = 2 * pi * r;
 > >   cone = circle * h * r / 6;
