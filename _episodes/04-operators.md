@@ -132,7 +132,9 @@ assigning the result of an operation to the first operand:
 <tr><td>price *= units + 1;</td><td>price = price * (units+1);</td></tr>
 </table>
 
-The same applies for all the other compound assignment operators. For example:
+The same applies for all the other compound assignment operators. 
+
+Here is an example of using compound addition:
 
 ~~~
 // compound assignment operators
@@ -174,7 +176,7 @@ x = x + 1;
 ~~~
 {: .code}
 
-One peculiarity of these operators is that they can be used both as a prefix and as a suffix to a variable, for example `++x` and`x++`. These 
+One peculiarity of these operators is that they can be used both as a prefix and as a suffix to a variable, for example `++x` and `x++`. These 
 have an important difference in their meaning. The prefix version of the operator, `++x`, results in an expression that evaluates to the 
 *final* value of `x` (i.e. *after* it is increased by one in this case). The suffix version of the operator, `x++`, results in an
 expression that evaluates to the value of `x` *before* being increased.
@@ -186,6 +188,25 @@ The following examples show the difference:
 <tr><td rowspan="3">x = 3;<br>y = ++x;<br>// x contains 4, y contains 4</td>
 <td>x = 3;<br>y = x++;<br>// x contains 4, y contains 3</td></tr>
 </table>
+
+> ## Challenge
+> Which of the following statements are valid? If `i` starts out with the value of 5, what is it's value after each valid statement?
+>
+> ~~~
+> ++(i = 6);
+> ++i = 6;
+> (++i)++;
+> ++(i++);
+> ++i++;
+> ~~~
+> {: .code}
+>
+> > ## Solution
+> > The first three are valid. The value of `i` after each statement (assuming it is 5 before the statement is executed) 
+> > will be 7, 6, and 7 respectively.
+> >
+> {: .solution}
+{: .challenge}
 
 ### Comparison operators `==`, `!=`, `>`, `<`, `>=`, `<=`
 
@@ -262,6 +283,7 @@ The following tables show the results:
 <tr><td>false</td><td>false</td><td>false</td></tr>
 </table>
 
+<table border="1">
 <tr><th colspan="3">|| (OR)</th></tr>
 <tr><th>a</th><th>b</th><th>a || b</th></tr>
 <tr><td>true</td><td>true</td><td>true</td></tr>
@@ -309,12 +331,13 @@ If the condition is `false` then the right-hand side `(++i<n)` is never evaluate
 > Suppose that `i` has the value 5 and `n` has the value 5. Will the body `if` statement be executed? What will the values
 > of `i` and `n` be after the statement is executed?
 >
-> > ##Solution
+> > ## Solution
 > > No, the body will not be executed. Since `i` is less than 10, `i<10` is true and the second part of the `&&` expression 
 > > will be evaluated. The `++i` expression will cause the value of `i` to be incremented by 1 to 6, so it will be greater than `n` 
 > > and so `++i<n` will be false. The result of `true && false` is `false`, so the body of the `if` statement is not executed.
 > >
 > > At the end of the statement, the value of `i` will be 6 and the value of `n` will be 5.
+> {: .solution}
 {: .challenge}
 
 ## Advance Topics 
