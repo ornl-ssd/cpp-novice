@@ -287,7 +287,30 @@ int main()
 {: .code}
 
 > ## Challenge
-> Modify the above program to compute the volume of a cone of constant height 10.0 (using the same radius value of 5.0). Compile 
-> and run it to check that it generates the correct value.
+> Modify the above program to use the calculation of `circle` to compute the volume of a cone of constant height 10.0 
+> (using the same radius value of 5.0). Compile and run it to check that it generates the correct value.
+>
+> > ## Solution
+> > ~~~
+> > #include <iostream>
+> > using namespace std;
+> > 
+> > const double height = 10.0;
+> > const double pi = 3.14159;
+> > const char newline = '\n';
+> > 
+> > int main()
+> > {
+> >   double r=5.0;               // radius
+> >   double circle;
+> > 
+> >   circle = 2 * pi * r;
+> >   cone = circle * h * r * / 6;
+> >   cout << cone;
+> >   cout << newline;
+> > }
+> > ~~~
+> > {: .code}
+> {: .solution}
 {: .challenge}
 
