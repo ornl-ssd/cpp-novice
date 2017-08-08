@@ -44,10 +44,10 @@ See the Introduction to Integrated Weld Modeling[^3] for more details on the mod
 ### Overview
 
 We will begin by looking at the basic features of C++, including variables, constants, operators, flow of control, and functions. 
-Once we have enough background information, we will begin creating the heat transfer model based on the equation above. The goal
+Once we have enough background information, we will begin creating the heat transfer model based on the equations above. The goal
 will be to create a program that, give initial starting conditions, will output a file that describes the temperature isotherms
-during the welding process. We will then couple that with the the Python plotting program we developed in the Python module to
-generate a contour lot of the temperature gradients.
+during the welding process. We will then couple that with the Python plotting program we developed in the Python module to
+generate a contour plot of the temperature gradients.
 
 ### References
 
