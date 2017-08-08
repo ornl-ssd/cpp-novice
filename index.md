@@ -9,6 +9,10 @@ or cooling rate in a Cartesian coordinate system can be related to the second de
 x-, y-, and z-directions[^1]:
 
 <img src="{{ site.github.url }}/fig/spatial_variation.png" height="25%" width="25%"/>
+$$
+\frac{\partial T}{\partial t} = \frac{\lambda}{\rho c}\left(\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial Y^2}
++ \frac{\partial^2 T}{\partial z^2}\right)
+$$
 
 where $$ T $$ is temperature, $$ t $$ is time, $$ \lambda $$ is thermal conductivity, $$ rho $$ is density, $$ c $$ is specific heat capacity, and 
 $$ a $$ is the thermal diffusivity of the material being welded.
@@ -18,7 +22,7 @@ by Rosenthal[^2] as:
 
 <img src="{{ site.github.url }}/fig/temperature_distribution.png" height="35%" width="35%"/>
 
-where $$ T{x,R} $$ is the temperature as a function of the radial distance ($$ R $$) and distance ($$ x $$) along the welding centerline,
+where $$ T\{x,R\} $$ is the temperature as a function of the radial distance ($$ R $$) and distance ($$ x $$) along the welding centerline,
 $$ T_0 $$ is the preheat temperature, $$ V $$ is the arc voltage, $$ I $$ is the welding current, $$ v $$ is the welding speed, 
 $$ a $$ is the thermal diffusivity, and $$ \eta $$ is the arc efficiency.
 
