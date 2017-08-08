@@ -305,7 +305,7 @@ int main()
 > >   double circle;
 > > 
 > >   circle = 2 * pi * r;
-> >   cone = circle * h * r * / 6;
+> >   cone = circle * h * r / 6;
 > >   cout << cone;
 > >   cout << newline;
 > > }
