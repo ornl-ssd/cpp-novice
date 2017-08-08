@@ -295,7 +295,7 @@ int main()
 > > #include <iostream>
 > > using namespace std;
 > > 
-> > const double height = 10.0;
+> > const double h = 10.0;		// height
 > > const double pi = 3.14159;
 > > const char newline = '\n';
 > > 
