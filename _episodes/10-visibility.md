@@ -96,37 +96,6 @@ int main() {
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub1"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub1').value = `// inner block scopes
-#include <iostream>
-using namespace std;
-
-int x = 1; // global variable
-
-int main() {
-  int x = 10; // hides global variable
-  int y = 20;
-  {
-    int x;   // ok, inner scope.
-    x = 50;  // sets value to inner x
-    y = 50;  // sets value to (outer) y
-    cout << "inner block:" << endl;
-    cout << "x: " << x << endl;
-    cout << "y: " << y << endl;
-  }
-  cout << "outer block:" << endl;
-  cout << "x: " << x << endl;
-  cout << "y: " << y << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
-
 Running this program results in:
 
 ~~~
@@ -216,36 +185,6 @@ int main () {
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub2"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub2').value = `// namespaces
-#include <iostream>
-using namespace std;
-
-namespace foo
-{
-  int value() { return 5; }
-}
-
-namespace bar
-{
-  const double pi = 3.1416;
-  double value() { return 2 * pi; }
-}
-
-int main () {
-  cout << foo::value() << endl;
-  cout << bar::value() << endl;
-  cout << bar::pi << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
-
 Running this program results in:
 
 ~~~
@@ -309,40 +248,6 @@ int main () {
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub2"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub2').value = `// using
-#include <iostream>
-using namespace std;
-
-namespace first
-{
-  int x = 5;
-  int y = 10;
-}
-
-namespace second
-{
-  double x = 3.1416;
-  double y = 2.7183;
-}
-
-int main () {
-  using first::x;
-  using second::y;
-  cout << x << endl;
-  cout << y << endl;
-  cout << first::y << endl;
-  cout << second::x << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
-
 The code produces the output:
 
 ~~~
@@ -385,39 +290,6 @@ int main () {
 }
 ~~~
 {: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub3"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub3').value = `// using
-#include <iostream>
-using namespace std;
-
-namespace first
-{
-  int x = 5;
-  int y = 10;
-}
-
-namespace second
-{
-  double x = 3.1416;
-  double y = 2.7183;
-}
-
-int main () {
-  using namespace first;
-  cout << x << endl;
-  cout << y << endl;
-  cout << second::x << endl;
-  cout << second::y << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
 
 This produces the output:
 
@@ -464,40 +336,6 @@ int main () {
 }
 ~~~
 {: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub4"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub4').value = `// using namespace example
-#include <iostream>
-using namespace std;
-
-namespace first
-{
-  int x = 5;
-}
-
-namespace second
-{
-  double x = 3.1416;
-}
-
-int main () {
-  {
-    using namespace first;
-    cout << x << endl;
-  }
-  {
-    using namespace second;
-    cout << x << endl;
-  }
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
 
 This produces the output:
 
@@ -575,28 +413,6 @@ int main ()
 }
 ~~~
 {: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub5"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub5').value = `// static vs automatic storage
-#include <iostream>
-using namespace std;
-
-int x;
-
-int main ()
-{
-  int y;
-  cout << x << endl;
-  cout << y << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
 
 Running this code results in:
 
