@@ -56,32 +56,6 @@ int main()
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub1"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub1').value = `// function example
-#include <iostream>
-using namespace std;
-
-int addition(int a, int b)
-{
-  int r;
-  r = a + b;
-  return r;
-}
-
-int main()
-{
-  int z;
-  z = addition(5, 3);
-  cout << "The result is " << z << endl;
-}
-`;
-</script>
-</form>
-<br>
-
 When this program is run, the result is:
 
 ~~~
@@ -93,16 +67,17 @@ This program is divided in two functions: `addition` and `main`. Remember that n
 program always starts by calling `main`. In fact, `main` is the only function called automatically, and the code in any other function 
 is only executed if its function is called from `main` (directly or indirectly).
 
-In the example above, `main` begins by declaring the variable `z` of type `int`. Then it calls the `addition` function and supplies
-two values, 5 and 3.
+At the point at which the function `addition` is called from within `main`, control is passed to the new function. Further execution of 
+`main` is suspended, and will only resume once the `addition` function ends, as shown below:
+
+<img src="{{ site.github.url }}/fig/07-function-call.png"/>
  
 The parameters in the function declaration have a clear correspondence to the arguments passed in the function call. The call passes 
 two values to the function, and these correspond to the parameters `a` and `b`, declared for function addition. You can think of the
-parameters as being variables that are accessible only within the function.
+parameters as being variables that are accessible only within the function. At the moment of the function call, the value of both 
+arguments, 5 and 3, are assigned to variables `a` and `b` within the function, as show below:
 
-At the point at which the function `addition` is called from within `main`, control is passed to the new function. Further execution of 
-`main` is suspended, and will only resume once the `addition` function ends. At the moment of the function call, the value of both 
-arguments are assigned ta variables `a` and `b` within the function.
+<img src="{{ site.github.url }}/fig/07-function-arguments.png"/>
 
 Inside  the `addition` function, another variable `r` is declared, and is assigned the result of the expression `a + b`.
 Since `a` has the value 5, and `b` the value 3, the result assigned to `r` will be 8.
@@ -110,7 +85,9 @@ Since `a` has the value 5, and `b` the value 3, the result assigned to `r` will 
 The final statement within the function is `return r;`. This statement ends the function and returns the control back to the statement
 immediately following the point where it was called, i.e. to function `main`. Because the `addition` function has a return type, the 
 call is evaluated as having a value, and this value is the value specified in the `return` statement that ended the function. This
-results in the value, 8 being assigned to `z` in `main`. 
+results in the value, 8 being assigned to `z` in `main` as shown below:
+
+<img src="{{ site.github.url }}/fig/07-function-return.png"/>
 
 > ## Parameters and arguments
 >
@@ -120,7 +97,7 @@ results in the value, 8 being assigned to `z` in `main`.
 > The term *argument* is used to refer to the value (literal, variable, etc.) that is *passed* to the function via a function call, and that is
 > matched to the corresponding parameter.
 >
-> In many cases these terms are used interchangeably, but we will stick to the defintions here.
+> In many cases these terms are used interchangeably, but we will stick to the definitions here.
 {: .callout}
 
 A function can be called multiple times within a program, and its argument is not limited just to literals:
@@ -150,35 +127,6 @@ int main()
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub2"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub2').value = `// function example
-#include <iostream>
-using namespace std;
-
-int subtraction(int a, int b)
-{
-  int r;
-  r = a - b;
-  return r;
-}
-
-int main()
-{
-  int x=5, y=3, z;
-  z = subtraction (7, 2);
-  cout << "The first result is " << z << endl;
-  cout << "The second result is " << subtraction (7, 2) << endl;
-  cout << "The third result is " << subtraction (x, y) << endl;
-  z= 4 + subtraction(x, y);
-  cout << "The fourth result is " << z << endl;
-}
-`;
-</script>
-</form>
-<br>
 
 The result from running this program is:
 
@@ -328,6 +276,13 @@ in the same way on all platforms are as follows. Note that these values are defi
 <tr><td>EXIT_FAILURE</td><td>The program failed.</td></tr>
 </table>
 
+> ## Challenge
+> The parameters of a function don't need to be the same types, nor do they need to be the same as the return type. To demonstrate this,
+> we're going to write a function call `convert` that converts a floating point number to an integer
+>
+>
+{: .challenge}
+
 ## Advanced Topics
 
 ### Arguments passed by value and by reference
@@ -371,33 +326,6 @@ int main()
 }
 ~~~
 {: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub3"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub3').value = `// passing parameters by reference
-#include <iostream>
-using namespace std;
-
-void duplicate(int& a, int& b, int& c)
-{
-  a *= 2;
-  b *= 2;
-  c *= 2;
-}
-
-int main()
-{
-  int x=1, y=3, z=7;
-  duplicate(x, y, z);
-  cout << "x=" << x << ", y=" << y << ", z=" << z << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
 
 When this program is run, the result is:
 
@@ -523,32 +451,6 @@ int main()
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub4"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub4').value = `// default values in functions
-#include <iostream>
-using namespace std;
-
-int divide(int a, int b=2)
-{
-  int r;
-  r = a / b;
-  return r;
-}
-
-int main()
-{
-  cout << divide(12) << endl;
-  cout << divide(20, 4) << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
-
 Running this code results in:
 
 ~~~
@@ -647,44 +549,6 @@ void even(int x)
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub4"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub4').value = `// declaring functions prototypes
-#include <iostream>
-using namespace std;
-
-void odd(int x);
-void even(int x);
-
-int main()
-{
-  int i;
-  do {
-    cout << "Please, enter number (0 to exit): ";
-    cin >> i;
-    odd(i);
-  } while ( i!=0 );
-  return 0;
-}
-
-void odd(int x)
-{
-  if ((x % 2) != 0) cout << "It is odd." << endl;
-  else even(x);
-}
-
-void even(int x)
-{
-  if ((x % 2) == 0) cout << "It is even." << endl;
-  else odd (x);
-}
-`;
-</script>
-</form>
-<br>
-
 Here is an example session using this program:
 
 ~~~
@@ -750,33 +614,6 @@ int main()
 }
 ~~~
 {: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub5"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub5').value = `// factorial calculator
-#include <iostream>
-using namespace std;
-
-long factorial(long a)
-{
-  if (a > 1)
-   return (a * factorial (a-1));
-  
-  return 1;
-}
-
-int main()
-{
-  long number = 9;
-  cout << number << "! = " << factorial (number) << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
 
 The output from this program is:
 
