@@ -135,7 +135,7 @@ Note that `else if` are two separate keywords, not a single keyword, so the can 
 >
 > Now run the program and check what output is produced. Did it do what you expect?
 >
-> > ##Solution
+> >##Solution
 > >
 > > When you run the program, you should see the following:
 > >
@@ -240,6 +240,8 @@ int main()
     getline(cin,str);
     cout << "You entered: " << str << endl;
   } while (str != "goodbye");
+  
+  return 0;
 }
 ~~~
 {: .code}
@@ -387,8 +389,8 @@ This loop is automatic and does not require the explicit declaration of any coun
 >
 >   n = -5;
 >   do {
-> 	  n += 3;
-> 	  cout << n << ", ";
+>     n += 3;
+>     cout << n << ", ";
 >   } while (n <= 7);
 >   cout << "n is finally " << n << endl;
 > }
@@ -404,7 +406,8 @@ to do this with the judicious use of `if` statements, C++ provides two additiona
 #### The `continue` statement
 
 The `continue` statement causes the program to skip the rest of the loop in the current iteration, as if the end of the statement block had 
-been reached. The loop will immediately start the following iteration, and in the case of `while` and `for` loops, the condition will be tested. 
+been reached. The loop will immediately start the following iteration. In the case of `while` and `for` loops, the condition will be tested,
+but in the case of `for` loops, the `modify` part will *not* be executed.
 
 For example, let's skip the number 5 in our countdown:
 
