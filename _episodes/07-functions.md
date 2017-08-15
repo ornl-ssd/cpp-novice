@@ -276,13 +276,6 @@ in the same way on all platforms are as follows. Note that these values are defi
 <tr><td>EXIT_FAILURE</td><td>The program failed.</td></tr>
 </table>
 
-> ## Challenge
-> The parameters of a function don't need to be the same types, nor do they need to be the same as the return type. To demonstrate this,
-> we're going to write a function call `convert` that converts a floating point number to an integer
->
->
-{: .challenge}
-
 ## Advanced Topics
 
 ### Arguments passed by value and by reference
@@ -512,7 +505,7 @@ int protofunction (int, int);
 ~~~
 {: .code}
 
-It is good practice to include a name for each parameter, however, as this improves the readibility of the code.
+It is good practice to include a name for each parameter, however, as this improves the readability of the code.
 
 This this example illustrates how functions can be declared before its definition:
 

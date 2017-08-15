@@ -345,7 +345,7 @@ string mystring {"This is a string"};
 ~~~
 {: .code}
 
-Variabls of type `string` can be used just like any fundamental type, however there are a large number of operations that 
+Variables of type `string` can be used just like any fundamental type, however there are a large number of operations that 
 are also available:
 
 ~~~
