@@ -112,7 +112,7 @@ else
 This prints "x is positive" if `x` is greater than zero, "x is negative" if `x` is less than zero, or "x is 0" if `x` is exactly equal to zero. 
 Note that `else if` are two separate keywords, not a single keyword, so the can be separated by spaces and newlines.
 
->## Abiguity
+> ## Abiguity
 >
 > What do you think the following program will print out?
 >
@@ -135,7 +135,7 @@ Note that `else if` are two separate keywords, not a single keyword, so the can 
 >
 > Now run the program and check what output is produced. Did it do what you expect?
 >
-> >##Solution
+> > ## Solution
 > >
 > > When you run the program, you should see the following:
 > >
@@ -157,7 +157,7 @@ Note that `else if` are two separate keywords, not a single keyword, so the can 
 > > }
 > > ~~~
 > > {: .code}
-> {: .solution }
+> {: .solution}
 {: .challenge}
 
 ### Iteration statements (loops)
