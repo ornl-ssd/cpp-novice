@@ -374,7 +374,7 @@ container in the library:
 <table border="1">
 <tr><th>built-in array</th><th>library array</th></tr>
 <tr><td><pre><code>
-#include <iostream>
+#include &lt;iostream&gt;
 
 using namespace std;
 
@@ -389,13 +389,13 @@ int main()
     cout << elem << endl;
 }
 </code></pre></td><td><pre><code>
-#include <iostream>
-#include <array>
+#include &lt;iostream&gt;>
+#include &lt;array&gt;
 using namespace std;
 
 int main()
 {
-  array<int,3> myarray {10,20,30};
+  array&lt;int,3&gt; myarray {10,20,30};
 
   for (int i = 0; i < myarray.size(); ++i)
     ++myarray[i];
