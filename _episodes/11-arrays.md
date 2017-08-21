@@ -373,7 +373,7 @@ container in the library:
 
 <table border="1">
 <tr><th>built-in array</th><th>library array</th></tr>
-<tr><td>
+<tr><td><pre><code>
 #include <iostream>
 
 using namespace std;
@@ -388,7 +388,7 @@ int main()
   for (int elem : myarray)
     cout << elem << endl;
 }
-</td><td>
+</code></pre></td><td><pre><code>
 #include <iostream>
 #include <array>
 using namespace std;
@@ -403,7 +403,7 @@ int main()
   for (int elem : myarray)
     cout << elem << endl;
 }
-</td></tr>
+</code></pre></td></tr>
 </table>
 
 As you can see, both kinds of arrays use the same syntax to access its elements: `myarray[i]`. Other than that, the main differences are how the 

@@ -14,13 +14,14 @@ keypoints:
 - "Classes allow access to members to be controlled."
 - "A constructor can be used to initialize data members."
 ---
-Classes build on the `struct` type by adding functions in addition to the data. So, while a `struct` encapsulates data only (the what), a
-`class` encapsulates both data (the what) and functions that operate on that data (the how).
+Classes are a way of encapsulating both data (the what) and functions that operate on that data (the how). They build on the `struct` type by adding functions in addition to the data.
 
-A class is a type that can be thought of as a blueprint. An instantation of the blueprint is an *instance* of the class. An instance of a class
-is also known as an *object*. In terms of variables, a class would be the type, and an object would be the variable.
+A class is a type that can be thought of as a blueprint describing how to build something, like a car. When something is built using the blueprint
+(an instantiation of the blueprint), it is known as an *instance* of the class. An instance of a class
+is also known as an *object*. In terms of variables, a class would be the type, and an object would be the value of a variable declared as that
+type.
 
-Classes are defined using either keyword `class` or keyword `struct`, with the following syntax:
+Classes are defined using the keyword `class` (the keyword `struct` can also be used), with the following syntax:
 
 ~~~
 class class_name {
@@ -34,7 +35,7 @@ class class_name {
 {: .code}
 
 In this definition, `class_name` is a valid identifier for the class, and `object_names` are an optional list of names for objects of this class. 
-The body of the declaration can contain members, which can either be data or function declarations.
+The body of the declaration can contain *members*, which can either be data or function declarations.
 
 In addition to the data and function declarations, a `class` declaration can also optionally include *access specifiers*.  An access specifier 
 is one of the following three keywords: `private`, `public` or `protected`. These specifiers modify the access rights 
@@ -112,37 +113,6 @@ int main() {
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub1"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub1').value = `// classes example
-#include <iostream>
-using namespace std;
-
-class Rectangle {
-    int width, height;
-  public:
-    void set_values(int,int);
-    int area() {return width*height;}
-};
-
-void Rectangle::set_values(int x, int y) {
-  width = x;
-  height = y;
-}
-
-int main() {
-  Rectangle rect;
-  rect.set_values(3,4);
-  cout << "area: " << rect.area();
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
-
 The members `width` and `height` have `private` access, so access from outside the class is 
 not allowed. Instead, we have defined a member function `set_values` to set the values for those members within the object. 
 The rest of the program does not need to have direct access to these members, and controlling access to data members in this way is a very
@@ -188,40 +158,7 @@ int main() {
 ~~~
 {: .code}
 
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub2"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub2').value = `// example: one class, two objects
-#include <iostream>
-using namespace std;
-
-class Rectangle {
-    int width, height;
-  public:
-    void set_values(int,int);
-    int area() {return width*height;}
-};
-
-void Rectangle::set_values(int x, int y) {
-  width = x;
-  height = y;
-}
-
-int main() {
-  Rectangle rect_a, rect_b;
-  rect_a.set_values(3,4);
-  rect_b.set_values(5,6);
-  cout << "rect_a area: " << rect_a.area() << endl;
-  cout << "rect_b area: " << rect_b.area() << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
-
-In this we have created to instances of the class `Rectangle` called `rect_a` and `rect_b`.
+In this case we have created to instances of the class `Rectangle` called `rect_a` and `rect_b`.
 
 Notice that the call to `rect_a.area()` does not give the same result as the call to `rect_b.area()`. This is because each object of class
 has its own variables `width` and `height`, and the function members `set_value` and `area` 
@@ -272,38 +209,6 @@ int main() {
 }
 ~~~
 {: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub3"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub3').value = `// example: class constructor
-#include <iostream>
-using namespace std;
-
-class Rectangle {
-    int width, height;
-  public:
-    Rectangle(int,int);
-    int area() {return (width*height);}
-};
-
-Rectangle::Rectangle(int a, int b) {
-  width = a;
-  height = b;
-}
-
-int main() {
-  Rectangle rect_a(3,4);
-  Rectangle rect_b(5,6);
-  cout << "rect_a area: " << rect_a.area() << endl;
-  cout << "rect_b area: " << rect_b.area() << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
 
 The results of this example are identical to those of the previous example. The `Rectangle` class no longer requires the member function 
 `set_values`, as it is now possible to use the constructor to initialize the values of `width` and `height` when the object is created:
@@ -357,44 +262,6 @@ int main () {
 }
 ~~~
 {: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub4"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub4').value = `// overloading class constructors
-#include <iostream>
-using namespace std;
-
-class Rectangle {
-    int width, height;
-  public:
-    Rectangle();
-    Rectangle(int,int);
-    int area (void) {return (width*height);}
-};
-
-Rectangle::Rectangle() {
-  width = 5;
-  height = 5;
-}
-
-Rectangle::Rectangle(int a, int b) {
-  width = a;
-  height = b;
-}
-
-int main () {
-  Rectangle rect_a(3,4);
-  Rectangle rect_b;
-  cout << "rect area: " << rect.area() << endl;
-  cout << "rectb area: " << rectb.area() << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
 
 In this example, two objects of class `Rectangle` are again created. However, this time while `rect_a` is constructed with two arguments, `rect_b`
 is constructed with no arguments. This is a special kind of constructor called the *default constructor*. It is special because it can't be
@@ -456,35 +323,6 @@ int main() {
 }
 ~~~
 {: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub5"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub5').value = `// classes and uniform initialization
-#include <iostream>
-using namespace std;
-
-class Circle {
-    double radius;
-  public:
-    Circle(double r) { radius = r; }
-    double circum() {return 2*radius*3.14159265;}
-};
-
-int main() {
-  Circle foo (10.0);   // functional form
-  Circle bar = 20.0;   // assignment init.
-  Circle baz {30.0};   // uniform init.
-  Circle qux = {40.0}; // POD-like
-
-  cout << "foo's circumference: " << foo.circum() << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
 
 
 An advantage of uniform initialization over functional form is that, unlike parentheses, braces cannot be confused with function declarations, 
@@ -577,41 +415,6 @@ int main() {
 }
 ~~~
 {: .code}
-
-<form target="_blank" method="post" action="http://cpp.sh/">
-<input type="hidden" name="source" id="sub6"/>
-<input type="submit" value="Try running it"/>
-<script type="text/javascript">
-document.getElementById('sub6').value = `// member initialization
-#include <iostream>
-using namespace std;
-
-class Circle {
-    double radius;
-  public:
-    Circle(double r) : radius(r) { }
-    double area() {return radius*radius*3.14159265;}
-};
-
-class Cylinder {
-    Circle base;
-    double height;
-  public:
-    Cylinder(double r, double h) : base (r), height(h) {}
-    double volume() {return base.area() * height;}
-};
-
-int main() {
-  Cylinder foo (10,20);
-
-  cout << "foo's volume: " << foo.volume() << endl;
-  return 0;
-}
-`;
-</script>
-</form>
-<br>
-
 
 In this example, class `Cylinder` has a member object `base` whose type is another `Circle`. Objects of class `Circle` can only be constructed 
 with a parameter, so the `Cylinder` constructor needs to call the `Circle` constructor. The only way to do this is in the member initializer list.
