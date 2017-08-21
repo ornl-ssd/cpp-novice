@@ -98,8 +98,7 @@ say_hello says hello, Chris!
 
 ## Multiple arguments
 
-Arguments are strings passed to your program to give it information. A program for moving files, for example, may be invoked with two arguments 
-- the source file and the destination: `move /path/to/source /path/to/destination`. 
+Arguments are strings passed to your program to give it information. A program for moving files, for example, may be invoked with two arguments, the source file and the destination: `move /path/to/source /path/to/destination`. 
 
 An example program would be:
 
@@ -145,6 +144,39 @@ int main(int argc, char* argv[])
 }
 ~~~
 {: .code}
+
+## Numeric arguments
+
+Often the arguments supplied to a program should be treated as numeric rather than strings. Dealing with this situation is simple, it's just
+necessary to convert the string parameter to a numeric value before using it. One note of caution however. Do not assume that the arguments
+will always be numeric, even if you're expecting them to be.
+
+The following example takes two numbers and adds them together:
+
+~~~
+#include <iostream>
+
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+    if (argc < 3) { // We expect 3 arguments: the program name and two numbers
+        cerr << "Usage: " << argv[0] << "NUMBER NUMBER" << endl;
+        return(1);
+    }
+    
+    // Note that atoi() will try to convert anything to an integer! If the conversion
+    // fails then it will return 0, which may not be expected.
+    int first = atoi(argv[1]);
+    int second = atoi(argv[2]);
+    
+    cout << "The result is: " << first + second << endl;
+    return(0);
+}
+~~~
+{: .code}
+
+Similar functions are available for converting to long integer (`atol`) and double (`atof`) types. 
 
 ## Options
 
